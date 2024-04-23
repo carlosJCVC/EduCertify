@@ -20,7 +20,7 @@
     <link href="http://localhost:2000/dist/css/demo.min.css?1684106062" rel="stylesheet"> --}}
 
     <!-- Styles -->
-    @vite(['resources/sass/app.scss', 'resources/sass/tabler.scss'])
+    @vite(['resources/sass/app.scss', 'resources/sass/tabler.scss', 'resources/sass/vendor/fonts/tabler-icons.scss'])
 
     {{-- <link rel="preconnect" href="{{ env('APP_URL') }}">
     <link rel="stylesheet" href="{{ asset('assets/fonts/Inter/web/inter.css') }}"> --}}
@@ -36,12 +36,9 @@
             font-feature-settings: "cv03", "cv04", "cv11";
         }
     </style>
-    {{-- <link rel="stylesheet" href="{{ asset('assets/css/inter.css') }}"> --}}
 </head>
 
 <body>
-    {{-- <script src="http://localhost:2000/dist/js/demo-theme.min.js?1684106062"></script> --}}
-
     <div id="page">
         <!-- Sidebar -->
         @section('sidebar')

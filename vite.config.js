@@ -9,6 +9,7 @@ export default defineConfig({
                 'resources/js/app.js',
                 'resources/sass/tabler.scss',
                 'resources/js/tabler.js',
+                'resources/sass/vendor/fonts/tabler-icons.scss',
             ],
             refresh: true,
         }),
