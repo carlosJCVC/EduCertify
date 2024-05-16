@@ -22,10 +22,8 @@
     <!-- Styles -->
     @vite(['resources/sass/app.scss', 'resources/sass/tabler.scss', 'resources/sass/vendor/fonts/tabler-icons.scss'])
 
-    {{-- <link rel="preconnect" href="{{ env('APP_URL') }}">
-    <link rel="stylesheet" href="{{ asset('assets/fonts/Inter/web/inter.css') }}"> --}}
-    <link rel="preconnect" href="https://rsms.me/">
-    <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
+    <link rel="preconnect" href="{{ env('APP_URL') }}">
+    <link rel="stylesheet" href="{{ asset('assets/fonts/Inter/web/inter.css') }}">
 
     <style>
         :root {
@@ -36,6 +34,10 @@
             font-feature-settings: "cv03", "cv04", "cv11";
         }
     </style>
+
+    <link href="https://cdn.datatables.net/v/bs5/dt-2.0.5/datatables.min.css" rel="stylesheet">
+
+    @stack('styles')
 </head>
 
 <body>
@@ -53,6 +55,8 @@
 
     <!-- Scripts -->
     @vite(['resources/js/app.js', 'resources/js/tabler.js'])
-</body>
 
+    @stack('scripts')
+    {{-- @yield('scripts') --}}
+</body>
 </html>

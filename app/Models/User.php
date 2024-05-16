@@ -3,6 +3,8 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+
+use App\UserStatuses;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -19,6 +21,7 @@ class User extends Authenticatable
     protected $fillable = [
         'name',
         'email',
+        'status',
         'password',
     ];
 
@@ -33,6 +36,15 @@ class User extends Authenticatable
     ];
 
     /**
+     * The attributes that should be cast.
+     *
+     * @var array<string, string>
+     */
+    protected $casts = [
+        'status' => UserStatuses::class,
+    ];
+
+    /**
      * Get the attributes that should be cast.
      *
      * @return array<string, string>
@@ -41,6 +53,7 @@ class User extends Authenticatable
     {
         return [
             'email_verified_at' => 'datetime',
+            'created_at' => 'datetime:Y-m-d H:i',
             'password' => 'hashed',
         ];
     }

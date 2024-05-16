@@ -10,6 +10,11 @@ export default defineConfig({
                 'resources/sass/tabler.scss',
                 'resources/js/tabler.js',
                 'resources/sass/vendor/fonts/tabler-icons.scss',
+
+                /**
+                 * Modules
+                 */
+                'resources/js/src/users/list-users.js',
             ],
             refresh: true,
         }),
@@ -18,6 +23,7 @@ export default defineConfig({
         alias: {
             // '~tabler': path.resolve(__dirname, 'node_modules/@tabler/core'),
             // '~bootstrap': path.resolve(__dirname, 'node_modules/bootstrap'),
+            '@': '/resources/js',
         }
     },
 });

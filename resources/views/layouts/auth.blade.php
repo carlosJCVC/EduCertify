@@ -7,10 +7,11 @@
     <title>@lang('Sign in')</title>
 
     @vite(['resources/sass/tabler.scss'])
+    
+    <link rel="preconnect" href="{{ env('APP_URL') }}">
+    <link rel="stylesheet" href="{{ asset('assets/fonts/Inter/web/inter.css') }}">
 
     <style>
-        @import url('https://rsms.me/inter/inter.css');
-
         :root {
             --tblr-font-sans-serif: 'Inter Var', -apple-system, BlinkMacSystemFont, San Francisco, Segoe UI, Roboto, Helvetica Neue, sans-serif;
         }

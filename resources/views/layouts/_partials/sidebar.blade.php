@@ -39,7 +39,19 @@
                         </span>
 
                         <span class="nav-link-title">
-                            Home
+                            @lang('Dashboard')
+                        </span>
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link text-white" href="{{ route('admin.users.index') }}">
+                        <span class="nav-link-icon d-md-none d-lg-inline-block">
+                            <i class="ti ti-users ti-xs"></i>
+                        </span>
+
+                        <span class="nav-link-title">
+                            @lang('Users')
                         </span>
                     </a>
                 </li>
