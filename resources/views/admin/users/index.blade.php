@@ -7,12 +7,6 @@
 @push('styles')
 {{-- <link href="https://cdn.datatables.net/buttons/3.0.2/css/buttons.bootstrap5.css" rel="stylesheet">
 <link href="https://cdn.datatables.net/colreorder/2.0.2/css/colReorder.bootstrap5.css" rel="stylesheet"> --}}
-
-<link
-  rel="stylesheet"
-  href="https://unpkg.com/dropzone@5/dist/min/dropzone.min.css"
-  type="text/css"
-/>
 @endpush
 
 @section('content')
@@ -88,7 +82,7 @@
     <script src="{{ Vite::asset('resources/assets/vendor/libs/@form-validation/umd/bundle/popular.min.js') }}"></script>
     <script src="{{ Vite::asset('resources/assets/vendor/libs/@form-validation/umd/plugin-bootstrap5/index.min.js') }}"></script>
     <script src="{{ Vite::asset('resources/assets/vendor/libs/@form-validation/umd/plugin-auto-focus/index.min.js') }}"></script>
-    <script src="https://unpkg.com/dropzone@5/dist/min/dropzone.min.js"></script>
+    <script src="{{ Vite::asset('resources/assets/vendor/libs/@form-validation/umd/validator-remote/index.min.js') }}"></script>
 
     @vite('resources/js/src/users/list-users.js')
 @endpush

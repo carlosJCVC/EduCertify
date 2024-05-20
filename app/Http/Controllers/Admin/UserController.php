@@ -112,4 +112,23 @@ class UserController extends Controller
             'message' => __('User was deleted successfully!'),
         ], 200);
     }
+
+    /**
+     * Update the specified resource in storage.
+     */
+    public function verify(Request $request)
+    {
+        $users = User::where('email', $request->get('email'));
+
+        $valid = true;
+        if ($users->count() > 0) {
+            $valid = false;
+        }
+
+        return response()->json([
+            'title' => __('Success!'),
+            'message' => __('The email has already been registered.'),
+            'valid' => $valid,
+        ], 200);
+    }
 }

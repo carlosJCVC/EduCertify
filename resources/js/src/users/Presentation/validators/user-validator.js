@@ -79,25 +79,19 @@ const buildFormFieldsRules = () => {
                     max: 255,
                     message: 'The email must be less than 255 characters.'
                 },
-                //   remote: {
-                //     message: 'The email has already been registered.',
-                //     method: 'POST',
-                //     headers: {
-                //       'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                //     },
-                //     url: '/customers/verify',
-                //     data: function () {
-                //       let customer;
-                //       if (location.pathname.includes('/admin/customers')) {
-                //         customer = CustomerStore.getCustomer();
-                //       }
-
-                //       return {
-                //         email: form.querySelector('[name="email"]').value,
-                //         customer_id: customer? customer.id : 0
-                //       };
-                //     }
-                //   }
+                remote: {
+                    message: 'The email has already been registered.',
+                    method: 'POST',
+                    headers: {
+                        'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+                    },
+                    url: '/admin/users/verify',
+                    data: function () {
+                        return {
+                            email: document.querySelector('[name="email"]').value,
+                        };
+                    }
+                }
             }
         },
         status: {

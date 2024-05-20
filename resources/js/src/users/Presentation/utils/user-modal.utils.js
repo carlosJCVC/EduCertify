@@ -3,6 +3,7 @@ import 'dropify/dist/js/dropify.min';
 import { ElementSelectors } from "../../config/selectors";
 import { setUserFormValues } from "./user-form.utils";
 import { getUser } from "../../Application/useCases/get-user.usecase";
+import { getUserFormValidation } from '../validators/user-validator';
 
 /**
  * Funtion to sow modal
@@ -21,6 +22,7 @@ export const showCreateUserModal = () => {
             error: 'Ooops, something wrong happended.'
         },
     });
+    getUserFormValidation()
 
     modal.show();
 }
@@ -39,6 +41,7 @@ export const showEditUserModal = async (id) => {
     modal._element.querySelector('.modal-title').textContent = `Edit User: ${user.name}`;
 
     setUserFormValues(user);
+    getUserFormValidation()
 
     modal.show();
 }
