@@ -1,4 +1,5 @@
 import { ElementSelectors } from "../../config/selectors";
+import { getUserFormValidation } from "../validators/user-validator";
 
 /**
  * Return Form Values from user 
@@ -28,6 +29,8 @@ export const setUserFormValues = (user) => {
  */
 export const resetUserFormValues = () => {
     const form = getUserForm();
+    const fv = getUserFormValidation();
+    fv.resetForm(true);
     form.reset();
 }
 

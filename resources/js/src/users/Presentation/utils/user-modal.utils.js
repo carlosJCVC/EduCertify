@@ -1,3 +1,5 @@
+import $ from 'jquery';
+import 'dropify/dist/js/dropify.min';
 import { ElementSelectors } from "../../config/selectors";
 import { setUserFormValues } from "./user-form.utils";
 import { getUser } from "../../Application/useCases/get-user.usecase";
@@ -10,6 +12,15 @@ export const showCreateUserModal = () => {
     const modal = getUserModal();
 
     modal._element.querySelector('.modal-title').textContent = `Create New User`;
+
+    $('#avatar').dropify({
+        messages: {
+            default: '<h4>Drag and drop your avatar here or click.</h4>',
+            replace: 'Drag and drop or click to replace',
+            remove: 'Remove',
+            error: 'Ooops, something wrong happended.'
+        },
+    });
 
     modal.show();
 }

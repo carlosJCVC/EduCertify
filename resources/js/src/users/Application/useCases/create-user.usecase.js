@@ -6,6 +6,7 @@ import userStore from "../../Infrastructure/store/user.store";
 import { getUserModal } from "../../Presentation/utils/user-modal.utils";
 import { getUserFormValues } from "../../Presentation/utils/user-form.utils";
 import { loadingAlert, notifyAlert } from "../../../utils/alerts";
+import { Validator } from "../../config/validator";
 
 const userService = new UserService();
 
@@ -21,7 +22,7 @@ export const createUser = async (formData) => {
         const fv = getUserFormValidation();
         const status = await fv.validate();
 
-        if (status == "Valid") {
+        if (status == Validator.ValidForm) {
             const userData = getUserFormValues();
             const user = UserMapper.fromFormData(userData);
     
