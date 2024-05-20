@@ -25,7 +25,7 @@ const UserMapper = {
      * @returns 
      */
     fromJson: response => {
-        const { id, first_name, last_name, email, status, avatar } = response;
+        const { id, first_name, last_name, email, status, profile_photo_url } = response;
 
         return new User({
             id,
@@ -33,7 +33,7 @@ const UserMapper = {
             lastName: last_name,
             email,
             status,
-            avatar,
+            avatar: profile_photo_url,
         });
     },
 

@@ -20,7 +20,7 @@ export const updateUser = async (id) => {
     try {
         const modal = getUserModal();
         const datatable = userStore.getUserDatatable();
-        const fv = getUserFormValidation();
+        const fv = getUserFormValidation();//questions validator email en remote
         const status = await fv.validate();
 
         if (status == Validator.ValidForm) {

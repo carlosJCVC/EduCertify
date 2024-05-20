@@ -76,13 +76,16 @@ class UserService {
      * Update user by id.
      *
      * @param int id
-     * @param {FormData} data
+     * @param {User} user
      * @return Promise<boolean>
      */
-    async updateById(id, data) {
+    async updateById(id, user) {
         try {
             const endpoint = `${this.path}/${id}/update`;
-            await request.patch(endpoint, data);
+            const userData = UserMapper.toObject(user);
+            await request.post(endpoint, { _method: 'PATCH', ...userData}, {
+                headers: {...this.headers}
+            });
 
             return true;
         } catch (error) {

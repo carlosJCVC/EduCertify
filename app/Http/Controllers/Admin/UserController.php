@@ -30,7 +30,7 @@ class UserController extends Controller
             ->addColumn('name', fn ($record) => $record->full_name)
             ->addColumn('roles', fn ($record) => 'Admin')
             ->addColumn('status', fn ($record) => "<div class='badge {$record->status->badgeColor()} text-white'>{$record->status->value}</div>")
-            ->addColumn('actions', fn ($record) => $this->getActionsButtons($record->id))
+            ->addColumn('actions', fn ($record) => $this->getActionsButtons($record->id, false))
             ->rawColumns(['actions', 'status'])
             ->make(true);
     }
@@ -92,6 +92,11 @@ class UserController extends Controller
         $user = User::find($id);
         $user->update($request->all());
 
+        if ($request->has('avatar')) {
+            $file = $request->file('avatar');
+            $user->updateProfilePhoto($file);
+        }
+
         return response()->json([
             'title' => __('Success!'),
             'message' => __('User was updated successfully!'),
@@ -118,10 +123,20 @@ class UserController extends Controller
      */
     public function verify(Request $request)
     {
+        $userId = $request->get('user_id');
         $users = User::where('email', $request->get('email'));
+        $user = User::find($userId);
+
+        if ($userId == 0) {
+            $userId = empty($user) ? 0 : $user->id;
+        }
 
         $valid = true;
-        if ($users->count() > 0) {
+        if (($userId == 0 ) && $users->count() > 0) {
+            $valid = false;
+        }
+
+        if ($userId != 0 && ! $users->pluck('id')->contains($userId) && $users->count() > 0) {
             $valid = false;
         }
 

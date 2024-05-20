@@ -1,3 +1,4 @@
+import userStore from "../../Infrastructure/store/user.store";
 import { ElementSelectors } from "../../config/selectors";
 
 let fv = null;
@@ -87,8 +88,11 @@ const buildFormFieldsRules = () => {
                     },
                     url: '/admin/users/verify',
                     data: function () {
+                        const user = userStore.getUserSelected();
+
                         return {
                             email: document.querySelector('[name="email"]').value,
+                            user_id: user?.id
                         };
                     }
                 }

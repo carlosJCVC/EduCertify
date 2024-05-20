@@ -1,7 +1,7 @@
 import $ from 'jquery';
 import 'dropify/dist/js/dropify.min';
 import { ElementSelectors } from "../../config/selectors";
-import { setUserFormValues } from "./user-form.utils";
+import { resetFileField, setUserFormValues } from "./user-form.utils";
 import { getUser } from "../../Application/useCases/get-user.usecase";
 import { getUserFormValidation } from '../validators/user-validator';
 
@@ -12,16 +12,8 @@ import { getUserFormValidation } from '../validators/user-validator';
 export const showCreateUserModal = () => {
     const modal = getUserModal();
 
+    resetFileField()
     modal._element.querySelector('.modal-title').textContent = `Create New User`;
-
-    $('#avatar').dropify({
-        messages: {
-            default: '<h4>Drag and drop your avatar here or click.</h4>',
-            replace: 'Drag and drop or click to replace',
-            remove: 'Remove',
-            error: 'Ooops, something wrong happended.'
-        },
-    });
     getUserFormValidation()
 
     modal.show();
@@ -38,7 +30,7 @@ export const showEditUserModal = async (id) => {
     const modal = getUserModal();
     const user = await getUser(id);
 
-    modal._element.querySelector('.modal-title').textContent = `Edit User: ${user.name}`;
+    modal._element.querySelector('.modal-title').textContent = `Edit User: ${user.firstName}`;
 
     setUserFormValues(user);
     getUserFormValidation()
