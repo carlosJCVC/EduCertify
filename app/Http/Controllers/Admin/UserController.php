@@ -27,9 +27,10 @@ class UserController extends Controller
     public function json()
     {
         return DataTables::of(User::query())
-            ->addColumn('roles', fn($record) => 'Admin' )
-            ->addColumn('status', fn($record) => "<div class='badge {$record->status->badgeColor()} text-white'>{$record->status->value}</div>" )
-            ->addColumn('actions', fn($record) => $this->getActionsButtons($record->id) )
+            ->addColumn('name', fn ($record) => $record->full_name)
+            ->addColumn('roles', fn ($record) => 'Admin')
+            ->addColumn('status', fn ($record) => "<div class='badge {$record->status->badgeColor()} text-white'>{$record->status->value}</div>")
+            ->addColumn('actions', fn ($record) => $this->getActionsButtons($record->id))
             ->rawColumns(['actions', 'status'])
             ->make(true);
     }
@@ -51,11 +52,15 @@ class UserController extends Controller
         $input['password'] = Hash::make('password');
         $user = User::create($input);
 
+        if ($request->has('avatar')) {
+            $user->updateProfilePhoto($request->file('avatar'));
+        }
+
         return response()->json([
             'title' => __('Success!'),
             'message' => __('User was created successfully!'),
             'data' => $user
-        ], 201);        
+        ], 201);
     }
 
     /**

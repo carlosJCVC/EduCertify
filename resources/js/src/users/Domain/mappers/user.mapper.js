@@ -7,13 +7,15 @@ const UserMapper = {
      * @returns {object}
      */
     toObject: user => {
-        const { id, name, email, status } = user;
+        const { id, firstName, lastName, email, status, avatar } = user;
 
         return {
             id,
-            name,
+            first_name: firstName,
+            last_name: lastName,
             email,
             status,
+            avatar
         };
     },
 
@@ -23,13 +25,15 @@ const UserMapper = {
      * @returns 
      */
     fromJson: response => {
-        const { id, name, email, status } = response;
+        const { id, first_name, last_name, email, status, avatar } = response;
 
         return new User({
             id,
-            name,
+            firstName: first_name,
+            lastName: last_name,
             email,
             status,
+            avatar,
         });
     },
 
@@ -39,14 +43,18 @@ const UserMapper = {
      * @returns 
      */
     fromFormData: formData => {
-        const name = formData.get('name');
+        const firstName = formData.get('firstName');
+        const lastName = formData.get('lastName');
         const email = formData.get('email');
         const status = formData.get('status');
+        const avatar = formData.get('avatar');
 
         return new User({
-            name,
+            firstName,
+            lastName,
             email,
             status,
+            avatar,
         });
     },
 };

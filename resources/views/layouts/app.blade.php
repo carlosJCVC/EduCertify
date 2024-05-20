@@ -35,8 +35,6 @@
         }
     </style>
 
-    <link href="https://cdn.datatables.net/v/bs5/dt-2.0.5/datatables.min.css" rel="stylesheet">
-
     @stack('styles')
 </head>
 
@@ -58,5 +56,7 @@
 
     @stack('scripts')
     {{-- @yield('scripts') --}}
+    {{-- <script src="{{ Vite::asset('resources/js/tabler.js') }}"></script> --}}
+    <script src="https://cdn.jsdelivr.net/npm/@tabler/core@1.0.0-beta17/dist/js/tabler.min.js"></script>
 </body>
 </html>

@@ -45,7 +45,7 @@ const buildFormFieldsRules = () => {
     const form = document.querySelector(ElementSelectors.UserForm)
 
     return {
-        name: {
+        firstName: {
             validators: {
                 notEmpty: {
                     message: 'The first name field is required.'
@@ -53,6 +53,17 @@ const buildFormFieldsRules = () => {
                 stringLength: {
                     max: 255,
                     message: 'The first name must be less than 255 characters.'
+                }
+            }
+        },
+        lastName: {
+            validators: {
+                notEmpty: {
+                    message: 'The last name field is required.'
+                },
+                stringLength: {
+                    max: 255,
+                    message: 'The last name must be less than 255 characters.'
                 }
             }
         },

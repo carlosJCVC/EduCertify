@@ -5,6 +5,7 @@ class UserService {
 
     constructor() {
         this.path = '/admin/users';
+        this.headers = { 'Content-Type': 'multipart/form-data' };
     }
 
     /**
@@ -42,7 +43,7 @@ class UserService {
             return user;
         } catch (error) {
             console.error(`Error getting user with ID ${id}:`, error);
- 
+
             throw error;
         }
     }
@@ -50,13 +51,16 @@ class UserService {
     /**
      * Create a model.
      *
-     * @param {FormData} formData
+     * @param {User} user
      * @return Promise<User>
      */
     async create(formData) {
         try {
             const endpoint = `${this.path}/store`;
-            const { data: { data } } = await request.post(endpoint, formData);
+            const userData = UserMapper.toObject(formData);
+            const { data: { data } } = await request.post(endpoint, userData, {
+                headers: this.headers
+            });
 
             const user = UserMapper.fromJson(data);
 
@@ -85,7 +89,7 @@ class UserService {
             console.error(`Error updating with user ID ${id}:`, error);
 
             throw error;
-        }        
+        }
     }
 
     /**
