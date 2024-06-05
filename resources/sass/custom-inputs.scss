@@ -1,0 +1,84 @@
+/**
+* Custom styles for inputs
+*/
+
+.form-floating-custom {
+    position: relative;
+}
+
+.form-floating-custom input {
+    border: 1px solid #ced4da;
+    border-radius: 4px;
+    padding: 0.5rem 0.5rem;
+    height: auto;
+    box-shadow: none;
+    font-size: 1rem;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* .form-control:focus */
+.form-floating-custom input:focus {
+    color: var(--tblr-body-color);
+    background-color: var(--tblr-bg-forms);
+    border-color: #80aad3;
+    outline: 0;
+    box-shadow: var(--tblr-box-shadow-input), 0 0 0 0.1rem rgba(var(--tblr-primary-rgb), 0.25);
+}
+
+.form-control::-webkit-input-placeholder {
+    color: #929dab;
+    opacity: 1;
+    display: none;
+}
+
+.form-floating-custom input::placeholder {
+    color: transparent;
+}
+
+.form-floating-custom input:focus::placeholder {
+    color: #929dab;
+}
+
+.form-floating-custom label {
+    position: absolute;
+    top: 0.5rem;
+    left: 0.5rem;
+    padding: 0 0.25rem;
+    background-color: white;
+    transition: all 0.3s ease;
+    pointer-events: none;
+    font-size: 1rem;
+    color: #6c757d;
+}
+
+.form-floating-custom input:focus+label,
+.form-floating-custom input:not(:placeholder-shown)+label {
+    top: -0.6rem;
+    left: 0.5rem;
+    font-size: 0.75rem;
+    color: rgba(var(--tblr-link-color-rgb), var(--tblr-link-opacity, 1));
+}
+
+.form-floating-custom input:focus+label {
+    color: rgba(var(--tblr-link-color-rgb), var(--tblr-link-opacity, 1));
+}
+
+.form-control.is-invalid:focus,
+.form-control.is-invalid {
+    border-color: var(--tblr-form-invalid-border-color);
+    box-shadow: 0 0 0 0.1rem rgba(var(--tblr-danger-rgb), 0.25);
+}
+
+.form-control.is-valid:focus,
+.form-control.is-valid {
+    border-color: var(--tblr-form-valid-border-color);
+    box-shadow: 0 0 0 0.1rem rgba(var(--tblr-success-rgb), 0.25);
+}
+
+.form-control.is-invalid:focus+label {
+    color: var(--tblr-form-invalid-color);
+}
+
+.form-floating-custom .form-control.is-invalid+label {
+    color: var(--tblr-form-invalid-color);
+}
