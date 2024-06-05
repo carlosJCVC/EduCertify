@@ -30,8 +30,8 @@ export const listParticipantsUsingDataTable = () => {
             const searchElement = document.querySelector("#participants-datatable_wrapper .form-control");
             searchElement.classList.remove("form-control-sm");
 
-            const filterElement = document.querySelector("#participants-datatable_wrapper .form-select");
-            filterElement.classList.remove("form-select-sm");
+            // const filterElement = document.querySelector("#participants-datatable_wrapper .form-select");
+            // filterElement.classList.remove("form-select-sm");
         },
         drawCallback: function (settings) {
             renderDatatableEvents();

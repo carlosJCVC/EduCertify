@@ -6,9 +6,7 @@
 
 @push('styles')
     {{-- <link href="https://cdn.datatables.net/buttons/3.0.2/css/buttons.bootstrap5.css" rel="stylesheet">
-<link href="https://cdn.datatables.net/colreorder/2.0.2/css/colReorder.bootstrap5.css" rel="stylesheet"> --}}
-
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <link href="https://cdn.datatables.net/colreorder/2.0.2/css/colReorder.bootstrap5.css" rel="stylesheet"> --}}
 @endpush
 
 @section('content')
@@ -25,8 +23,9 @@
                     </div>
 
                     <div class="col-auto ms-auto">
-                        <a href="javascript:void(0)" class="btn btn-md btn-primary px-2" id="btn-new-participant"><i
-                                class="ti ti-plus ti-xs ms-0 me-2"></i>@lang('Create New Participant')</a>
+                        <a href="javascript:void(0)" class="btn btn-md btn-primary px-2" id="btn-new-participant">
+                            <i class="ti ti-plus ti-xs ms-0 me-2"></i>@lang('Create New Participant')
+                        </a>
                     </div>
                 </div>
             </div>
