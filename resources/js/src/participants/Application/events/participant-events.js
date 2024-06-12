@@ -32,10 +32,20 @@ export const renderParticipantEvents = () => {
  * Actions Datatable Events
  */
 export const renderDatatableEvents = () => {
+    const viewParticipantButtons = document.querySelectorAll(ElementSelectors.ViewParticipantButton);
     const editParticipantButtons = document.querySelectorAll(ElementSelectors.EditParticipantButton);
     const deleteParticipantButtons = document.querySelectorAll(ElementSelectors.DeleteParticipantButton);
 
     // const btnEdits = document.getElementsByClassName('btn-edit');
+    viewParticipantButtons.forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            const parent = e.target.closest(ElementSelectors.ViewParticipantButton);
+            const id = parent.getAttribute('data-id');
+
+            location.href = `${import.meta.env.VITE_APP_URL}/admin/participants/${id}/show`;
+        })
+    });
+
     editParticipantButtons.forEach(btn => {
         btn.addEventListener('click', (e) => {
             const parent = e.target.closest(ElementSelectors.EditParticipantButton);

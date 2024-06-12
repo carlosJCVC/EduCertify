@@ -1,0 +1,123 @@
+@import 'datatables.net-buttons-bs5/css/buttons.bootstrap5.css';
+
+$dropdown-border-radius: 0.375rem;
+$dropdown-padding-y: 0.5rem;
+$dropdown-padding-x: 0;
+$enable-light-style: true;
+$dropdown-bg: #fff;
+$floating-component-shadow: 0 0.31rem 1.25rem 0 rgba(75, 70, 92, 0.4);
+$dropdown-item-padding-y: 0.42rem;
+$dropdown-item-padding-x: 1rem;
+$border-radius: 0.375rem;
+$h4-font-size: 1.375rem;
+
+// remove 0.5em margin bottom from dt-buttons
+@media screen and (max-width: 767px) {
+  div.dt-buttons {
+    margin-bottom: 0;
+  }
+}
+
+.dt-action-buttons .btn-group {
+  box-shadow: none;
+  // background-color: red;
+}
+
+.dt-action-buttons .dt-search {
+  margin-top: 14px;
+}
+
+.dt-container .dt-length {
+  margin-top: 22px;
+  margin-left: 5px;;
+}
+
+.dt-action-buttons .buttons-collection::after {
+  display: none;
+}
+
+.dt-action-buttons .buttons-collection span {
+  display: flex;
+  align-items: center;
+}
+
+.dt-action-buttons .btn-new-record span {
+  display: flex;
+  align-items: center;
+}
+
+div.dataTables_wrapper .dt-button-collection {
+  border: 0;
+  border-radius: $dropdown-border-radius;
+  padding: $dropdown-padding-y $dropdown-padding-x;
+  width: auto;
+
+  >div[role='menu'] {
+    text-align: left;
+  }
+}
+
+// avoid dropdown to overlap the trigger button
+.dt-button-collection {
+  margin-top: 0.2rem;
+}
+
+div.dt-button-collection .dt-button:not(.dt-btn-split-drop) {
+  min-width: 8rem;
+}
+
+.dt-down-arrow {
+  display: none;
+}
+
+// override button radius
+div.dt-button-collection .dt-button {
+  border-radius: $dropdown-border-radius;
+}
+
+// Light style
+@if $enable-light-style {
+  div.dataTables_wrapper .dt-button-collection {
+    background-color: $dropdown-bg;
+  }
+
+  .dataTable a:not([href]):not([tabindex]) {
+    color: #28c76f;
+  }
+
+  .dt-button-info {
+    box-shadow: $floating-component-shadow;
+  }
+
+  .dt-button-collection {
+    .dropdown-item {
+      padding: $dropdown-item-padding-y $dropdown-item-padding-x;
+    }
+  }
+}
+
+.dt-button-info {
+  border-width: 0 !important;
+  border-radius: $border-radius !important;
+
+  h2 {
+    font-size: $h4-font-size !important;
+  }
+}
+
+.dt-buttons {
+  position: relative;
+
+  // .dt-button-collection .dropdown-item {
+  //   @include app-rtl {
+  //     text-align: right;
+  //   }
+  // }
+
+  &.btn-group {
+    button {
+      border-color: transparent;
+      border-radius: $border-radius !important;
+    }
+  }
+}

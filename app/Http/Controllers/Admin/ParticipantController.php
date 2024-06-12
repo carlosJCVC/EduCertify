@@ -8,6 +8,8 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\UniqueEmailRequest;
 use App\Models\Participant;
 use App\Traits\DatatableTrait;
+use Illuminate\Http\JsonResponse;
+use Illuminate\View\View;
 use Yajra\DataTables\Facades\DataTables;
 
 class ParticipantController extends Controller
@@ -67,13 +69,17 @@ class ParticipantController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(string $id): View|JsonResponse
     {
         $participant = Participant::find($id);
 
-        return response()->json([
-            'data' => $participant
-        ], 200);
+        if (request()->wantsJson()) {
+            return response()->json([
+                'data' => $participant
+            ], 200);
+        }
+
+        return view('admin.participants.show')->with(['participant' => $participant]);
     }
 
     /**

@@ -67,6 +67,18 @@
                         </span>
                     </a>
                 </li>
+
+                <li class="nav-item">
+                    <a class="nav-link text-white" href="{{ route('admin.courses.index') }}">
+                        <span class="nav-link-icon d-md-none d-lg-inline-block">
+                            <i class="ti ti-book ti-xs"></i>
+                        </span>
+
+                        <span class="nav-link-title">
+                            @lang('Courses/Webinars')
+                        </span>
+                    </a>
+                </li>
             </ul>
         </div>
     </div>

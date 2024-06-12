@@ -6,7 +6,8 @@
     position: relative;
 }
 
-.form-floating-custom input {
+.form-floating-custom input,
+.form-floating-custom textarea {
     border: 1px solid #ced4da;
     border-radius: 4px;
     padding: 0.5rem 0.5rem;
@@ -17,7 +18,10 @@
 }
 
 /* .form-control:focus */
-.form-floating-custom input:focus {
+.form-floating-custom input:focus,
+.form-floating-custom textarea:focus,
+.dt-action-buttons input:focus,
+.dt-container select:focus {
     color: var(--tblr-body-color);
     background-color: var(--tblr-bg-forms);
     border-color: #80aad3;
@@ -31,11 +35,13 @@
     display: none;
 }
 
-.form-floating-custom input::placeholder {
+.form-floating-custom input::placeholder,
+.form-floating-custom textarea::placeholder {
     color: transparent;
 }
 
-.form-floating-custom input:focus::placeholder {
+.form-floating-custom input:focus::placeholder,
+.form-floating-custom textarea:focus::placeholder {
     color: #929dab;
 }
 
@@ -52,14 +58,17 @@
 }
 
 .form-floating-custom input:focus+label,
-.form-floating-custom input:not(:placeholder-shown)+label {
+.form-floating-custom textarea:focus+label,
+.form-floating-custom input:not(:placeholder-shown)+label,
+.form-floating-custom textarea:not(:placeholder-shown)+label {
     top: -0.6rem;
     left: 0.5rem;
     font-size: 0.75rem;
     color: rgba(var(--tblr-link-color-rgb), var(--tblr-link-opacity, 1));
 }
 
-.form-floating-custom input:focus+label {
+.form-floating-custom input:focus+label,
+.form-floating-custom textarea:focus+label {
     color: rgba(var(--tblr-link-color-rgb), var(--tblr-link-opacity, 1));
 }
 
