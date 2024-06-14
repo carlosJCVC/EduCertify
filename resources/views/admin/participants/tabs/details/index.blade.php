@@ -1,4 +1,4 @@
-<div class="card user-info-card mt-2">
+<div class="card participant-info-card mt-2" data-participantid="{{ $participant->id }}">
     <div class="card-header bg-dark text-white">
         @lang('Participant Information')
     </div>

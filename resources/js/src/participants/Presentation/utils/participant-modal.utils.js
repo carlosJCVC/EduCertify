@@ -34,8 +34,8 @@ export const showEditParticipantModal = async (id) => {
     modal._element.querySelector('.modal-title').textContent = `Edit Participant: ${participant.firstName}`;
 
     setParticipantFormValues(participant);
-    getParticipantFormValidation()
-    includeConfigToFields()
+    getParticipantFormValidation();
+    includeConfigToFields();
 
     modal.show();
 }

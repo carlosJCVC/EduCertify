@@ -1,19 +1,30 @@
 import Tagify from '@yaireo/tagify'
-import '@yaireo/tagify/dist/tagify.css' 
-import '/resources/assets/vendor/libs/tagify/tagify.scss' 
+import '@yaireo/tagify/dist/tagify.css'
+import '/resources/assets/vendor/libs/tagify/tagify.scss'
+import '/resources/sass/custom-tagify-styles.scss'
+import courseStore from '../../../courses/Infrastructure/store/course.store';
+import { forEach } from 'jszip';
 
-let tagify;
+let statusTagify;
+let coursesTagify;
 /**
  * include select2 in participant fields
  */
 export const includeTagifyToFields = () => {
-    const statusElement = document.querySelector('.tagify-status'); 
+    getOrCreateStatusTagifyField();
+}
 
-    if (tagify) {
-        return tagify;        
+/**
+ * Include or generate tagify field to level input 
+ * @returns statusTagify
+ */
+export const getOrCreateStatusTagifyField = () => {
+    if (statusTagify) {
+        return statusTagify;
     }
 
-    tagify = new Tagify(statusElement, {
+    const statusElement = document.querySelector('.tagify-status');
+    statusTagify = new Tagify(statusElement, {
         id: 'test1',
         enforceWhitelist: true,
         keepInvalidTags: true,
@@ -28,5 +39,44 @@ export const includeTagifyToFields = () => {
         }
     });
 
-    // tagify.destroy()
+    return statusTagify;
+}
+
+/**
+ * Include or generate tagify field to level input 
+ * @returns statusTagify
+ */
+export const getOrCreateCoursesTagifyField = (courses) => {
+    // const whitelist = [];
+    const whitelist = courses.map(course => ({ id: course.id, 'value': course.name }));
+
+    if (coursesTagify) {
+        coursesTagify.removeAllTags();
+
+        if (!!courses.length) {
+            coursesTagify.whitelist = null;
+            coursesTagify.whitelist = [...whitelist];
+
+        }
+
+        return coursesTagify;
+    }
+
+    const courseElement = document.querySelector('.tagify-courses');
+    coursesTagify = new Tagify(courseElement, {
+        id: 'coursesTagify',
+        value: '',
+        whitelist: [...whitelist],
+        placeholder: 'Please write...',
+        dropdown: {
+            maxItems: 20,
+            classname: 'tags-look',
+            enabled: 0,
+            closeOnSelect: true
+        }
+    });
+
+    coursesTagify.removeAllTags();
+
+    return coursesTagify;
 }

@@ -7,6 +7,7 @@ use App\ParticipantStatuses;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Notifications\Notifiable;
 
 class Participant extends Model
@@ -55,7 +56,16 @@ class Participant extends Model
     public function fullName(): Attribute
     {
         return Attribute::get(function (): string {
-            return $this->first_name . " " . $this->last_name;
+            return $this->last_name . " " . $this->first_name;
         });
+    }
+
+    /**
+     * Relation many to many of participant with couse_participant tables.
+     */
+    public function courses(): BelongsToMany
+    {
+        // return $this->belongsToMany(Course::class)->withTimestamps();
+        return $this->belongsToMany(Course::class)->using(CourseParticipant::class)->withTimestamps();
     }
 }

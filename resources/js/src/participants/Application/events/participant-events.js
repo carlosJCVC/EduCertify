@@ -1,19 +1,24 @@
+import courseStore from "../../../courses/Infrastructure/store/course.store";
 import participantStore from "../../Infrastructure/store/participant.store";
+import { showEnrollParticipantModal } from "../../Presentation/utils/enroll-course-modal.utils";
 import { resetParticipantFormValues } from "../../Presentation/utils/participant-form.utils";
 import { getParticipantModal, showCreateParticipantModal, showEditParticipantModal } from "../../Presentation/utils/participant-modal.utils";
 import { ElementSelectors } from "../../config/selectors";
 import { deleteParticipant } from "../useCases/delete-participant.usecase";
+import { enrollCourseParticipant } from "../useCases/enroll-course-participant.usecase";
 import { saveParticipant } from "../useCases/save-participant.usecase";
+import { sendCourseCertificate, sendCoursesCertificates } from "../useCases/send-certificate.usecase";
+import { unenrollCourseParticipant } from "../useCases/unenroll-course-participant.usecase";
 
 /**
  * Participant UI Events
  */
-export const renderParticipantEvents = () => {
-    const createNewParticipantButton = document.querySelector(ElementSelectors.NewParticipantButton);
+export const renderListParticipantEvents = () => {
+    const createNewParticipantButton = document.querySelector(ElementSelectors.NewParticipantButton);//todo
     const submitParticipantButton = document.querySelector(ElementSelectors.SaveParticipantButton);
     const modal = getParticipantModal();
 
-    createNewParticipantButton.addEventListener('click', (event) => {
+    createNewParticipantButton?.addEventListener('click', (event) => {
         showCreateParticipantModal();
     });
 
@@ -65,5 +70,59 @@ export const renderDatatableEvents = () => {
             const datatable = participantStore.getParticipantDatatable();
             datatable.ajax.reload();
         });
+    });
+}
+
+/**
+ * Event for participant ui
+ */
+export const renderShowParticipantEvents = () => {
+    const enrollParticipantButton = document.querySelector(ElementSelectors.EnrollParticipantButton);
+    const submitEnrollCourseButton = document.querySelector(ElementSelectors.EnrollParticipantCourseButton);
+    const EditParticipantButtonShow = document.querySelector(ElementSelectors.EditParticipantButtonShow);
+    const SendCertificatesButton = document.querySelector(ElementSelectors.SendCertificatesButton);
+
+    enrollParticipantButton.addEventListener('click', (event) => {
+        showEnrollParticipantModal();
+    });
+
+    submitEnrollCourseButton.addEventListener('click', (event) => {
+        enrollCourseParticipant();
+    });
+
+    EditParticipantButtonShow.addEventListener('click', (e) => {
+        const participantId = participantStore.getParticipantSelected();
+        showEditParticipantModal(participantId.id);
+    });
+
+    SendCertificatesButton.addEventListener('click', (e) => {
+        sendCoursesCertificates();
+    });
+    
+}
+
+/**
+ * Events for courses enrolled for participant
+ */
+export const renderCoursesEnrolledDatatable = () => {
+    const sendCertificateButtons = document.querySelectorAll(ElementSelectors.SendCertificateButton);
+    const unenrollParticipantButtons = document.querySelectorAll(ElementSelectors.UnenrollParticipantButton);
+
+    sendCertificateButtons.forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            const parent = e.target.closest(ElementSelectors.SendCertificateButton);
+            const courseid = parent.getAttribute('data-id');
+
+            sendCourseCertificate(courseid);
+        })
+    });
+
+    unenrollParticipantButtons.forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            const parent = e.target.closest(ElementSelectors.UnenrollParticipantButton);
+            const courseid = parent.getAttribute('data-id');
+
+            unenrollCourseParticipant(courseid)
+        })
     });
 }

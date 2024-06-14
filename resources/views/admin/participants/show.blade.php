@@ -22,15 +22,16 @@
                     </div>
 
                     <div class="col-auto ms-auto">
-                        <a href="javascript:void(0)" class="btn btn-md btn-outline-warning px-2" id="btn-new-participant">
+                        <a href="javascript:void(0)" class="btn btn-md btn-outline-warning px-2" id="btn-send-certificates">
                             <i class="ti ti-mail-forward ti-xs ms-0 me-2"></i>@lang('Send Certificates')
                         </a>
 
-                        <a href="javascript:void(0)" class="btn btn-md btn-outline-primary px-2" id="btn-new-participant">
+                        <a href="javascript:void(0)" class="btn btn-md btn-outline-primary px-2"
+                            id="btn-enroll-participant">
                             <i class="ti ti-plus ti-xs ms-0 me-2"></i>@lang('Enroll Course Now')
                         </a>
 
-                        <a href="javascript:void(0)" class="btn btn-md btn-outline-info px-2" id="btn-new-participant">
+                        <a href="javascript:void(0)" class="btn btn-md btn-outline-info px-2" id="btn-edit-participant">
                             <i class="ti ti-pencil ti-xs ms-0 me-2"></i>@lang('Edit Participant')
                         </a>
                     </div>
@@ -78,8 +79,53 @@
             </div>
         </div>
     </div>
+
+    <!-- Modal -->
+    <x-_modals.modal :title="__('Modal Title')" id="enroll-participant-modal" class="modal-dialog">
+        <x-slot:header>
+            <h5 class="modal-title">@lang('Enroll Participant')</h5>
+        </x-slot>
+
+        <form action="" id="enroll-course-form">
+            <div class="row">
+                <div class="col-12 mb-3">
+                    <div class="form-floating-custom">
+                        <input type="text" class="form-control select-course tagify-courses" name="courses"
+                            id="floatingInputCourse">
+
+                        <label for="floatingInputCourse">{{ __('Courses') }}</label>
+                    </div>
+                </div>
+            </div>
+
+        </form>
+        <x-slot:footer>
+            <button type="button" class="btn btn-primary btn-enroll-course">@lang('Save Changes')</button>
+        </x-slot>
+    </x-_modals.modal>
+
+    <!-- Modal edit-->
+    <x-_modals.modal :title="__('Modal Title')" id="participant-modal" class="modal-dialog">
+        <x-slot:header>
+            <h5 class="modal-title">@lang('Create New Participant')</h5>
+        </x-slot>
+
+        @include('admin.participants.form')
+
+        <x-slot:footer>
+            <button type="button" class="btn btn-primary btn-save-participant">@lang('Save Changes')</button>
+        </x-slot>
+    </x-_modals.modal>
 @endsection
 
 @push('scripts')
-    {{-- @vite('resources/js/src/participants/list-participants.js') --}}
+    <script src="{{ Vite::asset('resources/assets/vendor/libs/@form-validation/umd/bundle/popular.min.js') }}"></script>
+    <script src="{{ Vite::asset('resources/assets/vendor/libs/@form-validation/umd/plugin-bootstrap5/index.min.js') }}">
+    </script>
+    <script src="{{ Vite::asset('resources/assets/vendor/libs/@form-validation/umd/plugin-auto-focus/index.min.js') }}">
+    </script>
+    <script src="{{ Vite::asset('resources/assets/vendor/libs/@form-validation/umd/validator-remote/index.min.js') }}">
+    </script>
+
+    @vite('resources/js/src/participants/show-participant.js')
 @endpush

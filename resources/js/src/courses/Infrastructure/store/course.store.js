@@ -10,7 +10,7 @@ export const Filters = {
 const state = {
     courses: [],
     courseSelected: undefined,
-    courseService: undefined,
+    courseService: new CourseService(),
     categoryService: new CategoryService(),
     datatable: undefined,
     filter: Filters.All,

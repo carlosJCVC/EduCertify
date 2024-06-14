@@ -5,8 +5,8 @@ import { includeTagifyToFields } from "./include-tagify-to-fields-utils"
 /**
  * add config, lib on inputs or fields 
  */
-export const includeConfigToFields = () => {
+export const includeConfigToFields = async () => {
     includeFlatpickToFields()
     includeDropifyToFields()
-    includeTagifyToFields()
+    await includeTagifyToFields()
 }

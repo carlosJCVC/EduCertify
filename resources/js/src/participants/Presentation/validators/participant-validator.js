@@ -10,7 +10,7 @@ let fv = null;
 export const getParticipantFormValidation = () => {
     if (!fv) {
         const $elemFv = document.querySelector(ElementSelectors.ParticipantForm);
-
+        
         fv = FormValidation.formValidation($elemFv, {
             fields: buildFormFieldsRules(),
             plugins: {
@@ -31,7 +31,6 @@ export const getParticipantFormValidation = () => {
                 });
             }
         });
-
         // fv.on('core.field.valid', function(field) {
         //     if (field == 'email') {
         //         fv.enableValidator(field, 'remote');

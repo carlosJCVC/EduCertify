@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Course;
+use App\Models\Participant;
 use App\Traits\DatatableTrait;
 use Illuminate\Http\Request;
 use Yajra\DataTables\Facades\DataTables;
@@ -22,9 +23,16 @@ class CourseController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function json()
+    public function json(Request $request)
     {
-        return DataTables::of(Course::query())
+        $courses = Course::all();
+        if ($request->has('participant_id')) {
+            $participantId = $request->get('participant_id');
+            $participant = Participant::find($participantId);
+            $courses = $participant->courses;
+        }
+
+        return DataTables::of($courses)
             // ->addColumn('name', fn ($record) => $record->name)
             // ->addColumn('speaker', fn ($record) => $record->speaker)
             ->addColumn('categories', function($record) {
@@ -49,7 +57,16 @@ class CourseController extends Controller
             ->addColumn('level', fn ($record) => $record->level)
             ->addColumn('start_date', fn ($record) => $record->start_date)
             ->addColumn('end_date', fn ($record) => $record->end_date)
-            ->addColumn('actions', fn ($record) => $this->getActionsButtons($record->id, false))
+            ->addColumn('actions', function($record) use ($request) {
+                $buttons = '';
+                if ($request->has('participant_id')) {
+                    $buttons = "<a href='javascript:void(0)' class='btn-send-certificate mx-1' data-id='{$record->id}'><i class='ti ti-mail ti-xs'></i></a>";
+                }
+
+                $buttons .= $this->getActionsButtons($record->id, false);
+
+                return $buttons;
+            })
             ->rawColumns(['actions', 'categories'])
             ->make(true);
     }

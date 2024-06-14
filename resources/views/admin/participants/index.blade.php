@@ -86,6 +86,5 @@
     <script src="{{ Vite::asset('resources/assets/vendor/libs/@form-validation/umd/plugin-auto-focus/index.min.js') }}"></script>
     <script src="{{ Vite::asset('resources/assets/vendor/libs/@form-validation/umd/validator-remote/index.min.js') }}"></script>
 
-
     @vite('resources/js/src/participants/list-participants.js')
 @endpush

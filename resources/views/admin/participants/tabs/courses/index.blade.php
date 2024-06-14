@@ -5,7 +5,7 @@
 
     <div class="card-body">
         <div id="table-default" class="table-responsive">
-            <table id="courses-datatable" class="table">
+            <table id="courses-datatable" class="table w-100">
                 <thead>
                     <tr>
                         <th>@lang('Name')</th>

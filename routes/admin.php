@@ -1,7 +1,9 @@
 <?php
 
 use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\Admin\CertificateController;
 use App\Http\Controllers\Admin\CourseController;
+use App\Http\Controllers\Admin\EnrollCourseController;
 use App\Http\Controllers\Admin\ParticipantController;
 use App\Http\Controllers\Admin\UserController;
 use Illuminate\Support\Facades\Route;
@@ -31,6 +33,20 @@ Route::prefix('participants')->name('participants.')->group(function () {
     Route::put('{id}/update', [ParticipantController::class, 'update'])->name('update');
     Route::patch('{id}/update', [ParticipantController::class, 'update'])->name('update');
     Route::delete('/{id}/delete', [ParticipantController::class, 'destroy'])->name('destroy');
+});
+
+/**
+ * routes of enroll courses with participants
+ */
+Route::prefix('participants/{id}')->name('participants')->group(function () {
+    Route::get('courses/json', [EnrollCourseController::class, 'json'])->name('courses.json');
+    Route::post('enroll/store', [EnrollCourseController::class, 'store'])->name('enroll.store');
+    Route::delete('unenroll/{courseid}/delete', [EnrollCourseController::class, 'destroy'])->name('destroy');
+    
+    Route::prefix('certificates')->name('certificates')->group(function () {
+        Route::post('send', [CertificateController::class, 'send'])->name('send');
+        Route::post('send-all', [CertificateController::class, 'sendAll'])->name('send.all');
+    });
 });
 
 /**

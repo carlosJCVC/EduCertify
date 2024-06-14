@@ -83,8 +83,8 @@ class ParticipantService {
         try {
             const endpoint = `${this.path}/${id}/update`;
             const participantData = ParticipantMapper.toObject(participant);
-            await request.post(endpoint, { _method: 'PATCH', ...participantData}, {
-                headers: {...this.headers}
+            await request.post(endpoint, { _method: 'PATCH', ...participantData }, {
+                headers: { ...this.headers }
             });
 
             return true;
@@ -109,6 +109,97 @@ class ParticipantService {
             return true;
         } catch (error) {
             console.error(`Error deleteing participant with ID ${id}:`, error);
+
+            throw error;
+        }
+    };
+
+    /**
+     * Send certificate by course id
+     *
+     * @param {Number} id
+     * @param {Number} courseid
+     * @return Promise<Bool> true|falsee
+     */
+    async sendCertificateById(id, courseid) {
+        try {
+            const endpoint = `${this.path}/${id}/certificates/send`;
+            const { data: { data } } = await request.post(endpoint, { courseid }, {
+                headers: this.headers
+            });
+
+            return true;
+        } catch (error) {
+            console.error(`Error sending certificate with ID ${id}:`, error);
+
+            throw error;
+        }
+    }
+    /**
+     * Send certificate by course id
+     *
+     * @param {Number} id
+     * @param {Number} courseid
+     * @return Promise<Bool> true|falsee
+     */
+    async sendAllCertificatesById(id) {
+        try {
+            const endpoint = `${this.path}/${id}/certificates/send-all`;
+            const { data: { data } } = await request.post(endpoint, {
+                headers: this.headers
+            });
+
+            return true;
+        } catch (error) {
+            console.error(`Error sending certificate with ID ${id}:`, error);
+
+            throw error;
+        }
+    }
+
+    /**
+     * Delete participant by id.
+     *
+     * @param {Number} id
+     * @param <Array> data
+     * @return Promise<boolean>
+     */
+    async enrollById(id, courseIds) {
+        try {
+            const endpoint = `${this.path}/${id}/enroll/store`;
+            await axios.post(endpoint, { courses_ids: courseIds }, {
+                headers: this.headers
+            });
+
+            return true;
+        } catch (error) {
+            console.error(`Error enrolling course with ID ${id}:`, error);
+
+            throw error;
+        }
+    };
+
+    /**
+     * Delete participant by id.
+     *
+     * @param {Number} id
+     * @param <Array> data
+     * @return Promise<boolean>
+     */
+    async unenrollById(id, courseid) {
+        try {
+            const endpoint = `${this.path}/${id}/unenroll/${courseid}/delete`;
+            await axios.delete(endpoint, {
+                headers: this.headers
+            });
+
+            return true;
+        } catch (error) {
+            console.error(`Error unenrolling course with ID ${id}:`, error);
+
+            if (error.response) {
+                return false;
+            }
 
             throw error;
         }

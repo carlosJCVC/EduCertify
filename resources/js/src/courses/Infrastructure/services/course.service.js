@@ -12,14 +12,19 @@ class CourseService {
      * Get All Records
      * @return Promise<Array<Courses>> records
      */
-    async getAll(data, callback, settings) {
+    async getAll() {
+        const courses = [];
         try {
             const endpoint = `${this.path}/json`;
-            const response = await request.get(endpoint);
+            const { data: { data } } = await request.get(endpoint);
 
-            // console.log(response.data)
-
-            callback(response.data.data);
+            data.forEach(
+                async (data) => {
+                    const course = CourseMapper.fromJson(data);
+                    courses.push(course)
+                }
+            )
+            return courses;
         } catch (error) {
             console.error('Error getting courses:', error);
 
@@ -83,8 +88,8 @@ class CourseService {
         try {
             const endpoint = `${this.path}/${id}/update`;
             const courseData = CourseMapper.toObject(course);
-            await request.post(endpoint, { _method: 'PATCH', ...courseData}, {
-                headers: {...this.headers}
+            await request.post(endpoint, { _method: 'PATCH', ...courseData }, {
+                headers: { ...this.headers }
             });
 
             return true;

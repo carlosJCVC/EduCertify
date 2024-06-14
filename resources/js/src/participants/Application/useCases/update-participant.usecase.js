@@ -32,7 +32,12 @@ export const updateParticipant = async (id) => {
             modal.hide();
 
             notifyAlert('Success!', 'Participant has been updated successfully!', () => {
-                datatable.ajax.reload();
+                if (datatable) {
+                    datatable.ajax.reload();
+                    return;
+                }
+
+                location.reload();
             })
 
             return newParticipant;
