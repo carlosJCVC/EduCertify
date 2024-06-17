@@ -34,7 +34,7 @@ class ParticipantController extends Controller
             ->addColumn('email', fn ($record) => $record->email)
             ->addColumn('birthdate', fn ($record) => $record->birthdate)
             ->addColumn('status', fn ($record) => "<div class='badge {$record->status->badgeColor()} text-white'>{$record->status->value}</div>")
-            ->addColumn('actions', fn ($record) => $this->getActionsButtons($record->id))
+            ->addColumn('actions', fn ($record) => $this->getActionsButtons($record->id, false))
             ->rawColumns(['actions', 'status'])
             ->make(true);
     }

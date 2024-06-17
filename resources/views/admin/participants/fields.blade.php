@@ -1,7 +1,7 @@
 <div class="row">
     <div class="col-4 mb-3">
-        <input type="file" name="avatar" id="avatar" data-height="150" data-allowed-file-extensions="jpg jpeg png"
-            class="form-control" placeholder="Avatar">
+        <input type="file" name="avatar" id="avatar" data-height="145" data-allowed-file-extensions="jpg jpeg png"
+            class="form-control dropify" placeholder="Avatar">
     </div>
 
     <div class="col-8 mb-3">

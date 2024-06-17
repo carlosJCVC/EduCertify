@@ -1,16 +1,42 @@
 import $ from 'jquery';
 import 'dropify/dist/js/dropify.min';
 
+let avatarDropify;
+
 /**
  * include dropify libe in participant fields
  */
 export const includeDropifyToFields = () => {
-    const avatarSelector = "#avatar";
+    getOrCreateAvatarDropifyField();
+}
 
-    $(avatarSelector).dropify({
+/**
+ * Get or create dropify intance
+ * @returns Dropify
+ */
+export const getOrCreateAvatarDropifyField = () => {
+    if (avatarDropify) {
+        return avatarDropify;
+    }
+
+    const avatarSelector = "#avatar";
+    avatarDropify = $(avatarSelector).dropify({
         messages: getDropifyMessages(),
     });
+
+    return avatarDropify;
 }
+
+/**
+ * Function to set avatar in user form
+ * @param {string} path
+ */
+export const setFileField = (path) => {
+    const avatarField = getOrCreateAvatarDropifyField();
+    const avatar = avatarField.data('dropify');
+    avatar.resetPreview();
+    avatar.setPreview(true, path);
+};
 
 /**
  * Function to reset avatar in participant form
@@ -18,19 +44,10 @@ export const includeDropifyToFields = () => {
  * @param {string} path
  */
 export const resetDropifyFields = () => {
-    const avatarSelector = "#avatar";
+    const avatarField = getOrCreateAvatarDropifyField();
 
-    let avatar = $(avatarSelector).dropify({
-        defaultFile: null,
-        messages: getDropifyMessages(),
-    });
-
-    avatar = avatar.data('dropify');
+    const avatar = avatarField.data('dropify');
     avatar.resetPreview();
-    avatar.clearElement();
-    avatar.settings.defaultFile = '';
-    avatar.destroy();
-    avatar.init();
 };
 
 /**
