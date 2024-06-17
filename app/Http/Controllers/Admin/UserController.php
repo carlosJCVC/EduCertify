@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\UserUniqueEmailRequest;
 use App\Models\User;
 use App\Traits\DatatableTrait;
 use Illuminate\Http\Request;
@@ -121,29 +122,12 @@ class UserController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function verify(Request $request)
+    public function verify(UserUniqueEmailRequest $request)
     {
-        $userId = $request->get('user_id');
-        $users = User::where('email', $request->get('email'));
-        $user = User::find($userId);
-
-        if ($userId == 0) {
-            $userId = empty($user) ? 0 : $user->id;
-        }
-
-        $valid = true;
-        if (($userId == 0 ) && $users->count() > 0) {
-            $valid = false;
-        }
-
-        if ($userId != 0 && ! $users->pluck('id')->contains($userId) && $users->count() > 0) {
-            $valid = false;
-        }
-
         return response()->json([
             'title' => __('Success!'),
             'message' => __('The email has already been registered.'),
-            'valid' => $valid,
+            'valid' => true,
         ], 200);
     }
 }

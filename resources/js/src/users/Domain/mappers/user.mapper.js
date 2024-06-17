@@ -46,14 +46,16 @@ const UserMapper = {
         const firstName = formData.get('firstName');
         const lastName = formData.get('lastName');
         const email = formData.get('email');
-        const status = formData.get('status');
+        const stringStatus = formData.get('status');
         const avatar = formData.get('avatar');
+
+        const valueStatus = JSON.parse(stringStatus);
 
         return new User({
             firstName,
             lastName,
             email,
-            status,
+            status: valueStatus[0].value,
             avatar,
         });
     },

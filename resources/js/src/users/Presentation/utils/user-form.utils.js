@@ -1,6 +1,6 @@
 import { ElementSelectors } from "../../config/selectors";
 import { getUserFormValidation } from "../validators/user-validator";
-import $ from 'jquery';
+import { resetDropifyFields, setFileField } from "./include-dropify-to-fields-utils";
 
 /**
  * Return Form Values from user 
@@ -36,6 +36,8 @@ export const resetUserFormValues = () => {
     const fv = getUserFormValidation();
     fv.resetForm(true);
     form.reset();
+
+    resetDropifyFields()
 }
 
 /**
@@ -47,51 +49,3 @@ const getUserForm = () => {
 
     return form;
 }
-
-/**
- * FUnction to set avatar in user form
- *
- * @param {string} path
- */
-const setFileField = (path = null) => {
-    let avatar = $('#avatar').dropify({
-        defaultFile: path,
-        messages: {
-            default: '<h4>Drag and drop your avatar here or click.</h4>',
-            replace: 'Drag and drop or click to replace',
-            remove: 'Remove',
-            error: 'Ooops, something wrong happended.'
-        },
-    });
-
-    avatar = avatar.data('dropify');
-    avatar.resetPreview();
-    avatar.clearElement();
-    avatar.settings.defaultFile = path;
-    avatar.destroy();
-    avatar.init();
-};
-
-/**
- * Function to reset avatar in user form
- *
- * @param {string} path
- */
-export const resetFileField = () => {
-    let avatar = $('#avatar').dropify({
-        defaultFile: null,
-        messages: {
-            default: '<h4>Drag and drop your avatar here or click.</h4>',
-            replace: 'Drag and drop or click to replace',
-            remove: 'Remove',
-            error: 'Ooops, something wrong happended.'
-        },
-    });
-
-    avatar = avatar.data('dropify');
-    avatar.resetPreview();
-    avatar.clearElement();
-    avatar.settings.defaultFile = '';
-    avatar.destroy();
-    avatar.init();
-};

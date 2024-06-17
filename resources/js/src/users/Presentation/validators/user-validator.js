@@ -17,8 +17,9 @@ export const getUserFormValidation = () => {
             plugins: {
                 trigger: new FormValidation.plugins.Trigger(),
                 bootstrap5: new FormValidation.plugins.Bootstrap5({
-                    eleValidClass: '',
-                    rowSelector: rowSelector
+                    eleValidClass: 'is-valid',
+                    eleInvalidClass: 'is-invalid',
+                    rowSelector: '.form-floating-custom'
                 }),
                 // defaultSubmit: new FormValidation.plugins.DefaultSubmit(),
                 autoFocus: new FormValidation.plugins.AutoFocus()

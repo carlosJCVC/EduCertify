@@ -21,10 +21,6 @@
                             @lang('Users Dashboard')
                         </h2>
                     </div>
-
-                    <div class="col-auto ms-auto">
-                        <a href="javascript:void(0)" class="btn btn-md btn-primary px-2" id="btn-new-user"><i class="ti ti-plus ti-xs ms-0 me-2"></i>@lang('Create New User')</a>
-                    </div>
                 </div>
             </div>
         </div>

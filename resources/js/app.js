@@ -1,3 +1,4 @@
+import $ from 'jquery';
 import './bootstrap';
 import * as bootstrap from "bootstrap";
 
@@ -17,3 +18,11 @@ import 'datatables.net-buttons/js/buttons.html5.mjs';
 import 'datatables.net-buttons/js/buttons.print.mjs';
 
 pdfMake.vfs = vfs_fonts.pdfMake.vfs;
+
+$.extend(true, $.fn.dataTable.Buttons.defaults, {
+    dom: {
+        button: {
+            className: 'btn' // Remueve 'btn-secondary' por defecto
+        }
+    }
+});

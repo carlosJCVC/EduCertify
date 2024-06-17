@@ -1,9 +1,9 @@
-import $ from 'jquery';
 import 'dropify/dist/js/dropify.min';
 import { ElementSelectors } from "../../config/selectors";
-import { resetFileField, setUserFormValues } from "./user-form.utils";
+import { setUserFormValues } from "./user-form.utils";
 import { getUser } from "../../Application/useCases/get-user.usecase";
 import { getUserFormValidation } from '../validators/user-validator';
+import { includeConfigToFields } from './include-config-to-fields-utils';
 
 /**
  * Funtion to sow modal
@@ -12,9 +12,10 @@ import { getUserFormValidation } from '../validators/user-validator';
 export const showCreateUserModal = () => {
     const modal = getUserModal();
 
-    resetFileField()
     modal._element.querySelector('.modal-title').textContent = `Create New User`;
+
     getUserFormValidation()
+    includeConfigToFields()
 
     modal.show();
 }

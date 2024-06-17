@@ -9,13 +9,8 @@ import { saveUser } from "../useCases/save-user.usecase";
  * User UI Events
  */
 export const renderUserEvents = () => {
-    const createNewUserButton = document.querySelector(ElementSelectors.NewUserButton);
     const submitUserButton = document.querySelector(ElementSelectors.SaveUserButton);
     const modal = getUserModal();
-
-    createNewUserButton.addEventListener('click', (event) => {
-        showCreateUserModal();
-    });
 
     submitUserButton.addEventListener('click', (event) => {
         saveUser();

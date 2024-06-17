@@ -4,8 +4,8 @@ import { ElementSelectors } from "../../config/selectors";
 import courseStore from "../../Infrastructure/store/course.store";
 import { renderDatatableEvents } from "../events/course-events";
 // import "/resources/sass/datatable.scss";
-import "/resources/assets/vendor/libs/datatables-buttons-bs5/buttons.bootstrap5.scss";
 import { showCreateCourseModal } from '../../Presentation/utils/course-modal.utils';
+import "/resources/assets/vendor/libs/datatables-buttons-bs5/buttons.bootstrap5.scss";
 
 /**
  * Load datatable for participants
