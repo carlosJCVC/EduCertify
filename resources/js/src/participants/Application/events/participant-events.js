@@ -14,7 +14,7 @@ import { unenrollCourseParticipant } from "../useCases/unenroll-course-participa
  * Participant UI Events
  */
 export const renderListParticipantEvents = () => {
-    const createNewParticipantButton = document.querySelector(ElementSelectors.NewParticipantButton);//todo
+    const createNewParticipantButton = document.querySelector(ElementSelectors.NewParticipantButton);
     const submitParticipantButton = document.querySelector(ElementSelectors.SaveParticipantButton);
     const modal = getParticipantModal();
 

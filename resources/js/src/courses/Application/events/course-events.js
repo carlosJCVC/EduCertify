@@ -9,13 +9,8 @@ import { saveCourse } from "../useCases/save-course.usecase";
  * Course UI Events
  */
 export const renderCoursesEvents = () => {
-    // const createNewCourseButton = document.querySelector(ElementSelectors.NewCourseButton);
     const submitCourseButton = document.querySelector(ElementSelectors.SaveCourseButton);
     const modal = getCourseModal();
-
-    // createNewCourseButton.addEventListener('click', (event) => {
-    //     showCreateCourseModal();
-    // });
 
     submitCourseButton.addEventListener('click', (event) => {
         saveCourse();

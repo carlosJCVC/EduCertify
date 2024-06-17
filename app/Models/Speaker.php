@@ -3,16 +3,15 @@
 namespace App\Models;
 
 use App\HasProfilePhoto;
-use App\ParticipantStatuses;
+use App\UserStatuses;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsToMany;
-use Illuminate\Notifications\Notifiable;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
-class Participant extends Model
+class Speaker extends Model
 {
-    use HasFactory, Notifiable, HasProfilePhoto;
+    use HasFactory, HasProfilePhoto;
 
     /**
      * The attributes that are mass assignable.
@@ -23,8 +22,13 @@ class Participant extends Model
         'first_name',
         'last_name',
         'email',
-        'birthdate',
         'status',
+        'phone_number',
+        'linkedin_profile',
+        'website',
+        'expertise',
+        'biography',
+        'notes',
     ];
 
     /**
@@ -42,7 +46,8 @@ class Participant extends Model
      * @var array<string, string>
      */
     protected $casts = [
-        'status' => ParticipantStatuses::class,
+        'status' => UserStatuses::class,
+        'expertise' => 'json'
     ];
 
     /**
@@ -57,12 +62,11 @@ class Participant extends Model
         });
     }
 
-    /**
-     * Relation many to many of participant with couse_participant tables.
+   /**
+     * Get the courses or webinars for the speaker.
      */
-    public function courses(): BelongsToMany
+    public function comments(): HasMany
     {
-        // return $this->belongsToMany(Course::class)->withTimestamps();
-        return $this->belongsToMany(Course::class)->using(CourseParticipant::class)->withTimestamps();
+        return $this->hasMany(Course::class);
     }
 }

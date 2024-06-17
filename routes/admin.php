@@ -4,7 +4,9 @@ use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\CertificateController;
 use App\Http\Controllers\Admin\CourseController;
 use App\Http\Controllers\Admin\EnrollCourseController;
+use App\Http\Controllers\Admin\ExpertiseController;
 use App\Http\Controllers\Admin\ParticipantController;
+use App\Http\Controllers\Admin\SpeakerController;
 use App\Http\Controllers\Admin\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -64,9 +66,33 @@ Route::prefix('courses')->name('courses.')->group(function () {
 });
 
 /**
+ * routes for speakers
+ */
+Route::prefix('speakers')->name('speakers.')->group(function () {
+    Route::get('/', [SpeakerController::class, 'index'])->name('index');
+    Route::get('json', [SpeakerController::class, 'json'])->name('json');
+    Route::get('create', [SpeakerController::class, 'create'])->name('create');
+    Route::post('store', [SpeakerController::class, 'store'])->name('store');
+    Route::get('{id}/show', [SpeakerController::class, 'show'])->name('show');
+    Route::get('{id}/show-in-json', [SpeakerController::class, 'showInJson'])->name('json.show');
+    Route::put('{id}/update', [SpeakerController::class, 'update'])->name('update');
+    Route::post('verify', [SpeakerController::class, 'verify'])->name('verify');
+    Route::patch('{id}/update', [SpeakerController::class, 'update'])->name('update');
+    Route::delete('/{id}/delete', [SpeakerController::class, 'destroy'])->name('destroy');
+});
+
+/**
  * routes of categories
  */
 Route::prefix('categories')->name('categories.')->group(function () {
     Route::get('/', [CategoryController::class, 'index'])->name('index');
     Route::get('json', [CategoryController::class, 'json'])->name('json');
+});
+
+/**
+ * routes of categories
+ */
+Route::prefix('experties')->name('experties.')->group(function () {
+    Route::get('/', [ExpertiseController::class, 'index'])->name('index');
+    Route::get('json', [ExpertiseController::class, 'json'])->name('json');
 });

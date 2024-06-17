@@ -5,6 +5,7 @@ namespace App\Models;
 use App\CoursesLevel;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class Course extends Model
@@ -24,8 +25,6 @@ class Course extends Model
         'start_date',
         'end_date',
         'description',
-        'created_at',
-        'updated_at'
     ];
 
 
@@ -47,5 +46,11 @@ class Course extends Model
         return $this->belongsToMany(Participant::class)->withTimestamps();
     }
 
-
+    /**
+     * Get the speaker that owns the course.
+     */
+    public function speaker(): BelongsTo
+    {
+        return $this->belongsTo(Speaker::class);
+    }
 }

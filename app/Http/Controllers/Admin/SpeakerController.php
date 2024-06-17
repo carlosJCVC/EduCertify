@@ -1,18 +1,16 @@
 <?php
 
-
 namespace App\Http\Controllers\Admin;
 
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\UniqueEmailRequest;
-use App\Models\Participant;
+use App\Http\Requests\SpeakerRequest;
+use App\Http\Requests\SpeakerUniqueEmailRequest;
+use App\Models\Speaker;
 use App\Traits\DatatableTrait;
-use Illuminate\Http\JsonResponse;
-use Illuminate\View\View;
+use Illuminate\Http\Request;
 use Yajra\DataTables\Facades\DataTables;
 
-class ParticipantController extends Controller
+class SpeakerController extends Controller
 {
     use DatatableTrait;
 
@@ -21,7 +19,7 @@ class ParticipantController extends Controller
      */
     public function index()
     {
-        return view('admin.participants.index');
+        return view('admin.speakers.index');
     }
 
     /**
@@ -29,10 +27,9 @@ class ParticipantController extends Controller
      */
     public function json()
     {
-        return DataTables::of(Participant::query())
+        return DataTables::of(Speaker::query())
             ->addColumn('name', fn ($record) => $record->full_name)
             ->addColumn('email', fn ($record) => $record->email)
-            ->addColumn('birthdate', fn ($record) => $record->birthdate)
             ->addColumn('status', fn ($record) => "<div class='badge {$record->status->badgeColor()} text-white'>{$record->status->value}</div>")
             ->addColumn('actions', fn ($record) => $this->getActionsButtons($record->id))
             ->rawColumns(['actions', 'status'])
@@ -42,55 +39,61 @@ class ParticipantController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(SpeakerRequest $request)
     {
         $input = $request->all();
-        $participant = Participant::create($input);
+        $speaker = Speaker::create($input);
 
         if ($request->has('avatar')) {
-            $participant->updateProfilePhoto($request->file('avatar'));
+            $speaker->updateProfilePhoto($request->file('avatar'));
         }
 
         return response()->json([
             'title' => __('Success!'),
-            'message' => __('Participant was created successfully!'),
-            'data' => $participant
+            'message' => __('Speaker was created successfully!'),
+            'data' => $speaker
         ], 201);
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(string $id): View|JsonResponse
+    public function show(string $id)
     {
-        $participant = Participant::find($id);
+        $speaker = Speaker::find($id);
 
-        if (request()->wantsJson()) {
-            return response()->json([
-                'data' => $participant
-            ], 200);
-        }
+        return view('admin.speaker.show')->with(['speaker' => $speaker]);
+    }
 
-        return view('admin.participants.show')->with(['participant' => $participant]);
+    /**
+     * Display the specified resource.
+     */
+    public function showInJson(string $id)
+    {
+        $speaker = Speaker::find($id);
+
+        return response()->json([
+            'data' => $speaker
+        ], 200);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(SpeakerRequest $request, string $id)
     {
-        $participant = Participant::find($id);
-        $participant->update($request->all());
+        $speaker = Speaker::find($id);
+        $speaker->update($request->all());
 
         if ($request->has('avatar')) {
             $file = $request->file('avatar');
-            $participant->updateProfilePhoto($file);
+            $speaker->updateProfilePhoto($file);
         }
 
         return response()->json([
             'title' => __('Success!'),
-            'message' => __('Participant was updated successfully!'),
-            'data' => $participant
+            'message' => __('Speaker was updated successfully!'),
+            'data' => $speaker
         ], 200);
     }
 
@@ -99,19 +102,19 @@ class ParticipantController extends Controller
      */
     public function destroy(string $id)
     {
-        $participant = Participant::find($id);
-        $participant->delete();
+        $speaker = Speaker::find($id);
+        $speaker->delete();
 
         return response()->json([
             'title' => __('Success!'),
-            'message' => __('Participant was deleted successfully!'),
+            'message' => __('Speaker was deleted successfully!'),
         ], 200);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function verify(UniqueEmailRequest $request)
+    public function verify(SpeakerUniqueEmailRequest $request)
     {
         return response()->json([
             'title' => __('Success!'),

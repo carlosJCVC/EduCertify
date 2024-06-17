@@ -6,7 +6,8 @@
         </button>
         <h1 class="navbar-brand navbar-brand-autodark">
             <a href="{{ route('home') }}">
-                <img src="{{ asset('assets/images/logos/logo.svg') }}" width="110" height="32" alt="Tabler" class="navbar-brand-image">
+                <img src="{{ asset('assets/images/logos/logo.svg') }}" width="110" height="32" alt="Tabler"
+                    class="navbar-brand-image">
             </a>
         </h1>
 
@@ -14,7 +15,8 @@
             <div class="nav-item dropdown">
                 <a href="#" class="nav-link d-flex lh-1 text-reset p-0" data-bs-toggle="dropdown"
                     aria-label="Open user menu">
-                    <span class="avatar avatar-sm" style="background-image: url({{ Auth::user()->profile_photo_url }})"></span>
+                    <span class="avatar avatar-sm"
+                        style="background-image: url({{ Auth::user()->profile_photo_url }})"></span>
                     <div class="d-none d-xl-block ps-2">
                         <div>Paweł Kuna</div>
                         <div class="mt-1 small text-muted">UI Designer</div>
@@ -26,7 +28,8 @@
                     <a href="#" class="dropdown-item">Feedback</a>
                     <div class="dropdown-divider"></div>
                     <a href="./settings.html" class="dropdown-item">Settings</a> --}}
-                    <a href="jabascript:void(0)" class="dropdown-item" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a>
+                    <a href="jabascript:void(0)" class="dropdown-item"
+                        onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a>
                 </div>
             </div>
         </div>
@@ -76,6 +79,18 @@
 
                         <span class="nav-link-title">
                             @lang('Courses/Webinars')
+                        </span>
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link text-white" href="{{ route('admin.speakers.index') }}">
+                        <span class="nav-link-icon d-md-none d-lg-inline-block">
+                            <i class="ti ti-users-group ti-xs"></i>
+                        </span>
+
+                        <span class="nav-link-title">
+                            @lang('Speakers')
                         </span>
                     </a>
                 </li>
