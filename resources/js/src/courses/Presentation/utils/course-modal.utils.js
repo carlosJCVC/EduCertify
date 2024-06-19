@@ -1,5 +1,5 @@
 import { ElementSelectors } from "../../config/selectors";
-import { includeConfigToFields } from "./include-config-to-fields-utils";
+import { includeConfigToFields } from "./include-config-to-fields.utils";
 import { getCourseFormValidation } from "../validators/course-validator";
 import { getCourse } from "../../Application/useCases/get-course.usecase";
 import { setCourseFormValues } from "./course-form.utils";

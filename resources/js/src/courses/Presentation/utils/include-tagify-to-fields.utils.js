@@ -3,7 +3,9 @@ import '@yaireo/tagify/dist/tagify.css'
 import '/resources/assets/vendor/libs/tagify/tagify.scss'
 import '/resources/sass/custom-tagify-styles.scss'
 import courseStore from '../../Infrastructure/store/course.store';
+import speakerStore from '../../../speakers/Infrastructure/store/speaker.store';
 
+let speakerTagify;
 let levelTagify;
 let categoryTagify;
 
@@ -11,8 +13,8 @@ let categoryTagify;
  * include select2 in participant fields
  */
 export const includeTagifyToFields = async () => {
-    const service = courseStore.getCategoryService();
-    const categories = await service.getAll();
+    const courseService = courseStore.getCategoryService();
+    const categories = await courseService.getAll();
 
     getOrCreateLevelTagifyField()
     getOrCreateCategoryTagifyField(categories)
@@ -29,13 +31,12 @@ export const getOrCreateLevelTagifyField = () => {
 
     const levelElement = document.querySelector('.tagify-level');
     levelTagify = new Tagify(levelElement, {
-        id: 'levelTagify',
+        id: 'level-tagify',
         enforceWhitelist: true,
-        keepInvalidTags: true,
+        keepInvalidTags: false,
         mode: "select",
-        value: "Beginner",
+        // value: "Beginner",
         whitelist: ["Beginner", "Intermediate", "Advanced"],
-        blacklist: ['foo', 'bar'],
         backspace: true,
         placeholder: 'Please select level',
         dropdown: {
@@ -65,13 +66,13 @@ export const getOrCreateCategoryTagifyField = (categories) => {
 
     const categoryElement = document.querySelector('.tagify-category');
     categoryTagify = new Tagify(categoryElement, {
-        id: 'categoryTagify',
+        id: 'category-tagify',
         value: '',
         whitelist: categories,
         placeholder: 'Please write...',
         dropdown: {
             maxItems: 20,
-            classname: 'tags-look',
+            classname: 'category-tags-look',
             enabled: 0,
             closeOnSelect: true
         }

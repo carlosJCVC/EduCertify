@@ -2,8 +2,8 @@
 
 namespace App\Models;
 
+use App\Enums\SpeakerStatuses;
 use App\HasProfilePhoto;
-use App\UserStatuses;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -46,7 +46,7 @@ class Speaker extends Model
      * @var array<string, string>
      */
     protected $casts = [
-        'status' => UserStatuses::class,
+        'status' => SpeakerStatuses::class,
         'expertise' => 'json'
     ];
 
@@ -65,7 +65,7 @@ class Speaker extends Model
    /**
      * Get the courses or webinars for the speaker.
      */
-    public function comments(): HasMany
+    public function courses(): HasMany
     {
         return $this->hasMany(Course::class);
     }

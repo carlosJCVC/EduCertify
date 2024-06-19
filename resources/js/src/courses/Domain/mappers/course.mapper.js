@@ -1,3 +1,4 @@
+import SpeakerMapper from "../../../speakers/Domain/mappers/speaker.mapper";
 import { Course } from "../models/course.model";
 
 const CourseMapper = {
@@ -7,12 +8,12 @@ const CourseMapper = {
      * @returns {object}
      */
     toObject: course => {
-        const { id, name, speaker, categories, level, startDate, endDate, description } = course;
+        const { id, name, speakerId, speaker, categories, level, startDate, endDate, description } = course;
 
         return {
             id,
             name,
-            speaker,
+            speaker_id: speakerId,
             categories,
             level,
             start_date: startDate,
@@ -27,12 +28,13 @@ const CourseMapper = {
      * @returns 
      */
     fromJson: response => {
-        const { id, name, speaker, categories, level, start_date, end_date, description } = response;
+        const { id, name, speaker_id, speaker, categories, level, start_date, end_date, description } = response;
 
         return new Course({
             id,
             name,
-            speaker,
+            speaker_id,
+            speaker: SpeakerMapper.fromJson(speaker),
             categories,
             level,
             startDate: start_date,
@@ -48,7 +50,7 @@ const CourseMapper = {
      */
     fromFormData: formData => {
         const name = formData.get('name');
-        const speaker = formData.get('speaker');
+        const speakerId = formData.get('speaker');
         const stringCategory = formData.get('category');
         const stringLevel = formData.get('level');
         const startDate = formData.get('startDate');
@@ -56,11 +58,11 @@ const CourseMapper = {
         const description = formData.get('description');
 
         const valueLevel = JSON.parse(stringLevel);
-        const valueCategories = JSON.parse(stringCategory);
+        const valueCategories = JSON.parse(stringCategory || "[]");
 
         return new Course({
             name,
-            speaker,
+            speaker_id: speakerId,
             categories: valueCategories.map(item => item.value),
             level: valueLevel[0].value,
             startDate,

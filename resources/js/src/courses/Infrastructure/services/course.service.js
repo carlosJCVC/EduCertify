@@ -40,7 +40,7 @@ class CourseService {
      */
     async findById(id) {
         try {
-            const endpoint = `${this.path}/${id}/show`;
+            const endpoint = `${this.path}/${id}/show-in-json`;
             const { data: { data } } = await request.get(endpoint);
 
             const course = CourseMapper.fromJson(data);

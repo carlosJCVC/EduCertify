@@ -9,7 +9,7 @@
 
     <div class="col-12 mb-3">
         <div class="form-floating-custom">
-            <input type="text" name="speaker" id="floatingInputSpeaker" class="form-control" placeholder="Speaker Name">
+            <select name="speaker" class="select2 select2-speaker" id="speaker-select2"></select>
 
             <label for="floatingInputSpeaker">{{ __('Speaker') }}</label>
         </div>
@@ -17,7 +17,7 @@
 
     <div class="col-12 mb-3">
         <div class="form-floating-custom">
-            <input type="text" class="form-control select-category tagify-category" value="['value': 'pepe']" name="category" id="floatingInputCategory" >
+            <input type="text" class="form-control select-category tagify-category" name="category" id="floatingInputCategory" >
     
             <label for="floatingInputCategory">{{ __('Category') }}</label>
         </div>

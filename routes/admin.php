@@ -6,6 +6,7 @@ use App\Http\Controllers\Admin\CourseController;
 use App\Http\Controllers\Admin\EnrollCourseController;
 use App\Http\Controllers\Admin\ExpertiseController;
 use App\Http\Controllers\Admin\ParticipantController;
+use App\Http\Controllers\Admin\SearchController;
 use App\Http\Controllers\Admin\SpeakerController;
 use App\Http\Controllers\Admin\UserController;
 use Illuminate\Support\Facades\Route;
@@ -57,6 +58,7 @@ Route::prefix('participants/{id}')->name('participants')->group(function () {
 Route::prefix('courses')->name('courses.')->group(function () {
     Route::get('/', [CourseController::class, 'index'])->name('index');
     Route::get('json', [CourseController::class, 'json'])->name('json');
+    Route::get('{id}/show-in-json', [CourseController::class, 'showInJson'])->name('json.show');
     Route::get('create', [CourseController::class, 'create'])->name('create');
     Route::post('store', [CourseController::class, 'store'])->name('store');
     Route::get('{id}/show', [CourseController::class, 'show'])->name('show');
@@ -95,4 +97,11 @@ Route::prefix('categories')->name('categories.')->group(function () {
 Route::prefix('experties')->name('experties.')->group(function () {
     Route::get('/', [ExpertiseController::class, 'index'])->name('index');
     Route::get('json', [ExpertiseController::class, 'json'])->name('json');
+});
+
+/**
+ * routes of search entities
+ */
+Route::prefix('search')->name('search.')->group(function () {
+    Route::post('courses', [SearchController::class, 'speakers'])->name('speakers');
 });

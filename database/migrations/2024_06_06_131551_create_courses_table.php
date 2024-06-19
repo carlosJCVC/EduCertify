@@ -2,6 +2,7 @@
 
 use App\CoursesLevel;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Query\Expression;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
@@ -16,11 +17,11 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('speaker');
-            $table->json('categories')->nullable();
+            $table->json('categories')->default(new Expression('(JSON_ARRAY())'));
             $table->enum('level', CoursesLevel::toArray())->default(CoursesLevel::BEGINNER);
             $table->timestamp('start_date');
             $table->timestamp('end_date');
-            $table->string('description')->nullable();
+            $table->text('description')->nullable();
 
             $table->timestamps();
         });

@@ -19,7 +19,7 @@ class Course extends Model
      */
     protected $fillable = [
         'name',
-        'speaker',
+        'speaker_id',
         'categories',
         'level',
         'start_date',

@@ -60,7 +60,8 @@
 .form-floating-custom input:focus+label,
 .form-floating-custom textarea:focus+label,
 .form-floating-custom input:not(:placeholder-shown)+label,
-.form-floating-custom textarea:not(:placeholder-shown)+label {
+.form-floating-custom textarea:not(:placeholder-shown)+label,
+.form-floating-custom select.select2 ~ label {
     top: -0.6rem;
     left: 0.5rem;
     font-size: 0.75rem;

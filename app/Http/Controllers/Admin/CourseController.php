@@ -34,8 +34,8 @@ class CourseController extends Controller
 
         return DataTables::of($courses)
             // ->addColumn('name', fn ($record) => $record->name)
-            // ->addColumn('speaker', fn ($record) => $record->speaker)
-            ->addColumn('categories', function($record) {
+            ->addColumn('speaker', fn ($record) => $record->speaker->full_name)
+            ->addColumn('categories', function ($record) {
                 $html = '';
                 $bgColors = [
                     'bg-primary',
@@ -57,7 +57,7 @@ class CourseController extends Controller
             ->addColumn('level', fn ($record) => $record->level)
             ->addColumn('start_date', fn ($record) => $record->start_date)
             ->addColumn('end_date', fn ($record) => $record->end_date)
-            ->addColumn('actions', function($record) use ($request) {
+            ->addColumn('actions', function ($record) use ($request) {
                 $buttons = '';
                 if ($request->has('participant_id')) {
                     $buttons = "<a href='javascript:void(0)' class='btn-send-certificate mx-1' data-id='{$record->id}'><i class='ti ti-mail ti-xs'></i></a>";
@@ -69,14 +69,6 @@ class CourseController extends Controller
             })
             ->rawColumns(['actions', 'categories'])
             ->make(true);
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
     }
 
     /**
@@ -102,13 +94,19 @@ class CourseController extends Controller
     {
         $course = Course::find($id);
 
-        if (request()->wantsJson()) {
-            return response()->json([
-                'data' => $course
-            ], 200);
-        }
-
         return view('admin.courses.show')->with(['course' => $course]);
+    }
+
+    /**
+     * Display the specified resource.
+     */
+    public function showInJson(string $id)
+    {
+        $course = Course::with('speaker')->find($id);
+
+        return response()->json([
+            'data' => $course
+        ], 200);
     }
 
     /**
