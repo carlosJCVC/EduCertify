@@ -13,17 +13,11 @@ class CourseService {
      * @return Promise<Array<Courses>> records
      */
     async getAll() {
-        const courses = [];
         try {
             const endpoint = `${this.path}/json`;
-            const { data: { data } } = await request.get(endpoint);
+            const { data: { data:response } } = await request.get(endpoint);
+            const courses = response.map((data) => CourseMapper.fromJson(data));
 
-            data.forEach(
-                async (data) => {
-                    const course = CourseMapper.fromJson(data);
-                    courses.push(course)
-                }
-            )
             return courses;
         } catch (error) {
             console.error('Error getting courses:', error);

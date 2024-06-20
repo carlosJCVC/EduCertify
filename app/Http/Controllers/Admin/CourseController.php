@@ -27,17 +27,17 @@ class CourseController extends Controller
      */
     public function json(Request $request)
     {
-        $courses = Course::all();
+        $courses = Course::with('speaker')->get();
         if ($request->has('participant_id')) {
             $participantId = $request->get('participant_id');
             $participant = Participant::find($participantId);
-            $courses = $participant->courses;
+            $courses = $participant->courses()->with('speaker')->get();
         }
 
         return DataTables::of($courses)
             // ->addColumn('name', fn ($record) => $record->name)
-            ->addColumn('speaker', fn ($record) => $record->speaker->full_name)
-            ->addColumn('categories', function ($record) {
+            ->addColumn('speaker_name', fn ($record) => $record->speaker->full_name)
+            ->addColumn('list_categories', function ($record) {
                 $html = '';
                 $bgColors = [
                     'bg-primary',

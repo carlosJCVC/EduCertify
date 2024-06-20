@@ -14,6 +14,7 @@ export const showEnrollParticipantModal = async () => {
 
     const service = courseStore.getCourseService();
     const courses = await  service.getAll();
+    console.log(courses)
     
     getOrCreateCoursesTagifyField(courses);
 
