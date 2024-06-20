@@ -17,19 +17,23 @@ const state = {
 }
 
 
-const initStore = () => {
-    loadStore();
+const initStore = async () => {
+    await loadStore();
     console.log('InitStore 🥑');
 }
 
-const loadStore = () => {
+const loadStore = async () => {
     // if( !localStorage.getItem('state') ) return;
 
     // const { users = [], filter = Filters.All } = JSON.parse( localStorage.getItem('state') );
     // state.users = users;
     // state.filter = filter;
-    const service = new CourseService();
-    setCourseService(service)
+    // const service = new CourseService();
+    // setCourseService(service)
+
+    const courseId = document.querySelector('.course-info-card').getAttribute('data-courseid');
+    const course = await state.courseService.findById(courseId);
+    setCourseSelected(course)
 }
 
 const saveStateToLocalStorage = () => {
@@ -112,6 +116,15 @@ const setCourseDatatable = (datatable) => {
 const getCourseDatatable = () => {
     return state.datatable;
 }
+/**
+ * Function to save courses enrolled to participant 
+ * @param {DataTable} datatable 
+ */
+const setParticipatnsEnrolledDatatable = (datatable) => {
+    if (!datatable) throw new Error('Datatable is required');
+
+    state.participantsEnrolledDatatable = datatable;
+}
 
 /**
  * Function to get course selected 
@@ -160,6 +173,7 @@ export default {
     getCategoryService,
     getCourseDatatable,
     resetCourseSelected,
+    setParticipatnsEnrolledDatatable,
     // loadStore,
     // setFilter,
     // toggleTodo,

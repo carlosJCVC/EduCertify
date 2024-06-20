@@ -29,7 +29,12 @@ export const updateCourse = async (id) => {
             modal.hide();
 
             notifyAlert('Success!', 'Course has been updated successfully!', () => {
-                datatable.ajax.reload();
+                if (datatable) {
+                    datatable.ajax.reload();
+                    return;
+                }
+
+                location.reload();
             })
 
             return true;

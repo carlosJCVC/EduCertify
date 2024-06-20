@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\Course;
+use App\Models\Participant;
 use App\Models\Speaker;
 use App\Models\User;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
@@ -18,6 +19,7 @@ class DatabaseSeeder extends Seeder
         User::factory(50)->create();
         Speaker::factory(50)->create();
         Course::factory(20)->create();
+        Participant::factory(50)->create();
 
         // User::factory()->create([
         //     'name' => 'Test User',

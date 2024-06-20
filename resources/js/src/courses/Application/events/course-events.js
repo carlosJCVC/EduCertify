@@ -31,15 +31,15 @@ export const renderDatatableEvents = () => {
     const editCourseButtons = document.querySelectorAll(ElementSelectors.EditCourseButton);
     const deleteCourseButtons = document.querySelectorAll(ElementSelectors.DeleteCourseButton);
 
-    // // const btnEdits = document.getElementsByClassName('btn-edit');
-    // viewCourseButtons.forEach(btn => {
-    //     btn.addEventListener('click', (e) => {
-    //         const parent = e.target.closest(ElementSelectors.ViewCourseButton);
-    //         const id = parent.getAttribute('data-id');
+    //const btnEdits = document.getElementsByClassName('btn-edit');
+    viewCourseButtons.forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            const parent = e.target.closest(ElementSelectors.ViewCourseButton);
+            const id = parent.getAttribute('data-id');
 
-    //         location.href = `${import.meta.env.VITE_APP_URL}/admin/course/${id}/show`;
-    //     })
-    // });
+            location.href = `${import.meta.env.VITE_APP_URL}/admin/courses/${id}/show`;
+        })
+    });
 
     editCourseButtons.forEach(btn => {
         btn.addEventListener('click', (e) => {
@@ -61,4 +61,19 @@ export const renderDatatableEvents = () => {
             datatable.ajax.reload();
         });
     });
+}
+
+/**
+ * Event for course ui
+ */
+export const renderShowCourseEvents = () => {
+    const EditCourseButtonShow = document.querySelector(ElementSelectors.EditCourseButtonShow);
+
+    
+    EditCourseButtonShow.addEventListener('click', (e) => {
+        const courseId = courseStore.getCourseSelected();
+        showEditCourseModal(courseId.id);
+    });
+
+    
 }

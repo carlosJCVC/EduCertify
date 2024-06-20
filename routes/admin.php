@@ -4,6 +4,7 @@ use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\CertificateController;
 use App\Http\Controllers\Admin\CourseController;
 use App\Http\Controllers\Admin\EnrollCourseController;
+use App\Http\Controllers\Admin\EnrollParticipantController;
 use App\Http\Controllers\Admin\ExpertiseController;
 use App\Http\Controllers\Admin\ParticipantController;
 use App\Http\Controllers\Admin\SearchController;
@@ -65,6 +66,15 @@ Route::prefix('courses')->name('courses.')->group(function () {
     Route::put('{id}/update', [CourseController::class, 'update'])->name('update');
     Route::patch('{id}/update', [CourseController::class, 'update'])->name('update');
     Route::delete('/{id}/delete', [CourseController::class, 'destroy'])->name('destroy');
+});
+
+/**
+ * routes of enroll participants to courses
+ */
+Route::prefix('courses/{id}')->name('courses')->group(function () {
+    Route::get('participants/json', [EnrollParticipantController::class, 'json'])->name('participants.json');
+    Route::post('enroll/store', [EnrollParticipantController::class, 'store'])->name('enroll.store');
+    Route::delete('unenroll/{participantid}/delete', [EnrollParticipantController::class, 'destroy'])->name('destroy');
 });
 
 /**

@@ -7,6 +7,8 @@ use App\Models\Course;
 use App\Models\Participant;
 use App\Traits\DatatableTrait;
 use Illuminate\Http\Request;
+use Illuminate\Http\JsonResponse;
+use Illuminate\View\View;
 use Yajra\DataTables\Facades\DataTables;
 
 class CourseController extends Controller
@@ -63,7 +65,7 @@ class CourseController extends Controller
                     $buttons = "<a href='javascript:void(0)' class='btn-send-certificate mx-1' data-id='{$record->id}'><i class='ti ti-mail ti-xs'></i></a>";
                 }
 
-                $buttons .= $this->getActionsButtons($record->id, false);
+                $buttons .= $this->getActionsButtons($record->id);
 
                 return $buttons;
             })
@@ -90,10 +92,15 @@ class CourseController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(string $id): View|JsonResponse
     {
         $course = Course::find($id);
 
+        if (request()->wantsJson()) {
+            return response()->json([
+                'data' => $course
+            ], 200);
+        }
         return view('admin.courses.show')->with(['course' => $course]);
     }
 
