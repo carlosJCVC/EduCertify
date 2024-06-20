@@ -64,13 +64,13 @@ export const getOrCreateCoursesTagifyField = (courses) => {
 
     const courseElement = document.querySelector('.tagify-courses');
     coursesTagify = new Tagify(courseElement, {
-        id: 'coursesTagify',
+        id: 'courses-tagify',
         value: '',
         whitelist: [...whitelist],
         placeholder: 'Please write...',
         dropdown: {
             maxItems: 20,
-            classname: 'tags-look',
+            classname: 'courses-tags-look',
             enabled: 0,
             closeOnSelect: true
         }

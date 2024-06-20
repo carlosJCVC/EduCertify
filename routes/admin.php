@@ -75,6 +75,10 @@ Route::prefix('courses/{id}')->name('courses')->group(function () {
     Route::get('participants/json', [EnrollParticipantController::class, 'json'])->name('participants.json');
     Route::post('enroll/store', [EnrollParticipantController::class, 'store'])->name('enroll.store');
     Route::delete('unenroll/{participantid}/delete', [EnrollParticipantController::class, 'destroy'])->name('destroy');
+
+    Route::prefix('certificates')->name('certificates')->group(function () {
+        Route::post('send-participants', [CertificateController::class, 'sendCertificateToAllParticipant'])->name('send.participants');
+    });
 });
 
 /**

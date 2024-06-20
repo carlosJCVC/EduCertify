@@ -19,7 +19,7 @@ class EnrollParticipantController extends Controller
 
         return DataTables::of($participants)
             ->addColumn('name', fn ($record) => $record->full_name)
-            ->addColumn('birthdate', fn ($record) => $record->birthdate)
+            ->addColumn('enrolled_at', fn ($record) => $record->pivot->created_at->format('d M, Y'))
             ->addColumn('status', fn ($record) => "<div class='badge {$record->status->badgeColor()} text-white'>{$record->status->value}</div>")
             ->addColumn('actions', function ($record) {
                 $buttons = '';
@@ -28,7 +28,44 @@ class EnrollParticipantController extends Controller
 
                 return $buttons;
             })
-            ->rawColumns(['actions', 'categories'])
+            ->rawColumns(['actions', 'status'])
             ->make(true);
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     */
+    public function store(Request $request, string $id)
+    {
+        $participantsIds = $request->get('participants_ids');
+        $course = Course::find($id);
+        
+        $participants = $course->participants()->whereIn('participants.id', $participantsIds)->get();
+
+        
+        if ($participants->count() > 0) {
+            // throw new ParticipantAlreadyEnrolled();
+        }
+        
+        $course->participants()->attach($participantsIds);
+
+        return response()->json([
+            'title' => __('Success!'),
+            'message' => __('Courses was enrolled successfully!')
+        ], 200);
+    }
+
+     /**
+     * Remove the specified resource from storage.
+     */
+    public function destroy(string $id, string $participantid)
+    {
+        $course = Course::find($id);
+        $course->participants()->detach($participantid);
+
+        return response()->json([
+            'title' => __('Success!'),
+            'message' => __('Participant was unrolled successfully!')
+        ], 200);
     }
 }

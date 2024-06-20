@@ -8,4 +8,14 @@ export const ElementSelectors = {
     SaveCourseButton: '.btn-save-course',
     CourseModal: '#course-modal',
     CourseForm: '#course-form',
+
+    /**
+     * participants enrolled
+    */
+    SendCertificatesToParticipantsButton: '#btn-send-certificates',
+    EnrollParticipantToCourseButton: '#btn-enroll-participant-course',
+    EnrollParticipantToCourseModal: '#enroll-participant-to-course-modal',
+    EnrollCourseParticipantButton: '.btn-enroll-participant',
+    EnrollParticipantForm: '#enroll-participant-form',
+    UnenrollParticipantToCourseButton: '.btn-unenroll-participant',
 }

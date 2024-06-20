@@ -8,6 +8,7 @@ import speakerStore from '../../../speakers/Infrastructure/store/speaker.store';
 let speakerTagify;
 let levelTagify;
 let categoryTagify;
+let participantsTagify;
 
 /**
  * include select2 in participant fields
@@ -83,3 +84,40 @@ export const getOrCreateCategoryTagifyField = (categories) => {
     return categoryTagify;
 }
 
+/**
+ * Include or generate tagify field to level input 
+ * @returns statusTagify
+ */
+export const getOrCreateParticipantsTagifyField = (participants) => {
+    const whitelist = participants.map(participant => ({ id: participant.id, 'value': `${participant.lastName} ${participant.firstName}` }));
+
+    if (participantsTagify) {
+        participantsTagify.removeAllTags();
+
+        if (!!participants.length) {
+            participantsTagify.whitelist = null;
+            participantsTagify.whitelist = [...whitelist];
+
+        }
+
+        return participantsTagify;
+    }
+
+    const courseElement = document.querySelector('.tagify-participants');
+    participantsTagify = new Tagify(courseElement, {
+        id: 'participants-tagify',
+        value: '',
+        whitelist: [...whitelist],
+        placeholder: 'Please write...',
+        dropdown: {
+            maxItems: 20,
+            classname: 'participants-tags-look',
+            enabled: 0,
+            closeOnSelect: true
+        }
+    });
+
+    participantsTagify.removeAllTags();
+
+    return participantsTagify;
+}

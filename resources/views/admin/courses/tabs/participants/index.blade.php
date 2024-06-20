@@ -11,7 +11,7 @@
                         <th>@lang('Full name')</th>
                         <th>@lang('Email')</th>
                         <th>@lang('Status')</th>
-                        <th>@lang('Birthdate')</th>
+                        <th>@lang('Enrolled At')</th>
                         <th>@lang('Actions')</th>
                     </tr>
                 </thead>
@@ -20,7 +20,7 @@
                     <th>@lang('Full name')</th>
                     <th>@lang('Email')</th>
                     <th>@lang('Status')</th>
-                    <th>@lang('Birthdate')</th>
+                    <th>@lang('Enrolled At')</th>
                     <th>@lang('Actions')</th>
                 </tfoot>
 

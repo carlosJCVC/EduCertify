@@ -39,7 +39,7 @@ class CertificateController extends Controller
     {
         $participant = Participant::find($id);
         $courses = $participant->courses;
-        
+
 
         $links = [];
         foreach ($courses as $course) {
@@ -47,14 +47,33 @@ class CertificateController extends Controller
             $link = $this->generateCertificate($participant, $course);
 
             array_push($links, $link);
-            
         }
 
-        $participant->notify(new SendCertificate(course:null ,link: $links));
+        $participant->notify(new SendCertificate(course: null, link: $links));
 
         return response()->json([
             'title' => __('Success!'),
             'message' => __('Course was created successfully!'),
+        ], 201);
+    }
+
+    /**
+     * Send certificate by course id.
+     */
+    public function sendCertificateToAllParticipant(string $id)
+    {
+        $course = Course::find($id);
+        $participants = $course->participants;
+
+        foreach ($participants as $participant) {
+            $link = $this->generateCertificate($participant, $course);
+
+            $participant->notify(new SendCertificate(course: $course, link: $link));
+        }
+
+        return response()->json([
+            'title' => __('Success!'),
+            'message' => __('Certificates were sent successfully!'),
         ], 201);
     }
 }

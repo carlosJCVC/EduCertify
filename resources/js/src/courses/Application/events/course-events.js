@@ -1,9 +1,13 @@
 import courseStore from "../../Infrastructure/store/course.store";
 import { resetCourseFormValues } from "../../Presentation/utils/course-form.utils";
-import { getCourseModal, showCreateCourseModal, showEditCourseModal } from "../../Presentation/utils/course-modal.utils";
+import { getCourseModal, showEditCourseModal } from "../../Presentation/utils/course-modal.utils";
+import { showEnrollParticipantToCourseModal } from "../../Presentation/utils/enroll-participant-modal.utils";
 import { ElementSelectors } from "../../config/selectors";
 import { deleteCourse } from "../useCases/delete-course.usecase";
+import { enrollParticipantCourse } from "../useCases/enroll-participant-course.usecase";
 import { saveCourse } from "../useCases/save-course.usecase";
+import { sendParticipantsCertificates } from "../useCases/send-certificate.usecase";
+import { unenrollParticipantCourse } from "../useCases/unenroll-participant-course.usecase";
 
 /**
  * Course UI Events
@@ -68,6 +72,9 @@ export const renderDatatableEvents = () => {
  */
 export const renderShowCourseEvents = () => {
     const EditCourseButtonShow = document.querySelector(ElementSelectors.EditCourseButtonShow);
+    const enrollParticipantToCourseButton = document.querySelector(ElementSelectors.EnrollParticipantToCourseButton);
+    const SendCertificatesToParticipantsButton = document.querySelector(ElementSelectors.SendCertificatesToParticipantsButton);
+    const submitEnrollParticipantButton = document.querySelector(ElementSelectors.EnrollCourseParticipantButton);
 
     
     EditCourseButtonShow.addEventListener('click', (e) => {
@@ -75,5 +82,31 @@ export const renderShowCourseEvents = () => {
         showEditCourseModal(courseId.id);
     });
 
-    
+    SendCertificatesToParticipantsButton.addEventListener('click', (e) => {
+        sendParticipantsCertificates();
+    });
+
+    enrollParticipantToCourseButton.addEventListener('click', (event) => {
+        showEnrollParticipantToCourseModal();
+    });
+
+    submitEnrollParticipantButton.addEventListener('click', (event) => {
+        enrollParticipantCourse();
+    });
+}
+
+/**
+ * Events for courses enrolled for participant
+ */
+export const renderParticipantsEnrolledDatatable = () => {
+    const unenrollParticipantToCourseButtons = document.querySelectorAll(ElementSelectors.UnenrollParticipantToCourseButton);
+
+    unenrollParticipantToCourseButtons.forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            const parent = e.target.closest(ElementSelectors.UnenrollParticipantToCourseButton);
+            const participantid = parent.getAttribute('data-id');
+
+            unenrollParticipantCourse(participantid)
+        })
+    });
 }

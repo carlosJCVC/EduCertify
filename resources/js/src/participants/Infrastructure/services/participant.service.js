@@ -12,14 +12,13 @@ class ParticipantService {
      * Get All Records
      * @return Promise<Array<Participant>> records
      */
-    async getAll(data, callback, settings) {
+    async getAll() {
         try {
             const endpoint = `${this.path}/json`;
-            const response = await request.get(endpoint);
+            const { data: { data:response } } = await request.get(endpoint);
+            const courses = response.map((data) => ParticipantMapper.fromJson(data));
 
-            // console.log(response.data)
-
-            callback(response.data.data);
+            return courses;
         } catch (error) {
             console.error('Error getting participants:', error);
 

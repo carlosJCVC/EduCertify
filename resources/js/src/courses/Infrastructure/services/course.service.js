@@ -112,6 +112,77 @@ class CourseService {
             throw error;
         }
     };
+
+    /**
+     * Send certificate by course id
+     *
+     * @param {Number} id
+     * @param {Number} courseid
+     * @return Promise<Bool> true|falsee
+     */
+    async sendCertificateAllParticipants(id) {
+        try {
+            const endpoint = `${this.path}/${id}/certificates/send-participants`;
+            const { data: { data } } = await request.post(endpoint, {
+                headers: this.headers
+            });
+
+            return true;
+        } catch (error) {
+            console.error(`Error sending certificate with ID ${id}:`, error);
+
+            throw error;
+        }
+    }
+
+    /**
+     * Delete participant by id.
+     *
+     * @param {Number} id
+     * @param <Array> data
+     * @return Promise<boolean>
+     */
+    async enrollById(id, participantIds) {
+        alert();
+        try {
+            const endpoint = `${this.path}/${id}/enroll/store`;
+            await axios.post(endpoint, { participants_ids: participantIds }, {
+                headers: this.headers
+            });
+
+            return true;
+        } catch (error) {
+            console.error(`Error enrolling participant with ID ${id}:`, error);
+
+            throw error;
+        }
+    };
+
+    /**
+     * Delete participant by id.
+     *
+     * @param {Number} id
+     * @param <Array> data
+     * @return Promise<boolean>
+     */
+    async unenrollById(id, participantid) {
+        try {
+            const endpoint = `${this.path}/${id}/unenroll/${participantid}/delete`;
+            await axios.delete(endpoint, {
+                headers: this.headers
+            });
+
+            return true;
+        } catch (error) {
+            console.error(`Error unenrolling participant with ID ${id}:`, error);
+
+            if (error.response) {
+                return false;
+            }
+
+            throw error;
+        }
+    };
 }
 
 export default CourseService;

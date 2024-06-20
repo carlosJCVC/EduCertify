@@ -143,6 +143,13 @@ const deleteCompleted = () => {
     state.todos = state.todos.filter(todo => !todo.done);
     saveStateToLocalStorage();
 }
+/**
+ * Function to get courses enrolled to participant
+ * @param {DataTable} datatable 
+ */
+const getParticipantsEnrolledDatatable = () => {
+    return state.participantsEnrolledDatatable;
+}
 
 /**
  * 
@@ -174,6 +181,7 @@ export default {
     getCourseDatatable,
     resetCourseSelected,
     setParticipatnsEnrolledDatatable,
+    getParticipantsEnrolledDatatable,
     // loadStore,
     // setFilter,
     // toggleTodo,

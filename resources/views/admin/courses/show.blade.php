@@ -81,6 +81,30 @@
     </div>
 
     <!-- Modal -->
+    <x-_modals.modal :title="__('Modal Title')" id="enroll-participant-to-course-modal" class="modal-dialog">
+        <x-slot:header>
+            <h5 class="modal-title">@lang('Enroll Participant')</h5>
+        </x-slot>
+
+        <form action="" id="enroll-participant-form">
+            <div class="row">
+                <div class="col-12 mb-3">
+                    <div class="form-floating-custom">
+                        <input type="text" class="form-control select-participant tagify-participants" name="participants"
+                            id="floatingInputCourse">
+
+                        <label for="floatingInputCourse">{{ __('Participants') }}</label>
+                    </div>
+                </div>
+            </div>
+
+        </form>
+        <x-slot:footer>
+            <button type="button" class="btn btn-primary btn-enroll-participant">@lang('Save Changes')</button>
+        </x-slot>
+    </x-_modals.modal>
+
+    <!-- Modal -->
     <x-_modals.modal :title="__('Modal Title')" id="course-modal" class="modal-dialog">
         <x-slot:header>
             <h5 class="modal-title">@lang('Create New Course')</h5>

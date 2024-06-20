@@ -3,6 +3,7 @@ import DataTable from "datatables.net-bs5";
 import { ElementSelectors } from "../../../participants/config/selectors";
 import "/resources/assets/vendor/libs/datatables-buttons-bs5/buttons.bootstrap5.scss";
 import courseStore from '../../Infrastructure/store/course.store';
+import { renderParticipantsEnrolledDatatable } from '../events/course-events';
 
 /**
  * Load datatable for participants
@@ -52,7 +53,7 @@ export const listParticipantInCourseUsingDataTable = () => {
             filterElement.classList.remove("form-select-sm");
         },
         drawCallback: function (settings) {
-            // renderParticipantsEnrolledDatatable();
+            renderParticipantsEnrolledDatatable();
         },
         /// https://datatables.net/reference/option/columns
         columns: getDatatableColumns()
@@ -152,7 +153,7 @@ const getDatatableColumns = () => {
         { "data": "name", "name": "name", "title": "Participant", "orderable": true, "searchable": true },
         { "data": "email", "name": "email", "title": "Email", "orderable": true, "searchable": true },
         { "data": "status", "name": "status", "title": "Status", "orderable": true, "searchable": true },
-        { "data": "birthdate", "name": "birthdate", "title": "Birthdate", "Orderable": true, "searchable": true },
+        { "data": "enrolled_at", "name": "enrolled_at", "title": "Enrolled at", "Orderable": true, "searchable": true },
         { "data": "actions", "name": "actions", "title": "Actions", "orderable": true, "searchable": true }
     ]
 }
