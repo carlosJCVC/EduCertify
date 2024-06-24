@@ -69,7 +69,7 @@ class CourseController extends Controller
 
                 return $buttons;
             })
-            ->rawColumns(['actions', 'categories'])
+            ->rawColumns(['actions', 'list_categories'])
             ->make(true);
     }
 
@@ -109,7 +109,7 @@ class CourseController extends Controller
      */
     public function showInJson(string $id)
     {
-        $course = Course::with('speaker')->find($id);
+        $course = Course::with(['speaker', 'preferences'])->find($id);
 
         return response()->json([
             'data' => $course

@@ -10,7 +10,7 @@ export class Course {
      * @param {date} end_date 
      * @param {String} description 
      */
-    constructor({ id = undefined, name, speaker, speaker_id, categories, level, startDate, endDate, description }) {
+    constructor({ id = undefined, name, speaker, speaker_id, categories, level, startDate, endDate, description, preferences }) {
         if (!name) throw new Error('The name field is required.');
         if (!categories) throw new Error('The categories field is required.');
         if (!level) throw new Error('The level field is required.');
@@ -23,6 +23,7 @@ export class Course {
         this.level = level;
         this.startDate = startDate;
         this.endDate = endDate;
+        this.preferences = preferences;
         this.description = description
     }
 }

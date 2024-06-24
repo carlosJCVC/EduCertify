@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\CertificateController;
 use App\Http\Controllers\Admin\CourseController;
+use App\Http\Controllers\Admin\CoursePreferenceController;
 use App\Http\Controllers\Admin\EnrollCourseController;
 use App\Http\Controllers\Admin\EnrollParticipantController;
 use App\Http\Controllers\Admin\ExpertiseController;
@@ -77,7 +78,13 @@ Route::prefix('courses/{id}')->name('courses')->group(function () {
     Route::delete('unenroll/{participantid}/delete', [EnrollParticipantController::class, 'destroy'])->name('destroy');
 
     Route::prefix('certificates')->name('certificates')->group(function () {
+        Route::post('download-certificate', [CertificateController::class, 'download'])->name('download');
         Route::post('send-participants', [CertificateController::class, 'sendCertificateToAllParticipant'])->name('send.participants');
+    });
+
+    Route::prefix('preferences')->name('preferences')->group(function () {
+        Route::put('update', [CoursePreferenceController::class, 'update'])->name('update');
+        Route::patch('update', [CoursePreferenceController::class, 'update'])->name('update');
     });
 });
 

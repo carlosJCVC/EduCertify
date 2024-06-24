@@ -36,7 +36,6 @@ class CourseService {
         try {
             const endpoint = `${this.path}/${id}/show-in-json`;
             const { data: { data } } = await request.get(endpoint);
-
             const course = CourseMapper.fromJson(data);
 
             return course;
@@ -112,28 +111,6 @@ class CourseService {
             throw error;
         }
     };
-
-    /**
-     * Send certificate by course id
-     *
-     * @param {Number} id
-     * @param {Number} courseid
-     * @return Promise<Bool> true|falsee
-     */
-    async sendCertificateAllParticipants(id) {
-        try {
-            const endpoint = `${this.path}/${id}/certificates/send-participants`;
-            const { data: { data } } = await request.post(endpoint, {
-                headers: this.headers
-            });
-
-            return true;
-        } catch (error) {
-            console.error(`Error sending certificate with ID ${id}:`, error);
-
-            throw error;
-        }
-    }
 
     /**
      * Delete participant by id.

@@ -11,6 +11,10 @@
 </head>
 
 <body>
+    <div class="watermark">
+        <img class="background-image" src="{{ $bg_image }}" alt="Background Image">
+    </div>
+
     <div class="certificate-container">
         <div class="certificate-header">
             <div class="logo">
@@ -57,7 +61,7 @@
             <div class="signature">
                 <img class="sign" src="{{ $signature_i }}" alt="Signature Instructor">
                 <p class="line"></p>
-                <p class="instructor-details">{{ $instructor }}</p>
+                <p class="instructor-details">{{ $instructor->full_name }}</p>
                 <p class="instructor-details">INSTRUCTOR NAME</p>
             </div>
 

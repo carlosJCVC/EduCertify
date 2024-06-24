@@ -6,6 +6,7 @@
 
 @push('styles')
     @include('admin.courses.tabs.details.styles')
+    @include('admin.courses.tabs.settings.styles')
 @endpush
 
 @section('content')
@@ -63,7 +64,7 @@
                 </nav>
 
                 <div class="tab-content" id="nav-tabContent">
-                    <div class="tab-pane fade show active" id="nav-details" role="tabpanel"
+                    <div class="tab-pane fade active show" id="nav-details" role="tabpanel"
                         aria-labelledby="nav-details-tab">
                         @include('admin.courses.tabs.details.index')
                     </div>
@@ -73,7 +74,7 @@
                     </div>
 
                     <div class="tab-pane fade" id="nav-settings" role="tabpanel" aria-labelledby="nav-settings-tab">
-                        Settings
+                        @include('admin.courses.tabs.settings.index')
                     </div>
                 </div>
             </div>
@@ -97,8 +98,8 @@
                     </div>
                 </div>
             </div>
-
         </form>
+
         <x-slot:footer>
             <button type="button" class="btn btn-primary btn-enroll-participant">@lang('Save Changes')</button>
         </x-slot>

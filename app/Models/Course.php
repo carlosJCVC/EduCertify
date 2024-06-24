@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class Course extends Model
 {
@@ -20,6 +21,7 @@ class Course extends Model
     protected $fillable = [
         'name',
         'speaker_id',
+        'setting_id',
         'categories',
         'level',
         'start_date',
@@ -52,5 +54,13 @@ class Course extends Model
     public function speaker(): BelongsTo
     {
         return $this->belongsTo(Speaker::class);
+    }
+
+    /**
+     * Get the settings associated with the course.
+     */
+    public function preferences(): HasOne
+    {
+        return $this->hasOne(CourseSetting::class);
     }
 }

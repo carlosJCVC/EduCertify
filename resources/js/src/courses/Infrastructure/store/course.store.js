@@ -1,5 +1,8 @@
+import { setCoursePreferencesFormValues } from "../../Presentation/utils/course-preferences-form.utils";
 import CategoryService from "../services/category.service";
+import CertificateService from "../services/certificate.service";
 import CourseService from "../services/course.service";
+import PreferenceService from "../services/preference.service";
 
 export const Filters = {
     All: 'all',
@@ -12,6 +15,8 @@ const state = {
     courseSelected: undefined,
     courseService: new CourseService(),
     categoryService: new CategoryService(),
+    preferenceService: new PreferenceService(),
+    certificateService: new CertificateService(),
     datatable: undefined,
     filter: Filters.All,
 }
@@ -23,17 +28,10 @@ const initStore = async () => {
 }
 
 const loadStore = async () => {
-    // if( !localStorage.getItem('state') ) return;
-
-    // const { users = [], filter = Filters.All } = JSON.parse( localStorage.getItem('state') );
-    // state.users = users;
-    // state.filter = filter;
-    // const service = new CourseService();
-    // setCourseService(service)
-
     const courseId = document.querySelector('.course-info-card').getAttribute('data-courseid');
     const course = await state.courseService.findById(courseId);
     setCourseSelected(course)
+    setCoursePreferencesFormValues(course.preferences)
 }
 
 const saveStateToLocalStorage = () => {
@@ -64,18 +62,6 @@ const setCourseSelected = (course) => {
 }
 
 /**
- * Function to save course service 
- * @param {CourseServcie} courseService 
- */
-const setCourseService = (courseService) => {
-    if (!courseService) throw new Error('Course Service is required');
-
-    if (!state.courseService) {
-        state.courseService = courseService;
-    }
-}
-
-/**
  * Function to get course selected 
  * @param {Course} course 
  */
@@ -89,6 +75,22 @@ const getCourseSelected = () => {
  */
 const getCourseService = () => {
     return state.courseService;
+}
+
+/**
+ * Function to get certificate service 
+ * @param {CertificateService} certificateService 
+ */
+const getCertificateService = () => {
+    return state.certificateService;
+}
+
+/**
+ * Function to get preference service 
+ * @param {PreferenceService} preferenceService 
+ */
+const getPreferenceService = () => {
+    return state.preferenceService;
 }
 
 /**
@@ -176,7 +178,8 @@ export default {
     getCourseSelected,
     setCourseDatatable,
     getCourseService,
-    setCourseService,
+    getCertificateService,
+    getPreferenceService,
     getCategoryService,
     getCourseDatatable,
     resetCourseSelected,

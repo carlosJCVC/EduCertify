@@ -18,4 +18,13 @@ export const ElementSelectors = {
     EnrollCourseParticipantButton: '.btn-enroll-participant',
     EnrollParticipantForm: '#enroll-participant-form',
     UnenrollParticipantToCourseButton: '.btn-unenroll-participant',
+
+    /**
+     * preferences
+     */
+    CoursePreferencesForm: '#course-preferences-form',
+    SubmitCoursePreferencesButton: '#btn-edit-preferences',
+    PreviewCourseCertificateButton: '#btn-preview-certificate',
+    SignatureUndoButton: '#btn-undo-signature',
+    SignatureClearButton: '#btn-clear-signature',
 }

@@ -10,11 +10,41 @@
         /* max-height: 100%;
         height: auto; */
         box-sizing: border-box;
+        /* background-color: red; */
+        position: relative;
+        background-color: {{ $bg_color }}
     }
 
     p {
         margin: 0;
         padding: 0;
+        color: {{ $text_color }};
+    }
+
+    .background {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: hsla(23, 85%, 48%, 0.2);
+        /* background-color: {{ $bg_color }} */
+        /* Color de fondo como marca de agua */
+        z-index: -1;
+    }
+
+    .watermark {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        z-index: -1;
+        opacity: 0.2;
+    }
+
+    .watermark img {
+        max-width: 100%;
+        height: auto;
     }
 
     .certificate-container {
@@ -132,7 +162,7 @@
     }
 
     .certificate-container .certificate-footer .signature .sign {
-        width: 50%;
+        width: 70%;
     }
 
     .certificate-container .certificate-footer .line {

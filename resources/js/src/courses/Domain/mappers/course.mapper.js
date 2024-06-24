@@ -1,5 +1,6 @@
 import SpeakerMapper from "../../../speakers/Domain/mappers/speaker.mapper";
 import { Course } from "../models/course.model";
+import PreferenceMapper from "./preference.mapper";
 
 const CourseMapper = {
     /**
@@ -28,17 +29,18 @@ const CourseMapper = {
      * @returns 
      */
     fromJson: response => {
-        const { id, name, speaker_id, speaker, categories, level, start_date, end_date, description } = response;
+        const { id, name, speaker_id, speaker, categories, level, start_date, end_date, description, preferences } = response;
 
         return new Course({
             id,
             name,
             speaker_id,
-            speaker: SpeakerMapper.fromJson(speaker),
+            speaker: speaker? SpeakerMapper.fromJson(speaker) : null,
             categories,
             level,
             startDate: start_date,
             endDate: end_date,
+            preferences: preferences? PreferenceMapper.fromJson(preferences) : null,
             description
         });
     },

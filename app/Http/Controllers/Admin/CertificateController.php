@@ -8,10 +8,21 @@ use App\Models\Participant;
 use App\Notifications\SendCertificate;
 use App\Traits\CertificateTrait;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Response;
 
 class CertificateController extends Controller
 {
     use CertificateTrait;
+
+    public function download(Request $request, string $courseId)
+    {
+        // dd($request->all());
+        $course = Course::find($courseId);
+        $link = $this->generatePreviewCertificate($course, $request);
+        $filename = "certificate-preview.pdf";
+
+        return Response::download($link, $filename);
+    }
 
     /**
      * Send certificate by course id.

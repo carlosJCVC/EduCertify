@@ -15,7 +15,7 @@ export const sendParticipantsCertificates = () => {
 
             loadingAlert();
 
-            const service = courseStore.getCourseService();
+            const service = courseStore.getCertificateService();
             const course = courseStore.getCourseSelected();
             await service.sendCertificateAllParticipants(course.id);
 

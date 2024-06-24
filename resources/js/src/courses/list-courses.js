@@ -4,8 +4,6 @@ import courseStore from "./Infrastructure/store/course.store";
 import "/resources/sass/custom-inputs.scss";
 
 const ListCourseApp = () => {
-    courseStore.initStore();
-
     (() => {
         listCoursesUsingDataTable();
     })();
