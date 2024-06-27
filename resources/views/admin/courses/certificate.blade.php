@@ -22,7 +22,7 @@
             </div>
 
             <div class="title">
-                <p>{{ $title }}</p>
+                <p>{!! $title !!}</p>
             </div>
         </div>
 
