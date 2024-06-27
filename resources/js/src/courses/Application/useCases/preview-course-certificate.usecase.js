@@ -1,4 +1,3 @@
-import { loadingAlert, notifyAlert } from "../../../utils/alerts";
 import courseStore from "../../Infrastructure/store/course.store";
 import { getCoursePreferencesFormValues } from "../../Presentation/utils/course-preferences-form.utils";
 

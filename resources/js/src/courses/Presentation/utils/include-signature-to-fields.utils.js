@@ -19,7 +19,7 @@ export const getOrCreateSignatureField = () => {
     }
 
     // const wrapper = document.querySelector("#signature-speaker-wrapper");
-    const canvas = document.querySelector(".signature-pad");
+    const canvas = document.querySelector("#signature-pad");
     signaturePad = new SignaturePad(canvas, {
         backgroundColor: 'rgb(255, 255, 255)'
     });
@@ -37,7 +37,7 @@ export const setSignatureField = (data) => {
 
     const canvas = document.querySelector('#signature-pad');
     // resizeCanvas(signaturePad, canvas);
-    signaturePad.fromDataURL(data);
+    signaturePad.fromData(data, { ratio: 1 , xOffset: 50});
 };
 
 /**

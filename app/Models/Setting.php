@@ -6,7 +6,7 @@ use App\Traits\HasLogoAndBackgroundImage;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class CourseSetting extends Model
+class Setting extends Model
 {
     use HasFactory, HasLogoAndBackgroundImage;
 
@@ -16,9 +16,14 @@ class CourseSetting extends Model
      * @var array<int, string>
      */
     protected $fillable = [
+        'title',
+        'speaker_name',
+        'director_name',
         'background_color',
         'text_color',
         'text_font',
+        'director_signature_data_url',
+        'director_signature_data',
         'speaker_signature_data_url',
         'speaker_signature_data',
     ];
@@ -32,6 +37,7 @@ class CourseSetting extends Model
     {
         return [
             'speaker_signature_data' => 'json',
+            'director_signature_data' => 'json',
         ];
     }
 
@@ -41,6 +47,7 @@ class CourseSetting extends Model
      * @var array<int, string>
      */
     protected $appends = [
+        'logo_image_url',
         'background_image_url',
     ];
 }

@@ -4,34 +4,22 @@ namespace App\Traits;
 
 use App\Models\Course;
 use App\Models\Participant;
+use App\Models\Setting;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\Request;
+use Sabberworm\CSS\Settings;
 
 trait CertificateTrait
 {
-    public function generatePreviewCertificate(Course $course, Request $request): string
+    public function generatePreviewCertificate(?Course $course, Request $request): string
     {
-        $preferences = $course->preferences;
+        $data = $this->getPreviewCertificateData();
 
-        $data = [
-            'name' => 'John Doe',
-            'course' => 'Advanced C. Techniques with John Doe',
-            'description' => 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. A debitis atque blanditiis, ex qui architecto eius quasi!.',
-            'date' => now(),
-            'hours' => 8,
-            'logo' => public_path('storage/images/logo1.svg'),
-            'signature_i' => $preferences->signature_path ?? public_path('storage/images/signature-instructor.jpg'),
-            'signature_d' => public_path('storage/images/signature-director.jpg'),
-            'instructor' => $course->speaker,
-            'director' => 'Jane Doe',
-            // 'bg_image' => $request->has('bg_image') ? $request->get('bg_image') : null,
-            'bg_image' => isset($preferences)? $preferences->background_image_url : null,
-            'bg_color' => isset($preferences)? $preferences->background_color : '#fff',
-            'text_color' => isset($preferences)? $preferences->text_color : '#000',
-        ];
-        // dd($data);
+        $pathname = "certificates/certificate-preview.pdf";
+        if (! is_null($course)) {
+            $pathname = "certificates/certificate-{$course->id}-preview.pdf";
+        }
 
-        $pathname = "certificates/certificate-{$course->id}-preview.pdf";
         $pdf = PDF::loadView('admin.courses.certificate', $data);
         $pdf->setPaper('Letter', 'landscape');
         $pdf->save($pathname, 'public');
@@ -41,33 +29,85 @@ trait CertificateTrait
         return $link;
     }
 
-    public function generateCertificate(Participant $participant, Course $course): string
+    /**
+     * Generate certificate for participant 
+     */
+    public function generateParticipantCertificate(Participant $participant, Course $course): string
     {
-        $preferences = $course->preferences;
-
-        $data = [
-            'name' => $participant->full_name,
-            'course' => $course->name,
-            'description' => $course->description,
-            'date' => now(),
-            'hours' => 7,
-            'logo' => public_path('storage/images/logo1.svg'),
-            'signature_i' => $preferences->signature_path ?? public_path('storage/images/signature-instructor.jpg'),
-            'signature_d' => public_path('storage/images/signature-director.jpg'),
-            'instructor' => $course->speaker,
-            'director' => 'Yania Johnson',
-            'bg_image' => $preferences->background_image_url,
-            'bg_color' => $preferences->background_color,
-            'text_color' => $preferences->text_color,
-        ];
-
+        $data = $this->getCertificateData($participant, $course);
         $pathname = "certificates/certificate-{$course->id}{$participant->id}.pdf";
         $pdf = PDF::loadView('admin.courses.certificate', $data);
         $pdf->setPaper('Letter', 'landscape');
         $pdf->save($pathname, 'public');
-
         $link = public_path("storage/{$pathname}");
 
         return $link;
+    }
+
+    /**
+     * Gnerate data to build certificate
+     */
+    public function getCertificateData(Participant $participant, Course $course): array
+    {
+        $preferences = $course->preferences;
+        $setting = Setting::first();
+
+        $speakerSignature = $preferences->speaker_signature_data_url ?? $setting->speaker_signature_data_url ?? public_path('storage/images/signature-instructor.jpg');
+        $directorSignature = $preferences->director_signature_data_url ?? $setting->director_signature_data_url ?? public_path('storage/images/signature-instructor.jpg');
+        $backgroundImage = $preferences->background_image_url ?? $setting->background_image_url ?? '';
+        $backgroundColor = $preferences->background_color ?? $setting->background_color ?? '#fff';
+        $textColor = $preferences->text_color ?? $setting->text_color ?? '#000';
+
+        $data = [
+            'participant_name' => $participant->full_name,
+            'course_name' => $course->name,
+            'course_description' => $course->description,
+            'date' => now(), // todo
+            'hours' => 7, // todo
+            'logo' => $setting->logo_image_url ?? public_path('storage/images/logo1.svg'),
+            'speaker_signature' => $speakerSignature,
+            'director_signature' => $directorSignature,
+            'speaker_name' => $course->speaker->full_name,
+            'director_name' => 'Yania Johnson', // todo
+            'background_image' => $backgroundImage,
+            'background_color' => $backgroundColor,
+            'text_color' => $textColor,
+        ];
+
+        return $data;
+    }
+
+    /**
+     * Gnerate data to build certificate
+     */
+    public function getPreviewCertificateData(?Course $course = null): array
+    {
+        // $preferences = $course->preferences;
+        $setting = Setting::first();
+
+        $speakerSignature = $course->preferences->speaker_signature_data_url ?? $setting->speaker_signature_data_url ?? public_path('storage/images/signature-instructor.jpg');
+        $directorSignature = $course->preferences->director_signature_data_url ?? $setting->director_signature_data_url ?? public_path('storage/images/signature-instructor.jpg');
+        $backgroundImage = $course->preferences->background_image_url ?? $setting->background_image_url ?? '';
+        $backgroundColor = $course->preferences->background_color ?? $setting->background_color ?? '#fff';
+        $textColor = $course->preferences->text_color ?? $setting->text_color ?? '#000';
+
+        $data = [
+            'title' => $setting->title ?? 'Institute of Child Psychology',
+            'participant_name' => 'John Doe',
+            'course_name' => !is_null($course) ? $course->name : 'Advanced C. Techniques with John Doe',
+            'course_description' => !is_null($course) ? $course->description : 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. A debitis atque blanditiis, ex qui architecto eius quasi!.',
+            'date' => now(), // todo
+            'hours' => 7, // todo
+            'logo' => $setting->logo_image_url ?? public_path('storage/images/logo1.svg'),
+            'speaker_signature' => $speakerSignature,
+            'director_signature' => $directorSignature,
+            'speaker_name' => !is_null($course)? $course->speaker->full_name : 'Jane Doe',
+            'director_name' => 'Jane Doe',
+            'background_image' => $backgroundImage,
+            'background_color' => $backgroundColor,
+            'text_color' => $textColor,
+        ];
+
+        return $data;
     }
 }

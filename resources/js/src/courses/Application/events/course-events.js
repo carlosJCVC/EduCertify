@@ -2,7 +2,7 @@ import courseStore from "../../Infrastructure/store/course.store";
 import { resetCourseFormValues } from "../../Presentation/utils/course-form.utils";
 import { getCourseModal, showEditCourseModal } from "../../Presentation/utils/course-modal.utils";
 import { showEnrollParticipantToCourseModal } from "../../Presentation/utils/enroll-participant-modal.utils";
-import { getOrCreateSignatureField } from "../../Presentation/utils/include-signature-to-fields.utls";
+import { getOrCreateSignatureField } from "../../Presentation/utils/include-signature-to-fields.utils";
 import { ElementSelectors } from "../../config/selectors";
 import { deleteCourse } from "../useCases/delete-course.usecase";
 import { enrollParticipantCourse } from "../useCases/enroll-participant-course.usecase";

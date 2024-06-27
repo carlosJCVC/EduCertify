@@ -36,6 +36,35 @@ class CertificateService {
     }
 
     /**
+     * Previw certificate
+     *
+     * @param {Setting} settings
+     * @return Promise<Bool> true|false
+     */
+    async previewCertificate(settings) {
+        try {
+            const endpoint = `admin/settings/certificates/preview`;
+            const { data } = await request.post(endpoint, settings, {
+                responseType: 'blob',
+                headers: this.headers
+            });
+
+            const url = window.URL.createObjectURL(new Blob([data]));
+            const link = document.createElement('a');
+            link.href = url;
+            link.setAttribute('download', 'certificate-preview.pdf');
+            document.body.appendChild(link);
+            link.click();
+
+            return true;
+        } catch (error) {
+            console.error(`Error downloading certificate with ID ${id}:`, error);
+
+            throw error;
+        }
+    }
+
+    /**
      * Send certificate by course id
      *
      * @param {Number} id

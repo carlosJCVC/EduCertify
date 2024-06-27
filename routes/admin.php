@@ -9,6 +9,7 @@ use App\Http\Controllers\Admin\EnrollParticipantController;
 use App\Http\Controllers\Admin\ExpertiseController;
 use App\Http\Controllers\Admin\ParticipantController;
 use App\Http\Controllers\Admin\SearchController;
+use App\Http\Controllers\Admin\SettingController;
 use App\Http\Controllers\Admin\SpeakerController;
 use App\Http\Controllers\Admin\UserController;
 use Illuminate\Support\Facades\Route;
@@ -125,4 +126,15 @@ Route::prefix('experties')->name('experties.')->group(function () {
  */
 Route::prefix('search')->name('search.')->group(function () {
     Route::post('courses', [SearchController::class, 'speakers'])->name('speakers');
+});
+
+Route::prefix('settings')->name('settings.')->group(function () {
+    Route::get('index', [SettingController::class, 'index'])->name('index');
+    Route::get('show', [SettingController::class, 'show'])->name('show');
+    Route::put('update', [SettingController::class, 'update'])->name('update');
+    Route::patch('update', [SettingController::class, 'update'])->name('update');
+
+    Route::prefix('certificates')->name('certificates')->group(function () {
+        Route::post('preview', [CertificateController::class, 'preview'])->name('preview');
+    });
 });

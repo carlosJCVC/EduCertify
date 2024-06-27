@@ -12,7 +12,7 @@
 
 <body>
     <div class="watermark">
-        <img class="background-image" src="{{ $bg_image }}" alt="Background Image">
+        <img class="background-image" src="{{ $background_image }}" alt="Background Image">
     </div>
 
     <div class="certificate-container">
@@ -22,8 +22,7 @@
             </div>
 
             <div class="title">
-                <p>Institute of</p>
-                <p>Child Psychology</p>
+                <p>{{ $title }}</p>
             </div>
         </div>
 
@@ -36,13 +35,13 @@
         </div>
 
         <div class="name">
-            <p>{{ $name }}</p>
+            <p>{{ $participant_name }}</p>
         </div>
 
         <div class="certificate-body">
             <p class="description">HAS SUCCESSFULLY COMPLETED THE FOLLOWING COURSE:</p>
-            <p class="course-title">{{ $course }}</p>
-            <p>{{ $description }}</p>
+            <p class="course-title">{{ $course_name }}</p>
+            <p>{{ $course_description }}</p>
         </div>
 
         <div class="certificate-pre-footer">
@@ -59,16 +58,16 @@
 
         <div class="certificate-footer">
             <div class="signature">
-                <img class="sign" src="{{ $signature_i }}" alt="Signature Instructor">
+                <img class="sign" src="{{ $speaker_signature }}" alt="Signature Instructor">
                 <p class="line"></p>
-                <p class="instructor-details">{{ $instructor->full_name }}</p>
+                <p class="instructor-details">{{ $speaker_name }}</p>
                 <p class="instructor-details">INSTRUCTOR NAME</p>
             </div>
 
             <div class="signature">
-                <img class="sign" src="{{ $signature_d }}" alt="Signature Director">
+                <img class="sign" src="{{ $director_signature }}" alt="Signature Director">
                 <p class="line"></p>
-                <p class="director-details">{{ $director }}</p>
+                <p class="director-details">{{ $director_name }}</p>
                 <p class="director-details">DIRECTOR'S SIGNATURE</p>
             </div>
         </div>

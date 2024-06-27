@@ -14,6 +14,21 @@ class CertificateController extends Controller
 {
     use CertificateTrait;
 
+    /**
+     * Certificate preview
+     */
+    public function preview(Request $request)
+    {
+        // dd($request->all());
+        $link = $this->generatePreviewCertificate(course: null, request: $request);
+        $filename = "certificate-preview.pdf";
+
+        return Response::download($link, $filename);
+    }
+
+    /**
+     * donwload certificate
+     */
     public function download(Request $request, string $courseId)
     {
         // dd($request->all());
@@ -33,7 +48,7 @@ class CertificateController extends Controller
         $course = Course::find($courseid);
         $participant = Participant::find($id);
 
-        $link = $this->generateCertificate($participant, $course);
+        $link = $this->generateParticipantCertificate($participant, $course);
 
         $participant->notify(new SendCertificate(course: $course, link: $link));
 
@@ -55,7 +70,7 @@ class CertificateController extends Controller
         $links = [];
         foreach ($courses as $course) {
 
-            $link = $this->generateCertificate($participant, $course);
+            $link = $this->generateParticipantCertificate($participant, $course);
 
             array_push($links, $link);
         }
@@ -77,7 +92,7 @@ class CertificateController extends Controller
         $participants = $course->participants;
 
         foreach ($participants as $participant) {
-            $link = $this->generateCertificate($participant, $course);
+            $link = $this->generateParticipantCertificate($participant, $course);
 
             $participant->notify(new SendCertificate(course: $course, link: $link));
         }

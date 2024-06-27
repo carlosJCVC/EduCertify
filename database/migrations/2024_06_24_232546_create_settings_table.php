@@ -11,26 +11,23 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('course_settings', function (Blueprint $table) {
+        Schema::create('settings', function (Blueprint $table) {
             $table->id();
 
-            $table->unsignedBigInteger('course_id')->nullable();
+            $table->string('title', 60);
+            $table->string('speaker_name', 60);
+            $table->string('director_name', 60);
+            $table->string('logo_image_path', 2048)->nullable();
             $table->string('background_image_path', 2048)->nullable();
             $table->string('background_color')->nullable();
             $table->string('text_color')->nullable();
             $table->string('text_font')->nullable();
+            $table->text('director_signature_data_url')->nullable();
+            $table->json('director_signature_data')->nullable();
             $table->text('speaker_signature_data_url')->nullable();
             $table->json('speaker_signature_data')->nullable();
 
-            $table->foreign('course_id')->references('id')->on('courses');
-
             $table->timestamps();
-        });
-
-        Schema::table('courses', function (Blueprint $table) {
-            $table->unsignedBigInteger('setting_id')->after('speaker_id')->nullable();
-
-            $table->foreign('setting_id')->references('id')->on('course_settings');
         });
     }
 
@@ -39,11 +36,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('courses', function (Blueprint $table) {
-            $table->dropForeign(['setting_id']);
-            $table->dropColumn('setting_id');
-        });
-
-        Schema::dropIfExists('course_settings');
+        Schema::dropIfExists('settings');
     }
 };

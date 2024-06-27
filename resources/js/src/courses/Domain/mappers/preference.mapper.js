@@ -24,14 +24,15 @@ const PreferenceMapper = {
      * @returns 
      */
     fromJson: response => {
-        const { id, background_image_url, background_color, text_color, signature_data } = response;
+        const { id, background_image_url, background_color, text_color, speaker_signature_data, speaker_signature_data_url } = response;
 
         return new Preference({
             id,
             backgroundImageUrl: background_image_url,
             backgroundColor: background_color,
             textColor: text_color,
-            signatureData: signature_data,
+            speakerSignatureData: speaker_signature_data,
+            speakerSignatureDataURL: speaker_signature_data_url,
         });
     },
 };

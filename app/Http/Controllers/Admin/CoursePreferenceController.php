@@ -30,10 +30,13 @@ class CoursePreferenceController extends Controller
             $preferences = CourseSetting::find($course->setting_id);
         }
 
+        // dd($request->all());
+
         $preferences->course_id = $course->id;
         $preferences->background_color = $request->get('background_color');
         $preferences->text_color = $request->get('text_color');
-        $preferences->signature_path = $request->get('signature');
+        $preferences->speaker_signature_data_url = $request->get('signature_data_url');
+        $preferences->speaker_signature_data = $request->get('signature_data');
 
         $preferences->save();
         $course->update(['setting_id' => $preferences->id]);

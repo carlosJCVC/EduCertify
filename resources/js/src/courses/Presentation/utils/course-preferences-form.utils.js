@@ -1,7 +1,7 @@
 import { ElementSelectors } from "../../config/selectors";
 import { setBgImageField } from "./include-dropify-to-fields-utils";
 import { getOrCreateBackgroundPickrField, getOrCreateTextPickrField } from "./include-pickr-to-fields.utils";
-import { getOrCreateSignatureField, setSignatureField } from "./include-signature-to-fields.utls";
+import { getOrCreateSignatureField, setSignatureField } from "./include-signature-to-fields.utils";
 
 /**
  * Return Form Values from Course 
@@ -18,7 +18,8 @@ export const getCoursePreferencesFormValues = () => {
         bgimage: formData.get('backgroundImage'),
         background_color: bgColorPickr.getColor().toRGBA().toString(),
         text_color: textColorPickr.getColor().toRGBA().toString(),
-        signature: signaturePad.toDataURL('image/svg+xml'),
+        signature_data: signaturePad.toData(),
+        signature_data_url: signaturePad.toDataURL('image/svg+xml'),
     }
 
     return data;
@@ -39,7 +40,7 @@ export const setCoursePreferencesFormValues = (preferences) => {
         // bgColorPickr.applyColor(true)
 
         setBgImageField(preferences.backgroundImageUrl)
-        setSignatureField(preferences.signatureData)
+        setSignatureField(preferences.speakerSignatureData)
     }
 }
 

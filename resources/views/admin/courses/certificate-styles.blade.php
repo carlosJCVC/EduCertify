@@ -12,7 +12,7 @@
         box-sizing: border-box;
         /* background-color: red; */
         position: relative;
-        background-color: {{ $bg_color }}
+        background-color: {{ $background_color }}
     }
 
     p {
@@ -28,7 +28,7 @@
         width: 100%;
         height: 100%;
         background: hsla(23, 85%, 48%, 0.2);
-        /* background-color: {{ $bg_color }} */
+        /* background-color: {{ $background_color }} */
         /* Color de fondo como marca de agua */
         z-index: -1;
     }
