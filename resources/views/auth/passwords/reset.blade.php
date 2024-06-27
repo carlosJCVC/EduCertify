@@ -11,8 +11,6 @@
         <div class="card-body">
             <h2 class="h2 text-center mb-4">{{ __('Reset Password') }}</h2>
 
-            @dump($errors)
-
             <form method="POST" action="{{ route('password.update') }}">
                 @csrf
 
@@ -22,7 +20,7 @@
                 <div class="mb-2">
                     <label class="form-label">@lang('Password')</label>
 
-                    <div class="input-group input-group-flat">
+                    <div class="input-group">
                         <input
                             id="password"
                             type="password"
@@ -53,7 +51,7 @@
                 <div class="mb-2">
                     <label class="form-label" for="password-confirm">{{ __('Confirm Password') }}</label>
 
-                    <div class="input-group input-group-flat">
+                    <div class="input-group">
                         <input
                             id="password-confirm"
                             type="password"

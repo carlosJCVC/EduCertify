@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\UserUniqueEmailRequest;
 use App\Models\User;
+use App\Notifications\WelcomeUserNotification;
 use App\Traits\DatatableTrait;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -56,6 +57,9 @@ class UserController extends Controller
         if ($request->has('avatar')) {
             $user->updateProfilePhoto($request->file('avatar'));
         }
+
+        $token = app('auth.password.broker')->createToken($user);
+        $user->notify(new WelcomeUserNotification($token));
 
         return response()->json([
             'title' => __('Success!'),
