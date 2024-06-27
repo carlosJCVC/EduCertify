@@ -27,11 +27,11 @@ export const listUsersUsingDataTable = () => {
     const options = {
         dom: getDatatableDOM(),
         buttons: getDatatableButtons(),
-        serverSide: true,
+        serverSide: false,
         processing: true,
         // paging: false,
         lengthChange: true,
-        searching: true,
+        // searching: true,
         language: languageOptions,
         ajax: `${import.meta.env.VITE_APP_URL}/admin/users/json`,
         initComplete: function (settings, json) {
@@ -101,7 +101,7 @@ const getDatatableExportButtons = () => {
             extend: 'copy',
             className: 'me-1 btn btn-outline-secondary',
             exportOptions: {
-                columns: [0, 1, 2, 3, 4]
+                columns: [0, 1, 3, 4]
             }
         },
         {
@@ -109,7 +109,7 @@ const getDatatableExportButtons = () => {
             extend: 'csv',
             className: 'me-1 btn btn-outline-secondary',
             exportOptions: {
-                columns: [0, 1, 2, 3, 4]
+                columns: [0, 1, 3, 4]
             }
         },
         {
@@ -117,7 +117,7 @@ const getDatatableExportButtons = () => {
             extend: 'excel',
             className: 'me-1 btn btn-outline-secondary',
             exportOptions: {
-                columns: [0, 1, 2, 3, 4]
+                columns: [0, 1, 3, 4]
             }
         },
         {
@@ -125,7 +125,7 @@ const getDatatableExportButtons = () => {
             extend: 'pdf',
             className: 'me-1 btn btn-outline-secondary',
             exportOptions: {
-                columns: [0, 1, 2, 3, 4]
+                columns: [0, 1, 3, 4]
             }
         },
         {
@@ -133,7 +133,7 @@ const getDatatableExportButtons = () => {
             extend: 'print',
             className: 'me-1 btn btn-outline-secondary',
             exportOptions: {
-                columns: [0, 1, 2, 3, 4]
+                columns: [0, 1, 3, 4]
             }
         },
     ];
@@ -147,7 +147,7 @@ const getDatatableColumns = () => {
     return [
         { "data": "name", "name": "name", "title": "Name", "orderable": true, "searchable": true },
         { "data": "email", "name": "email", "title": "Email", "orderable": true, "searchable": true },
-        { "data": "roles", "name": "roles", "title": "Roles", "orderable": true, "searchable": true },
+        { "data": "roles", "name": "roles", "title": "Roles", "orderable": true, "searchable": true, visible: false },
         { "data": "status", "name": "status", "title": "Status", "orderable": true, "searchable": true },
         { "data": "created_at", "name": "created_at", "title": "Created At", "orderable": true, "searchable": true },
         { "data": "actions", "name": "actions", "title": "Actions", "orderable": true, "searchable": true }
