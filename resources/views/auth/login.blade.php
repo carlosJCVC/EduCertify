@@ -19,20 +19,17 @@
                 <div class="mb-3">
                     <label class="form-label">@lang('Email address')</label>
 
-                    <input
-                        id="email"
-                        type="email"
-                        class="form-control @error('email') is-invalid @enderror"
-                        name="email"
-                        value="{{ old('email') }}"
-                        placeholder="your@email.com"
-                        autocomplete="off" required>
+                    <div class="input-group">
+                        <input id="email" type="email" class="form-control @error('email') is-invalid @enderror"
+                            name="email" value="{{ old('email') }}" placeholder="your@email.com" autocomplete="off"
+                            required>
 
-                    @error('email')
-                        <span class="invalid-feedback" role="alert">
-                            <strong>{{ $message }}</strong>
-                        </span>
-                    @enderror
+                        @error('email')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
+                    </div>
                 </div>
 
                 <div class="mb-2">
@@ -40,21 +37,16 @@
                         @lang('Password')
 
                         @if (Route::has('password.request'))
-                        <span class="form-label-description">
-                            <a href="{{ route('password.request') }}">@lang('I forgot password')</a>
-                        </span>
+                            <span class="form-label-description">
+                                <a href="{{ route('password.request') }}">@lang('I forgot password')</a>
+                            </span>
                         @endif
                     </label>
 
                     <div class="input-group">
-                        <input
-                            id="password"
-                            type="password"
-                            class="form-control @error('password') is-invalid @enderror"
-                            name="password"
-                            placeholder="Your password"
-                            autocomplete="current-password"
-                            autocomplete="off" required>
+                        <input id="password" type="password" class="form-control @error('password') is-invalid @enderror"
+                            name="password" placeholder="Your password" autocomplete="current-password" autocomplete="off"
+                            required>
 
                         <span class="input-group-text">
                             <a href="#" class="link-secondary" title="Show password" data-bs-toggle="tooltip">
@@ -63,7 +55,8 @@
                                     stroke-linecap="round" stroke-linejoin="round">
                                     <path stroke="none" d="M0 0h24v24H0z" fill="none" />
                                     <path d="M10 12a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" />
-                                    <path d="M21 12c-2.4 4 -5.4 6 -9 6c-3.6 0 -6.6 -2 -9 -6c2.4 -4 5.4 -6 9 -6c3.6 0 6.6 2 9 6" />
+                                    <path
+                                        d="M21 12c-2.4 4 -5.4 6 -9 6c-3.6 0 -6.6 -2 -9 -6c2.4 -4 5.4 -6 9 -6c3.6 0 6.6 2 9 6" />
                                 </svg>
                             </a>
                         </span>
@@ -79,7 +72,8 @@
 
                 <div class="mb-2">
                     <label class="form-check">
-                        <input type="checkbox" class="form-check-input" name="remember" {{ old('remember') ? 'checked' : '' }} />
+                        <input type="checkbox" class="form-check-input" name="remember"
+                            {{ old('remember') ? 'checked' : '' }} />
 
                         <span class="form-check-label">@lang('Remember me on this device')</span>
                     </label>
