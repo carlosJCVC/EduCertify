@@ -72,7 +72,6 @@
 
     .certificate-container .certificate-header .logo img {
         position: relative;
-        top: -15px;
         max-width: 100%;
         height: 100%;
     }

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\SettingsRequest;
 use App\Models\Course;
 use App\Models\Participant;
 use App\Notifications\SendCertificate;
@@ -17,7 +18,7 @@ class CertificateController extends Controller
     /**
      * Certificate preview
      */
-    public function preview(Request $request)
+    public function preview(SettingsRequest $request)
     {
         // dd($request->all());
         $link = $this->generatePreviewCertificate(course: null, request: $request);
