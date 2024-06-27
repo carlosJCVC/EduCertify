@@ -34,7 +34,7 @@ class CertificateController extends Controller
     {
         // dd($request->all());
         $course = Course::find($courseId);
-        $link = $this->generatePreviewCertificate($course, $request);
+        $link = $this->generatePreviewCertificate(request: $request, course: $course);
         $filename = "certificate-preview.pdf";
 
         return Response::download($link, $filename);

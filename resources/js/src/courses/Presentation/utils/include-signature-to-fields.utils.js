@@ -1,4 +1,5 @@
 import SignaturePad from 'signature_pad';
+import { ElementSelectors } from '../../config/selectors';
 
 let signaturePad;
 
@@ -19,7 +20,7 @@ export const getOrCreateSignatureField = () => {
     }
 
     // const wrapper = document.querySelector("#signature-speaker-wrapper");
-    const canvas = document.querySelector("#signature-pad");
+    const canvas = document.querySelector(ElementSelectors.SignaturePad);
     signaturePad = new SignaturePad(canvas, {
         backgroundColor: 'rgb(255, 255, 255)'
     });
@@ -45,7 +46,7 @@ export const setSignatureField = (data) => {
  * @param {SignaturePad} pad 
  * @param {Canvas} canvas 
  */
-const resizeCanvas = (pad, canvas) => {
+export const resizeCanvas = (pad, canvas) => {
     canvas.style.width = '100%';
     canvas.style.height = '100%';
     canvas.width = canvas.offsetWidth;

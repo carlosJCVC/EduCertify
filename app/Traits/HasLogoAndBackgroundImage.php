@@ -89,10 +89,10 @@ trait HasLogoAndBackgroundImage
      */
     public function backgroundImageUrl(): Attribute
     {
-        return Attribute::get(function (): string {
+        return Attribute::get(function (): ?string {
             return $this->background_image_path
                 ? Storage::disk($this->imageDisk())->url($this->background_image_path)
-                : '';
+                : null;
         });
     }
 

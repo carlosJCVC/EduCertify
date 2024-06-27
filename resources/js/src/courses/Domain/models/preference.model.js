@@ -1,17 +1,22 @@
 export class Preference {
     /**
      * Constructor
-     * @param {STring} backgroundImageUrl
+     * @param {Object} backgroundImage
      * @param {String} backgroundColor
      * @param {String} textColor
-     * @param {String} signatureUrl
+     * @param {Object} signatureUrl
      */
-    constructor({ id = undefined, backgroundImageUrl, backgroundColor, textColor, speakerSignatureData, speakerSignatureDataURL }) {
+    constructor({ id = undefined, backgroundImage, backgroundColor, textColor, speakerSignature }) {
         this.id = id;
-        this.backgroundImageUrl = backgroundImageUrl;
+        this.backgroundImage = {
+            url: backgroundImage.url,
+            file: backgroundImage.file,
+        };
         this.backgroundColor = backgroundColor;
         this.textColor = textColor;
-        this.speakerSignatureData = speakerSignatureData;
-        this.speakerSignatureDataURL = speakerSignatureDataURL;
+        this.speakerSignature = {
+            data: speakerSignature.data,
+            url: speakerSignature.url
+        };
     }
 }

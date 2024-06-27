@@ -28,11 +28,17 @@ const PreferenceMapper = {
 
         return new Preference({
             id,
-            backgroundImageUrl: background_image_url,
+            backgroundImage: 
+            {
+                url: background_image_url,
+                file: undefined
+            },
             backgroundColor: background_color,
             textColor: text_color,
-            speakerSignatureData: speaker_signature_data,
-            speakerSignatureDataURL: speaker_signature_data_url,
+            speakerSignature: {
+                url: speaker_signature_data_url,
+                data: speaker_signature_data
+            }
         });
     },
 };

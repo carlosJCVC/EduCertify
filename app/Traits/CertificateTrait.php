@@ -11,9 +11,9 @@ use Sabberworm\CSS\Settings;
 
 trait CertificateTrait
 {
-    public function generatePreviewCertificate(?Course $course, Request $request): string
+    public function generatePreviewCertificate(Request $request, ?Course $course): string
     {
-        $data = $this->getPreviewCertificateData(request: $request, course: null);
+        $data = $this->getPreviewCertificateData(request: $request, course: $course);
 
         $pathname = "certificates/certificate-preview.pdf";
         if (! is_null($course)) {

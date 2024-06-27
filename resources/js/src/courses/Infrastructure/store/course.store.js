@@ -34,23 +34,6 @@ const loadStore = async () => {
     setCoursePreferencesFormValues(course.preferences)
 }
 
-const saveStateToLocalStorage = () => {
-    // localStorage.setItem('state', JSON.stringify(state) );
-}
-
-
-const getCourses = (filter = Filters.All) => {
-
-}
-
-/**
- * 
- * @param {String} description 
- */
-const addTodo = (description) => {
-
-}
-
 /**
  * Function to save course selected 
  * @param {Course} course 
@@ -168,11 +151,6 @@ const getCurrentFilter = () => {
 
 
 export default {
-    addTodo,
-    // deleteCompleted,
-    // deleteTodo,
-    // getCurrentFilter,
-    // getTodos,
     initStore,
     setCourseSelected,
     getCourseSelected,

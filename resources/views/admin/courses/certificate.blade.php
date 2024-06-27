@@ -11,11 +11,11 @@
 </head>
 
 <body>
-    <div class="watermark">
-        <img class="background-image" src="{{ $background_image }}" alt="Background Image">
-    </div>
-
     <div class="certificate-container">
+        <div class="watermark">
+            <img class="background-image" src="{{ $background_image }}" alt="Background Image">
+        </div>
+
         <div class="certificate-header">
             <div class="logo">
                 <img src="{{ $logo }}" alt="Institution Logo" class="institution-logo">

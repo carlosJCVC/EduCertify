@@ -178,7 +178,7 @@
                             </div>
                         </form>
 
-                        <div class="text-center mt-7">
+                        <div class="text-center mt-4">
                             <button class="btn btn-info" id="btn-preview-certificate">@lang('Download Preview Certificate')</button>
                             <button class="btn btn-success" id="btn-edit-settings">@lang('Update Preferences')</button>
                         </div>

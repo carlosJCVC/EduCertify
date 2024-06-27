@@ -27,4 +27,5 @@ export const ElementSelectors = {
     PreviewCourseCertificateButton: '#btn-preview-certificate',
     SignatureUndoButton: '#btn-undo-signature',
     SignatureClearButton: '#btn-clear-signature',
+    SignaturePad: '#signature-pad',
 }

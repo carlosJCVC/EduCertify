@@ -1,8 +1,9 @@
 import courseStore from "../../Infrastructure/store/course.store";
 import { resetCourseFormValues } from "../../Presentation/utils/course-form.utils";
 import { getCourseModal, showEditCourseModal } from "../../Presentation/utils/course-modal.utils";
+import { setCoursePreferencesFormValues } from "../../Presentation/utils/course-preferences-form.utils";
 import { showEnrollParticipantToCourseModal } from "../../Presentation/utils/enroll-participant-modal.utils";
-import { getOrCreateSignatureField } from "../../Presentation/utils/include-signature-to-fields.utils";
+import { getOrCreateSignatureField, resizeCanvas } from "../../Presentation/utils/include-signature-to-fields.utils";
 import { ElementSelectors } from "../../config/selectors";
 import { deleteCourse } from "../useCases/delete-course.usecase";
 import { enrollParticipantCourse } from "../useCases/enroll-participant-course.usecase";
@@ -82,6 +83,7 @@ export const renderShowCourseEvents = () => {
     const PreviewCourseCertificateButton = document.querySelector(ElementSelectors.PreviewCourseCertificateButton);
     const SignatureUndoButton = document.querySelector(ElementSelectors.SignatureUndoButton);
     const SignatureClearButton = document.querySelector(ElementSelectors.SignatureClearButton);
+    const tabElements = document.querySelectorAll('a[data-bs-toggle="tab"]')
 
     EditCourseButtonShow.addEventListener('click', (e) => {
         const courseId = courseStore.getCourseSelected();
@@ -123,6 +125,16 @@ export const renderShowCourseEvents = () => {
 
         signaturePad.clear();
     });
+
+    tabElements.forEach(tabEl => {
+        tabEl.addEventListener('shown.bs.tab', function (event) {
+            const signaturePad = getOrCreateSignatureField()
+            const canvas = document.querySelector(ElementSelectors.SignaturePad);
+            const course = courseStore.getCourseSelected()
+            resizeCanvas(signaturePad, canvas);
+            setCoursePreferencesFormValues(course.preferences);
+        })
+    })
 }
 
 /**

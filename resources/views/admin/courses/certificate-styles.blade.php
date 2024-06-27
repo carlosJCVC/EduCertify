@@ -7,30 +7,14 @@
         background: #fff;
         border: 0;
         max-width: 100%;
-        /* max-height: 100%;
-        height: auto; */
         box-sizing: border-box;
-        /* background-color: red; */
         position: relative;
-        background-color: {{ $background_color }}
     }
 
     p {
         margin: 0;
         padding: 0;
         color: {{ $text_color }};
-    }
-
-    .background {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: hsla(23, 85%, 48%, 0.2);
-        /* background-color: {{ $background_color }} */
-        /* Color de fondo como marca de agua */
-        z-index: -1;
     }
 
     .watermark {
@@ -51,9 +35,10 @@
         margin: 0;
         padding: 0;
         border: 10px solid #1E1E1E;
-        width: 98%;
-        height: auto;
+        width: 100%;
+        height: 96%;
         position: relative;
+        background-color: {{ $background_color }}
     }
 
     .certificate-container .certificate-header {
@@ -126,7 +111,7 @@
     .certificate-container .certificate-pre-footer {
         display: block;
         width: 100%;
-        height: 50px;
+        height: 8%;
         margin-top: 20px;
     }
 
@@ -146,10 +131,7 @@
     .certificate-container .certificate-footer {
         position: relative;
         width: 100%;
-        height: 100px;
-        margin-top: 120px;
-        margin-bottom: 20px;
-        box-sizing: border-box;
+        height: 25%;
     }
 
     .certificate-container .certificate-footer .signature {
@@ -167,7 +149,6 @@
     .certificate-container .certificate-footer .line {
         border-top: 1px solid #000;
         width: 80%;
-        margin: 0 auto;
     }
 
     .signature .instructor-details,

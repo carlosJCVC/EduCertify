@@ -39,8 +39,11 @@ export const setCoursePreferencesFormValues = (preferences) => {
         // textColorPickr.applyColor(true)
         // bgColorPickr.applyColor(true)
 
-        setBgImageField(preferences.backgroundImageUrl)
-        setSignatureField(preferences.speakerSignatureData)
+        if (preferences.backgroundImage.url) {
+            setBgImageField(preferences.backgroundImage.url)
+        }
+
+        setSignatureField(preferences.speakerSignature.data)
     }
 }
 
