@@ -29,7 +29,7 @@
                     </svg>
                 </a>
                 <div class="nav-item dropdown d-none d-md-flex me-3">
-                    <a href="#" class="nav-link px-0" data-bs-toggle="dropdown" tabindex="-1"
+                    {{-- <a href="#" class="nav-link px-0" data-bs-toggle="dropdown" tabindex="-1"
                         aria-label="Show notifications">
                         <!-- Download SVG icon from http://tabler-icons.io/i/bell -->
                         <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24"
@@ -41,7 +41,7 @@
                             <path d="M9 17v1a3 3 0 0 0 6 0v-1" />
                         </svg>
                         <span class="badge bg-red"></span>
-                    </a>
+                    </a> --}}
 
                     <div class="dropdown-menu dropdown-menu-arrow dropdown-menu-end dropdown-menu-card">
                         <div class="card">
@@ -158,8 +158,8 @@
                     aria-label="Open user menu">
                     <span class="avatar avatar-sm" style="background-image: url({{ Auth::user()->profile_photo_url }})"></span>
                     <div class="d-none d-xl-block ps-2">
-                        <div>{{ Auth::user()->name }}</div>
-                        <div class="mt-1 small text-muted">UI Designer</div>
+                        <div>{{ Auth::user()->full_name }}</div>
+                        <div class="mt-1 small text-muted">{{ __('Administrator') }}</div>
                     </div>
                 </a>
                 <div class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
