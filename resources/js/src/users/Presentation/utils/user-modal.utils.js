@@ -35,6 +35,7 @@ export const showEditUserModal = async (id) => {
 
     setUserFormValues(user);
     getUserFormValidation()
+    includeConfigToFields()
 
     modal.show();
 }
