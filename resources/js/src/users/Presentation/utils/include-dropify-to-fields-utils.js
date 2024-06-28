@@ -1,5 +1,5 @@
 import $ from 'jquery';
-import 'dropify/dist/js/dropify.min';
+import '../assets/css/custom-dropify-styles.scss'
 
 let avatarDropify;
 
@@ -56,7 +56,7 @@ export const resetDropifyFields = () => {
  */
 const getDropifyMessages = () => {
     return {
-        default: '<h4>Drag and drop your avatar here or click.</h4>',
+        default: '<h5>Drag and drop your avatar here or click.</h5>',
         replace: 'Drag and drop or click to replace',
         remove: 'Remove',
         error: 'Ooops, something wrong happended.'

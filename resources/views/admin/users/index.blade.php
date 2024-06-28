@@ -5,8 +5,7 @@
 @endsection
 
 @push('styles')
-{{-- <link href="https://cdn.datatables.net/buttons/3.0.2/css/buttons.bootstrap5.css" rel="stylesheet">
-<link href="https://cdn.datatables.net/colreorder/2.0.2/css/colReorder.bootstrap5.css" rel="stylesheet"> --}}
+
 @endpush
 
 @section('content')

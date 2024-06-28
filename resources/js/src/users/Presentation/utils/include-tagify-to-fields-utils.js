@@ -1,7 +1,5 @@
 import Tagify from '@yaireo/tagify'
-import '@yaireo/tagify/dist/tagify.css'
-import '/resources/assets/vendor/libs/tagify/tagify.scss'
-import '/resources/sass/custom-tagify-styles.scss'
+import '../assets/css/custom-tagify-styles.scss'
 
 let statusTagify;
 
@@ -23,7 +21,7 @@ export const getOrCreateStatusTagifyField = () => {
 
     const statusElement = document.querySelector('.tagify-status');
     statusTagify = new Tagify(statusElement, {
-        id: 'statusTagify',
+        id: 'status-tagify',
         enforceWhitelist: true,
         keepInvalidTags: true,
         mode: "select",

@@ -1,0 +1,24 @@
+@import "@tabler/core/src/scss/variables";
+@import 'dropify/src/sass/dropify';
+
+$dropify-dark-background:       $dark !default;
+$dropify-dark-stripes:          $gray-900 !default;
+
+body[data-bs-theme="dark"] {
+  .dropify-wrapper {
+    background-color: $dropify-dark-background;
+
+    &:hover {
+        background-image: linear-gradient(
+            -45deg,
+            $dropify-dark-stripes 25%,
+            transparent      25%,
+            transparent      50%,
+            $dropify-dark-stripes 50%,
+            $dropify-dark-stripes 75%,
+            transparent      75%,
+            transparent
+        );
+    }
+  }
+}

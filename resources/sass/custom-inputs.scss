@@ -1,3 +1,5 @@
+@import "@tabler/core/src/scss/variables";
+
 /**
 * Custom styles for inputs
 */
@@ -14,7 +16,7 @@
     height: auto;
     box-shadow: none;
     font-size: 1rem;
-    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;;
 }
 
 /* .form-control:focus */
@@ -34,6 +36,10 @@
     opacity: 1;
     display: none;
 }
+
+// .form-floating-custom input {
+    // border: none;
+// }
 
 .form-floating-custom input::placeholder,
 .form-floating-custom textarea::placeholder {
@@ -55,6 +61,7 @@
     pointer-events: none;
     font-size: 1rem;
     color: #6c757d;
+    background-color: transparent;
 }
 
 .form-floating-custom input:focus+label,
@@ -66,6 +73,8 @@
     left: 0.5rem;
     font-size: 0.75rem;
     color: rgba(var(--tblr-link-color-rgb), var(--tblr-link-opacity, 1));
+    background-color: #{$light};
+    z-index: 2;
 }
 
 .form-floating-custom input:focus+label,
@@ -90,5 +99,29 @@
 }
 
 .form-floating-custom .form-control.is-invalid+label {
-    color: var(--tblr-form-invalid-color);
+    color: var(--tblr-form-invalid-color);;
+}
+
+body[data-bs-theme="dark"] {
+    .form-floating-custom input:focus+label,
+    .form-floating-custom textarea:focus+label,
+    .form-floating-custom input:not(:placeholder-shown)+label,
+    .form-floating-custom textarea:not(:placeholder-shown)+label,
+    .form-floating-custom select.select2 ~ label {
+        top: -0.6rem;
+        left: 0.5rem;
+        font-size: 0.75rem;
+        color: rgba(var(--tblr-link-color-rgb), var(--tblr-link-opacity, 1));
+        background: linear-gradient(to bottom, #182433 60%, #131E2C 40%);
+        z-index: 2;
+    }
+
+    .form-floating-custom input.is-invalid:focus+label {
+        color: var(--tblr-form-invalid-color);
+    }
+
+    .form-floating-custom input.is-valid:focus+label,
+    .form-floating-custom input.is-valid:not(:placeholder-shown)+label {
+        color: var(--tblr-form-valid-color);
+    }
 }
