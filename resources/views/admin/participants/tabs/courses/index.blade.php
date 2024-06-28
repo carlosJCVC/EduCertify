@@ -1,6 +1,16 @@
-<div class="card user-info-card mt-2">
+<div class="card mt-2">
     <div class="card-header bg-dark text-white">
-        @lang('Enrolled courses')
+        <div class="row w-100">
+            <div class="col-md-6">
+                @lang('Enrolled courses')
+            </div>
+
+            <div class="col-md-6 text-end">
+                <a href="javascript:void(0)" class="btn btn-md btn-primary px-2" id="btn-enroll-participant">
+                    <i class="ti ti-plus ti-xs ms-0 me-2"></i>@lang('Enroll Course Now')
+                </a>
+            </div>
+        </div>
     </div>
 
     <div class="card-body">

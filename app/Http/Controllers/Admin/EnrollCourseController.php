@@ -62,7 +62,7 @@ class EnrollCourseController extends Controller
 
                 return $buttons;
             })
-            ->rawColumns(['actions', 'categories'])
+            ->rawColumns(['actions', 'list_categories'])
             ->make(true);
     }
 

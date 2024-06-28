@@ -28,11 +28,6 @@
                             </a>
                         @endif
 
-                        <a href="javascript:void(0)" class="btn btn-md btn-outline-primary px-2"
-                            id="btn-enroll-participant">
-                            <i class="ti ti-plus ti-xs ms-0 me-2"></i>@lang('Enroll Course Now')
-                        </a>
-
                         <a href="javascript:void(0)" class="btn btn-md btn-outline-info px-2" id="btn-edit-participant">
                             <i class="ti ti-pencil ti-xs ms-0 me-2"></i>@lang('Edit Participant')
                         </a>
@@ -57,11 +52,11 @@
                         <i class="ti ti-book ti-xs ms-0 me-2"></i> @lang('Webinars')
                     </a>
 
-                    <a href="javascript:void(0)" class="flex-sm-fill text-sm-center nav-link" id="nav-certificates-tab"
+                    {{-- <a href="javascript:void(0)" class="flex-sm-fill text-sm-center nav-link" id="nav-certificates-tab"
                         data-bs-toggle="tab" data-bs-target="#nav-certificates" role="tab"
                         aria-controls="nav-certificates" aria-selected="false">
                         <i class="ti ti-certificate ti-xs ms-0 me-2"></i>@lang('Certificates')
-                    </a>
+                    </a> --}}
                 </nav>
 
                 <div class="tab-content" id="nav-tabContent">
@@ -74,16 +69,16 @@
                         @include('admin.participants.tabs.courses.index')
                     </div>
 
-                    <div class="tab-pane fade" id="nav-certificates" role="tabpanel" aria-labelledby="nav-certificates-tab">
+                    {{-- <div class="tab-pane fade" id="nav-certificates" role="tabpanel" aria-labelledby="nav-certificates-tab">
                         Certificates
-                    </div>
+                    </div> --}}
                 </div>
             </div>
         </div>
     </div>
 
     <!-- Modal -->
-    <x-_modals.modal :title="__('Modal Title')" id="enroll-participant-modal" class="modal-dialog">
+    <x-_modals.modal :title="__('Modal Title')" id="enroll-participant-modal" class="modal-dialog modal-dialog-centered">
         <x-slot:header>
             <h5 class="modal-title">@lang('Enroll Participant')</h5>
         </x-slot>
@@ -107,7 +102,7 @@
     </x-_modals.modal>
 
     <!-- Modal edit-->
-    <x-_modals.modal :title="__('Modal Title')" id="participant-modal" class="modal-dialog">
+    <x-_modals.modal :title="__('Modal Title')" id="participant-modal" class="modal-dialog modal-dialog-centered">
         <x-slot:header>
             <h5 class="modal-title">@lang('Create New Participant')</h5>
         </x-slot>
