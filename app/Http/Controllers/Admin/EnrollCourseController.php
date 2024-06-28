@@ -32,8 +32,8 @@ class EnrollCourseController extends Controller
 
         return DataTables::of($courses)
             // ->addColumn('name', fn ($record) => $record->name)
-            // ->addColumn('speaker', fn ($record) => $record->speaker)
-            ->addColumn('categories', function($record) {
+            ->addColumn('speaker_name', fn ($record) => $record->speaker->full_name)
+            ->addColumn('list_categories', function($record) {
                 $html = '';
                 $bgColors = [
                     'bg-primary',

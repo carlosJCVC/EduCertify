@@ -28,7 +28,7 @@ export const listParticipantsUsingDataTable = () => {
     const options = {
         dom: getDatatableDOM(),
         buttons: getDatatableButtons(),
-        serverSide: true,
+        //serverSide: true,
         processing: true,
         // paging: false,
         lengthChange: true,

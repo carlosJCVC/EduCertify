@@ -6,6 +6,7 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\UniqueEmailRequest;
+use App\Models\CourseParticipant;
 use App\Models\Participant;
 use App\Traits\DatatableTrait;
 use Illuminate\Http\JsonResponse;
@@ -28,11 +29,12 @@ class ParticipantController extends Controller
      * Display a listing of the resource.
      */
     public function json()
-    {
+    { 
         return DataTables::of(Participant::query())
             ->addColumn('name', fn ($record) => $record->full_name)
             ->addColumn('email', fn ($record) => $record->email)
-            ->addColumn('birthdate', fn ($record) => $record->birthdate)
+            ->addColumn('birthdate', fn ($record) => is_null($record->birthdate) ? '' : $record->birthdate->format('d M, Y'))
+            ->addColumn('created_at', fn ($record) => $record->created_at)
             ->addColumn('status', fn ($record) => "<div class='badge {$record->status->badgeColor()} text-white'>{$record->status->value}</div>")
             ->addColumn('actions', fn ($record) => $this->getActionsButtons($record->id))
             ->rawColumns(['actions', 'status'])
@@ -64,6 +66,8 @@ class ParticipantController extends Controller
     public function show(string $id): View|JsonResponse
     {
         $participant = Participant::find($id);
+        $participantEnrollAll = CourseParticipant::All();
+        $participantEnrollCourse = $participantEnrollAll->whereIn('participant_id', $id);
 
         if (request()->wantsJson()) {
             return response()->json([
@@ -71,7 +75,7 @@ class ParticipantController extends Controller
             ], 200);
         }
 
-        return view('admin.participants.show')->with(['participant' => $participant]);
+        return view('admin.participants.show')->with(['participant' => $participant, 'courseEnroll' => $participantEnrollCourse]);
     }
 
     /**

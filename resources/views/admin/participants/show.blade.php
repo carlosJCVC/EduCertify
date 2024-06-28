@@ -22,9 +22,11 @@
                     </div>
 
                     <div class="col-auto ms-auto">
-                        <a href="javascript:void(0)" class="btn btn-md btn-outline-warning px-2" id="btn-send-certificates">
-                            <i class="ti ti-mail-forward ti-xs ms-0 me-2"></i>@lang('Send Certificates')
-                        </a>
+                        @if (count($courseEnroll) > 0)
+                            <a href="javascript:void(0)" class="btn btn-md btn-outline-warning px-2" id="btn-send-certificates">
+                                <i class="ti ti-mail-forward ti-xs ms-0 me-2"></i>@lang('Send Certificates')
+                            </a>
+                        @endif
 
                         <a href="javascript:void(0)" class="btn btn-md btn-outline-primary px-2"
                             id="btn-enroll-participant">

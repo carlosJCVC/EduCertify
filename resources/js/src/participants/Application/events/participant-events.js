@@ -95,7 +95,7 @@ export const renderShowParticipantEvents = () => {
         showEditParticipantModal(participantId.id);
     });
 
-    SendCertificatesButton.addEventListener('click', (e) => {
+    SendCertificatesButton?.addEventListener('click', (e) => {
         sendCoursesCertificates();
     });
     

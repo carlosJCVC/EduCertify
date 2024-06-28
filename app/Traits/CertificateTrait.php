@@ -59,6 +59,7 @@ trait CertificateTrait
         $textColor = $preferences->text_color ?? $setting->text_color ?? '#000';
 
         $data = [
+            'title' => $setting->title ?? 'Institute of Child Psychology',
             'participant_name' => $participant->full_name,
             'course_name' => $course->name,
             'course_description' => $course->description,

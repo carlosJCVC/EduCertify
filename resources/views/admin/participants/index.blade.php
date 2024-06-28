@@ -67,7 +67,7 @@
     </div>
 
     <!-- Modal -->
-    <x-_modals.modal :title="__('Modal Title')" id="participant-modal" class="modal-dialog">
+    <x-_modals.modal :title="__('Modal Title')" id="participant-modal" class="modal-dialog modal-dialog-centered">
         <x-slot:header>
             <h5 class="modal-title">@lang('Create New Participant')</h5>
         </x-slot>

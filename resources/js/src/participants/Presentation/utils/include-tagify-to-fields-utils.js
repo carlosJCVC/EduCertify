@@ -4,6 +4,7 @@ import '/resources/assets/vendor/libs/tagify/tagify.scss'
 import '/resources/sass/custom-tagify-styles.scss'
 import courseStore from '../../../courses/Infrastructure/store/course.store';
 import { forEach } from 'jszip';
+import '../assets/css/custom-tagify-styles.scss'
 
 let statusTagify;
 let coursesTagify;

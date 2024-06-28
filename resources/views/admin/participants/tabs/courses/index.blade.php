@@ -9,18 +9,22 @@
                 <thead>
                     <tr>
                         <th>@lang('Name')</th>
-                        <th>@lang('Teacher')</th>
-                        <th>@lang('Status')</th>
-                        <th>@lang('Created At')</th>
+                        <th>@lang('Speaker')</th>
+                        <th>@lang('Categories')</th>
+                        <th>@lang('Level')</th>
+                        <th>@lang('Start date')</th>
+                        <th>@lang('End date')</th>
                         <th>@lang('Actions')</th>
                     </tr>
                 </thead>
 
                 <tfoot>
                     <th>@lang('Name')</th>
-                    <th>@lang('Teacher')</th>
-                    <th>@lang('Status')</th>
-                    <th>@lang('Created At')</th>
+                    <th>@lang('Speaker')</th>
+                    <th>@lang('Categories')</th>
+                    <th>@lang('Level')</th>
+                    <th>@lang('Start date')</th>
+                    <th>@lang('End date')</th>
                     <th>@lang('Actions')</th>
                 </tfoot>
 

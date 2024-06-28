@@ -151,7 +151,7 @@ const getDatatableColumns = () => {
         { "data": "name", "name": "name", "title": "Name", "orderable": true, "searchable": true },
         { "data": "speaker_name", "name": "speaker_name", "title": "Speaker", "orderable": true, "searchable": true },
         { "data": "list_categories", "name": "list_categories", "title": "Categories", "orderable": true, "searchable": true },
-        { "data": "level", "name": "level", "title": "level", "Orderable": true, "searchable": true },
+        { "data": "level", "name": "level", "title": "Level", "Orderable": true, "searchable": true },
         { "data": "start_date", "name": "start_date", "title": "Start date", "orderable": true, "searchable": true },
         { "data": "end_date", "name": "end_date", "title": "End date", "orderable": true, "searchable": true },
         { "data": "actions", "name": "actions", "title": "Actions", "orderable": true, "searchable": true }
