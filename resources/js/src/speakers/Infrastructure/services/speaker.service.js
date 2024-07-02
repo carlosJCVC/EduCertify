@@ -60,6 +60,7 @@ class SpeakerService {
      * @return Promise<Speaker>
      */
     async create(formData) {
+        console.log(formData);
         try {
             const endpoint = `${this.path}/store`;
             const speakerData = SpeakerMapper.toObject(formData);

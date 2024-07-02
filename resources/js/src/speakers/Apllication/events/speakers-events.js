@@ -1,4 +1,5 @@
 import speakerStore from "../../Infrastructure/store/speaker.store";
+import { resetSpeakerFormValues } from "../../Presentation/utils/speaker-form.utils";
 import { getSpeakerModal, showCreateSpeakerModal, showEditSpeakerModal } from "../../Presentation/utils/speaker-modal.utils";
 import { ElementSelectors } from "../../config/selectors";
 import { deleteSpeaker } from "../useCases/delete-speaker.usecase";
@@ -18,6 +19,12 @@ export const renderListSpeakerEvents = () => {
 
     submitSpeakerButton.addEventListener('click', (event) => {
         saveSpeaker();
+    });
+
+    modal._element.addEventListener('hidden.bs.modal', function (event) {
+        speakerStore.resetSpeakerSelected();
+
+        resetSpeakerFormValues();
     });
 }
 

@@ -36,9 +36,11 @@ export const getOrCreateSignatureField = () => {
 export const setSignatureField = (data) => {
     const signaturePad = getOrCreateSignatureField();
 
-    const canvas = document.querySelector('#signature-pad');
+    // const canvas = document.querySelector('#signature-pad');
     // resizeCanvas(signaturePad, canvas);
-    signaturePad.fromData(data, { ratio: 1 , xOffset: 50});
+    if(data != null){
+        signaturePad.fromData(data, { ratio: 1 , xOffset: 50});
+    }
 };
 
 /**

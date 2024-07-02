@@ -30,6 +30,8 @@ export const getOrCreateBackgroundPickrField = () => {
         default: 'rgba(255, 255, 255, 1)',
         swatches: getColorSwatches(),
         components: getPickrComponents()
+    }).on('save', (color, instance) => {
+        backgroundPickr.hide()
     });
 
     return backgroundPickr;
@@ -51,6 +53,8 @@ export const getOrCreateTextPickrField = () => {
         default: 'rgba(0, 0, 0, 1)',
         swatches: getColorSwatches(),
         components: getPickrComponents()
+    }).on('save', (color, instance) => {
+        textPickr.hide()
     });
 
     return textPickr;

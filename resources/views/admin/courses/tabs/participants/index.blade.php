@@ -8,7 +8,7 @@
             <table id="participants-datatable" class="table w-100">
                 <thead>
                     <tr>
-                        <th>@lang('Full name')</th>
+                        <th>@lang('Participant')</th>
                         <th>@lang('Email')</th>
                         <th>@lang('Status')</th>
                         <th>@lang('Enrolled At')</th>
@@ -16,16 +16,18 @@
                     </tr>
                 </thead>
 
-                <tfoot>
-                    <th>@lang('Full name')</th>
-                    <th>@lang('Email')</th>
-                    <th>@lang('Status')</th>
-                    <th>@lang('Enrolled At')</th>
-                    <th>@lang('Actions')</th>
-                </tfoot>
-
                 <tbody class="table-tbody">
                 </tbody>
+
+                <tfoot>
+                    <tr role="row">
+                        <th>@lang('Participant')</th>
+                        <th>@lang('Email')</th>
+                        <th>@lang('Status')</th>
+                        <th>@lang('Enrolled At')</th>
+                        <th>@lang('Actions')</th>
+                    </tr>
+                </tfoot>
             </table>
         </div>
     </div>

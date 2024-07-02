@@ -20,4 +20,11 @@
     .table-striped tbody tr:nth-of-type(odd) {
         background-color: rgba(0, 0, 0, .05);
     }
+
+    body[data-bs-theme="dark"] {
+        .table th {
+            width: 150px;
+            background-color: hsl(214, 40%, 10%);
+        }   
+    }
 </style>

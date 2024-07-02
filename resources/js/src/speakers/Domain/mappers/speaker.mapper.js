@@ -94,7 +94,7 @@ const SpeakerMapper = {
         const notes = formData.get('notes');
 
         const statusValues = JSON.parse(stringStatusValue);
-        const valueExpertises = JSON.parse(stringExpertises);
+        const valueExpertises = JSON.parse(stringExpertises || "[]");
 
         return new Speaker({
             firstName,

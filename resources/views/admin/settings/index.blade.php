@@ -51,7 +51,6 @@
 
                 <div class="card user-info-card mt-2">
                     <div class="card-header bg-dark text-white">
-                        @lang('Certificate Preferences')
                     </div>
 
                     <div class="card-body">

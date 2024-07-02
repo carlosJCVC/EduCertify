@@ -31,7 +31,6 @@ export const setSettingsFormValues = (settings) => {
     if (settings.logoImage.url) {
         setLogoImageField(settings.logoImage.url)
     }
-
     if (settings.speakerSignature.data) {
         setSpeakerSignatureField(settings.speakerSignature.data)
     }

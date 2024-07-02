@@ -29,7 +29,7 @@ const CourseMapper = {
      * @returns 
      */
     fromJson: response => {
-        const { id, name, speaker_id, speaker, categories, level, start_date, end_date, description, preferences } = response;
+        const { id, name, speaker_id, speaker, categories = [], level, start_date, end_date, description, preferences } = response;
 
         return new Course({
             id,

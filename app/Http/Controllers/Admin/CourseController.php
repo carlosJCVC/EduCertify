@@ -14,6 +14,7 @@ use Yajra\DataTables\Facades\DataTables;
 class CourseController extends Controller
 {
     use DatatableTrait;
+
     /**
      * Display a listing of the resource.
      */
@@ -117,20 +118,17 @@ class CourseController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
-    {
-        //
-    }
-
-    /**
      * Update the specified resource in storage.
      */
     public function update(Request $request, string $id)
     {
         $input = $request->all();
         $course = Course::find($id);
+
+        if (!$request->has('categories')) {
+            $input['categories'] = [];
+        }
+
         $course->update($input);
 
         return response()->json([

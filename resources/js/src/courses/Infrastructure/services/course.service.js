@@ -120,7 +120,6 @@ class CourseService {
      * @return Promise<boolean>
      */
     async enrollById(id, participantIds) {
-        alert();
         try {
             const endpoint = `${this.path}/${id}/enroll/store`;
             await axios.post(endpoint, { participants_ids: participantIds }, {

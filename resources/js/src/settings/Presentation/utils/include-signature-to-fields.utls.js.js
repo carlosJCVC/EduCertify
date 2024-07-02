@@ -1,4 +1,5 @@
 import SignaturePad from 'signature_pad';
+import { ElementSelectors } from '../../../courses/config/selectors';
 
 let speakerSignaturePad;
 let directorSignaturePad;
@@ -22,7 +23,7 @@ export const getOrCreateSpeakerSignatureField = () => {
     }
 
     // const wrapper = document.querySelector("#signature-speaker-wrapper");
-    const canvas = document.querySelector(".signature-pad");
+    const canvas = document.querySelector(ElementSelectors.SignaturePad);
     speakerSignaturePad = new SignaturePad(canvas, {
         backgroundColor: 'rgb(255, 255, 255)'
     });
@@ -74,8 +75,9 @@ export const getOrCreateSignatureField = () => {
  */
 export const setSpeakerSignatureField = (data) => {
     const signaturePad = getOrCreateSpeakerSignatureField();
-
-    signaturePad.fromData(data);
+        //console.log('tengo firma', data)
+        signaturePad.fromData(data, { ratio: 1 , xOffset: 50});
+    //signaturePad.fromData(data);
 };
 
 /**

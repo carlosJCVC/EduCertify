@@ -36,7 +36,7 @@ export const listCoursesUsingDataTable = () => {
     const options = {
         dom: getDatatableDOM(),
         buttons: getDatatableButtons(),
-        serverSide: true,
+        serverSide: false,
         processing: true,
         // paging: false,
         lengthChange: true,

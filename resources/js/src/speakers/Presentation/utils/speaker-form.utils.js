@@ -54,6 +54,5 @@ export const resetSpeakerFormValues = () => {
  */
 const getSpeakerForm = () => {
     const form = document.querySelector(ElementSelectors.SpeakerForm);
-
     return form;
 }

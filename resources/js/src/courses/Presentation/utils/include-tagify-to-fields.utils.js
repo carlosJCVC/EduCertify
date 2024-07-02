@@ -1,9 +1,7 @@
 import Tagify from '@yaireo/tagify'
-import '@yaireo/tagify/dist/tagify.css'
-import '/resources/assets/vendor/libs/tagify/tagify.scss'
-import '/resources/sass/custom-tagify-styles.scss'
 import courseStore from '../../Infrastructure/store/course.store';
-import speakerStore from '../../../speakers/Infrastructure/store/speaker.store';
+import '../assets/css/custom-single-tagify-styles.scss'
+import '../assets/css/custom-multi-tagify-styles.scss'
 
 let speakerTagify;
 let levelTagify;
@@ -41,6 +39,7 @@ export const getOrCreateLevelTagifyField = () => {
         backspace: true,
         placeholder: 'Please select level',
         dropdown: {
+            classname: 'single-tags-look',
             closeOnSelect: true
         }
     });
@@ -73,7 +72,7 @@ export const getOrCreateCategoryTagifyField = (categories) => {
         placeholder: 'Please write...',
         dropdown: {
             maxItems: 20,
-            classname: 'category-tags-look',
+            classname: 'multi-tags-look',
             enabled: 0,
             closeOnSelect: true
         }
@@ -111,7 +110,7 @@ export const getOrCreateParticipantsTagifyField = (participants) => {
         placeholder: 'Please write...',
         dropdown: {
             maxItems: 20,
-            classname: 'participants-tags-look',
+            classname: 'multi-tags-look',
             enabled: 0,
             closeOnSelect: true
         }

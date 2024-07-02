@@ -1,0 +1,59 @@
+@use "sass:math";
+@import "@tabler/core/src/scss/variables";
+@import "@tabler/core/src/scss/variables-dark";
+@import '@yaireo/tagify/dist/tagify.css';
+
+$input-border-color:  #ced4da;
+$text-input-color:  #ced4da;
+
+.tagify__tag__removeBtn {
+  display: none;
+}
+
+body[data-bs-theme="dark"] {
+  --tagify-dd-color-primary: rgb(53,149,246); // should be same as "$tags-focus-border-color"
+  --tagify-dd-text-color: #{$text-input-color};
+  --tagify-dd-bg-color: #{$darken-dark};
+  --tagify-dd-item-pad: .3em .5em; // should be same as $tag-pad (below)
+  --tagify-dd-max-height: 300px;
+
+  .tagify {
+    // CSS variables
+    --tags-disabled-bg         : #{$input-disabled-bg}; // $disabled-bg
+    --tags-border-color        : #{$input-border-color};
+    --tag-border-radius        : 3px;
+    --tag-bg                   : #{$input-bg};
+    --tag-hover                : #{$input-bg};
+    --tag-text-color           : #{$input-color};
+    --tag-text-color--edit     : #{$input-color};
+
+    // Since the dropdown is an external element, which is positioned directly on the body element
+    // it cannot ingerit the CSS variables applied on the ".Tagify" element
+    &__dropdown {
+      $dropdown: &;
+      $trans: .3s;
+      $trans-curve: cubic-bezier(.5, 0, .3, 1);
+
+      position: absolute;
+      z-index: 9999;
+      transform: translateY(-1px);
+      border-top: 1px solid #{$input-border-color};
+      overflow: hidden;
+
+      &__wrapper {
+        max-height: var(--tagify-dd-max-height);
+        overflow: hidden;
+        overflow-x: hidden;
+        color: var(--tagify-dd-text-color);
+        background: var(--tagify-dd-bg-color);
+        border: 1px solid;
+        border-color: #{$input-border-color};
+        border-bottom-width: 1.5px; // fixes - https://bugs.chromium.org/p/chromium/issues/detail?id=1147523
+        border-top-width: 0;
+        box-shadow: 0 2px 4px -2px rgba(black,.2);
+        transition: $trans $trans-curve, transform math.div($trans, 2);
+        animation: dd-wrapper-show 0s $trans forwards;
+      }
+    }
+  }
+}

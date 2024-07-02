@@ -1,7 +1,6 @@
 import Tagify from '@yaireo/tagify'
-import '@yaireo/tagify/dist/tagify.css'
-import '/resources/assets/vendor/libs/tagify/tagify.scss'
-import '/resources/sass/custom-tagify-styles.scss'
+import '../assets/css/custom-single-tagify-styles.scss'
+import '../assets/css/custom-multi-tagify-styles.scss'
 import speakerStore from '../../Infrastructure/store/speaker.store';
 
 let statusTagify;

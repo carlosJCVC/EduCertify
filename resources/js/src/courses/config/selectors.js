@@ -17,6 +17,7 @@ export const ElementSelectors = {
     EnrollParticipantToCourseModal: '#enroll-participant-to-course-modal',
     EnrollCourseParticipantButton: '.btn-enroll-participant',
     EnrollParticipantForm: '#enroll-participant-form',
+    SendCertificateToParticipantButton: '.btn-send-certificate',
     UnenrollParticipantToCourseButton: '.btn-unenroll-participant',
 
     /**

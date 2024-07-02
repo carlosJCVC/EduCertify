@@ -1,5 +1,6 @@
 import $ from 'jquery';
 import 'dropify/dist/js/dropify.min';
+import '../assets/css/custom-dropify-styles.scss'
 
 let avatarDropify;
 

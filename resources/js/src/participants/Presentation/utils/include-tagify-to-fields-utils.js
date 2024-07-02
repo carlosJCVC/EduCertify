@@ -1,10 +1,6 @@
 import Tagify from '@yaireo/tagify'
-import '@yaireo/tagify/dist/tagify.css'
-import '/resources/assets/vendor/libs/tagify/tagify.scss'
-import '/resources/sass/custom-tagify-styles.scss'
-import courseStore from '../../../courses/Infrastructure/store/course.store';
-import { forEach } from 'jszip';
-import '../assets/css/custom-tagify-styles.scss'
+import '../assets/css/custom-single-tagify-styles.scss'
+import '../assets/css/custom-multi-tagify-styles.scss'
 
 let statusTagify;
 let coursesTagify;
@@ -71,7 +67,7 @@ export const getOrCreateCoursesTagifyField = (courses) => {
         placeholder: 'Please write...',
         dropdown: {
             maxItems: 20,
-            classname: 'courses-tags-look',
+            classname: 'multi-tags-look',
             enabled: 0,
             closeOnSelect: true
         }

@@ -9,7 +9,7 @@ import { deleteCourse } from "../useCases/delete-course.usecase";
 import { enrollParticipantCourse } from "../useCases/enroll-participant-course.usecase";
 import { previewCourseCertificate } from "../useCases/preview-course-certificate.usecase";
 import { saveCourse } from "../useCases/save-course.usecase";
-import { sendParticipantsCertificates } from "../useCases/send-certificate.usecase";
+import { sendCourseCertificate, sendParticipantsCertificates } from "../useCases/send-certificate.usecase";
 import { unenrollParticipantCourse } from "../useCases/unenroll-participant-course.usecase";
 import { updatePreference } from "../useCases/update-course-preferences.usecase";
 
@@ -142,6 +142,7 @@ export const renderShowCourseEvents = () => {
  */
 export const renderParticipantsEnrolledDatatable = () => {
     const unenrollParticipantToCourseButtons = document.querySelectorAll(ElementSelectors.UnenrollParticipantToCourseButton);
+    const SendCertificateToParticipantButton = document.querySelectorAll(ElementSelectors.SendCertificateToParticipantButton);
 
     unenrollParticipantToCourseButtons.forEach(btn => {
         btn.addEventListener('click', (e) => {
@@ -149,6 +150,15 @@ export const renderParticipantsEnrolledDatatable = () => {
             const participantid = parent.getAttribute('data-id');
 
             unenrollParticipantCourse(participantid)
+        })
+    });
+
+    SendCertificateToParticipantButton.forEach(btn => {
+        btn.addEventListener('click', (e) => {
+    
+            const parent = e.target.closest(ElementSelectors.SendCertificateToParticipantButton);
+            const participantid = parent.getAttribute('data-id');
+            sendCourseCertificate(participantid);
         })
     });
 }

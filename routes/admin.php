@@ -80,6 +80,7 @@ Route::prefix('courses/{id}')->name('courses')->group(function () {
 
     Route::prefix('certificates')->name('certificates')->group(function () {
         Route::post('download-certificate', [CertificateController::class, 'download'])->name('download');
+        Route::post('send', [CertificateController::class, 'send'])->name('send');
         Route::post('send-participants', [CertificateController::class, 'sendCertificateToAllParticipant'])->name('send.participants');
     });
 

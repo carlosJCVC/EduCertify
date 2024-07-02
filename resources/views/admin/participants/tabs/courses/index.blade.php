@@ -2,11 +2,11 @@
     <div class="card-header bg-dark text-white">
         <div class="row w-100">
             <div class="col-md-6">
-                @lang('Enrolled courses')
+                <p>@lang('Enrolled courses')</p>
             </div>
 
             <div class="col-md-6 text-end">
-                <a href="javascript:void(0)" class="btn btn-md btn-primary px-2" id="btn-enroll-participant">
+                <a href="javascript:void(0)" class="btn btn-md btn-info px-2" id="btn-enroll-participant">
                     <i class="ti ti-plus ti-xs ms-0 me-2"></i>@lang('Enroll Course Now')
                 </a>
             </div>

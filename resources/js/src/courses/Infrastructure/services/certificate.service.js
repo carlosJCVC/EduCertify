@@ -85,6 +85,27 @@ class CertificateService {
             throw error;
         }
     }
+    /**
+     * Send certificate by course id
+     *
+     * @param {Number} id
+     * @param {Number} courseid
+     * @return Promise<Bool> true|falsee
+     */
+    async sendCertificateToParticipant(id, courseid) {
+        try {
+            const endpoint = `${this.path}/${id}/certificates/send`;
+            const { data: { data } } = await request.post(endpoint, { courseid }, {
+                headers: this.headers
+            });
+
+            return true;
+        } catch (error) {
+            console.error(`Error sending certificate with ID ${id}:`, error);
+
+            throw error;
+        }
+    }
 }
 
 export default CertificateService;

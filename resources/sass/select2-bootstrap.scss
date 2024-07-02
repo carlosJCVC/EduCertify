@@ -1,6 +1,7 @@
 @import "bootstrap/scss/functions";
 @import "bootstrap/scss/variables";
 @import "bootstrap/scss/mixins";
+@import "@tabler/core/src/scss/variables-dark";
 
 // Variables directly translating Bootstrap variables
 // -------------------------
@@ -26,6 +27,9 @@ $s2bs-dropdown-link-hover-color: $dropdown-link-hover-color !default;
 $s2bs-font-size-base: $font-size-base !default;
 $s2bs-font-size-large: $font-size-lg !default;
 $s2bs-font-size-small: $font-size-sm !default;
+
+$s2bs-dark-background:        $darken-dark !default;
+$s2bs-input-border-color:     #ced4da;
 
 @if variable-exists(input-font-size) {
   // Added in Bootstrap 4.2
@@ -435,6 +439,7 @@ $s2bs-form-control-transition: $input-transition !default;
     height: $s2bs-input-height-base;
     line-height: $s2bs-line-height-base;
     padding: $s2bs-padding-base-vertical ($s2bs-padding-base-horizontal + $s2bs-caret-width-base*3) $s2bs-padding-base-vertical $s2bs-padding-base-horizontal;
+    border-color: $s2bs-input-border-color;
 
     /**
      * Adjust the single Select2's dropdown arrow button appearance.
@@ -854,4 +859,24 @@ $s2bs-form-control-transition: $input-transition !default;
 .form-control.select2-hidden-accessible {
   position: absolute !important;
   width: 1px !important;
+}
+
+body[data-bs-theme="dark"] {
+  .select2-container--bootstrap {
+    /*------------------------------------*\
+        #DROPDOWN
+    \*------------------------------------*/
+  
+    /**
+    * Dropdown border color and box-shadow.
+    */
+  
+    .select2-dropdown {
+      background: $s2bs-dark-background;
+    }
+
+    .select2-selection--single {
+      border-color: $s2bs-input-border-color;
+    }
+  }
 }

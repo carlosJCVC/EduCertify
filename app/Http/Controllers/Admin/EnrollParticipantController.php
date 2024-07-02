@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Exceptions\ParticipantAlreadyEnrolled;
 use App\Http\Controllers\Controller;
 use App\Models\Course;
 use Illuminate\Http\Request;
@@ -39,12 +40,12 @@ class EnrollParticipantController extends Controller
     {
         $participantsIds = $request->get('participants_ids');
         $course = Course::find($id);
-        
+
         $participants = $course->participants()->whereIn('participants.id', $participantsIds)->get();
 
         
         if ($participants->count() > 0) {
-            // throw new ParticipantAlreadyEnrolled();
+            throw new ParticipantAlreadyEnrolled();
         }
         
         $course->participants()->attach($participantsIds);

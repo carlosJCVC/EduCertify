@@ -1,4 +1,11 @@
 <style>
+    .card-header {
+        background: linear-gradient(90deg, rgba(0, 123, 255, 1) 0%, rgba(2, 78, 128, 1) 100%);
+    }
+
+    .card-header h3 {
+        color: #fff;
+    }
     .participant-info-card {
         border: none;
         box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);

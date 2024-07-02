@@ -8,10 +8,11 @@ use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Speaker extends Model
 {
-    use HasFactory, HasProfilePhoto;
+    use HasFactory, HasProfilePhoto, SoftDeletes;
 
     /**
      * The attributes that are mass assignable.

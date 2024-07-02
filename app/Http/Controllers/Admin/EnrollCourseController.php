@@ -72,6 +72,7 @@ class EnrollCourseController extends Controller
     public function store(Request $request, string $id)
     {
         $coursesIds = $request->get('courses_ids');
+
         $participant = Participant::find($id);
 
         $courses = $participant->courses()->whereIn('courses.id', $coursesIds)->get();
