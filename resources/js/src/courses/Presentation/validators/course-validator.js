@@ -34,6 +34,22 @@ export const getCourseFormValidation = () => {
         });
 
         fv.on('core.field.invalid', function(fieldName) {
+            if (fieldName == 'speaker') {
+                const field = document.querySelector(`[name="${fieldName}"]`);
+                if (field.classList.contains(INVALID_CLASS)) {
+                    const parent = field.closest(".form-floating-custom");
+                    const inputs = parent.getElementsByTagName('span');
+
+                    for (let index = 0; index < inputs.length; index++) {
+                        const element = inputs[index];
+                        element.classList.remove(VALID_CLASS)
+                        element.classList.add(INVALID_CLASS)
+                    }
+                }
+            }
+        });
+
+        fv.on('core.field.invalid', function(fieldName) {
             if (fieldName == 'startDate' || fieldName == 'endDate') {
                 const field = document.querySelector(`[name="${fieldName}"]`);
                 if (field.classList.contains(INVALID_CLASS)) {
@@ -55,6 +71,22 @@ export const getCourseFormValidation = () => {
                 if (field.classList.contains(VALID_CLASS)) {
                     const parent = field.closest(".form-floating-custom");
                     const inputs = parent.getElementsByTagName('input');
+
+                    for (let index = 0; index < inputs.length; index++) {
+                        const element = inputs[index];
+                        element.classList.remove(INVALID_CLASS)
+                        element.classList.add(VALID_CLASS)
+                    }
+                }
+            }
+        });
+
+        fv.on('core.field.valid', function(fieldName) {
+            if (fieldName == 'speaker') {
+                const field = document.querySelector(`[name="${fieldName}"]`);
+                if (field.classList.contains(VALID_CLASS)) {
+                    const parent = field.closest(".form-floating-custom");
+                    const inputs = parent.getElementsByTagName('span');
 
                     for (let index = 0; index < inputs.length; index++) {
                         const element = inputs[index];

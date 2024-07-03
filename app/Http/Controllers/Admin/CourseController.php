@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Course;
 use App\Models\Participant;
+use App\Models\Speaker;
 use App\Traits\DatatableTrait;
 use Illuminate\Http\Request;
 use Illuminate\Http\JsonResponse;
@@ -28,7 +29,12 @@ class CourseController extends Controller
      */
     public function json(Request $request)
     {
-        $courses = Course::with('speaker')->get();
+
+        $courses = Course::select('courses.*')
+            ->join('speakers', 'courses.speaker_id', '=', 'speakers.id')
+            ->whereNull('speakers.deleted_at')
+            ->get();
+
         if ($request->has('participant_id')) {
             $participantId = $request->get('participant_id');
             $participant = Participant::find($participantId);
@@ -58,8 +64,8 @@ class CourseController extends Controller
                 return $html;
             })
             ->addColumn('level', fn ($record) => $record->level)
-            ->addColumn('start_date', fn ($record) => $record->start_date)
-            ->addColumn('end_date', fn ($record) => $record->end_date)
+            ->addColumn('start_date', fn ($record) => $record->start_date->format(config('app.format_time')))
+            ->addColumn('end_date', fn ($record) => $record->end_date->format(config('app.format_time')))
             ->addColumn('actions', function ($record) use ($request) {
                 $buttons = '';
                 if ($request->has('participant_id')) {

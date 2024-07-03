@@ -1,16 +1,12 @@
 <div class="card mt-2">
-    <div class="card-header bg-dark text-white">
-        <div class="row w-100">
-            <div class="col-md-6">
-                <p>@lang('Enrolled courses')</p>
-            </div>
+    <div class="card-header bg-dark text-white py-2 justify-content-between">
+        <p class="my-0">@lang('Enrolled courses')</p>
 
-            <div class="col-md-6 text-end">
-                <a href="javascript:void(0)" class="btn btn-md btn-info px-2" id="btn-enroll-participant">
-                    <i class="ti ti-plus ti-xs ms-0 me-2"></i>@lang('Enroll Course Now')
-                </a>
-            </div>
-        </div>
+        <a href="javascript:void(0)" class="btn btn-md btn-success px-2" id="btn-enroll-participant">
+            <i class="ti ti-plus ti-xs ms-0 me-md-1"></i>
+
+            <span class="d-none d-sm-inline-block">@lang('Enroll Course Now')</span>
+        </a>
     </div>
 
     <div class="card-body">

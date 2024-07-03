@@ -37,7 +37,9 @@ class Course extends Model
      */
     protected $casts = [
         'level' => CoursesLevel::class,
-        'categories' => 'json'
+        'categories' => 'json',
+        'start_date'=> 'datetime',
+        'end_date'=> 'datetime'
     ];
 
     /**

@@ -6,6 +6,14 @@
 
 @push('styles')
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+    <Style>
+        tfoot th {
+            color: rgb(102, 115, 130) !important;;
+            text-transform: uppercase;
+            font-size:10px;
+        }
+
+    </Style>
 @endpush
 
 @section('content')
@@ -68,7 +76,7 @@
     </div>
 
     <!-- Modal -->
-    <x-_modals.modal :title="__('Modal Title')" id="course-modal" class="modal-dialog">
+    <x-_modals.modal :title="__('Modal Title')" id="course-modal" class="modal-dialog modal-dialog-centered">
         <x-slot:header>
             <h5 class="modal-title">@lang('Create New Course')</h5>
         </x-slot>

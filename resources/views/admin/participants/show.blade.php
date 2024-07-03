@@ -14,22 +14,23 @@
         <div class="page-header">
             <div class="container-xl">
                 <div class="row g-2 align-items-center">
-                    <div class="col">
+                    <div class="col-sm-12 col-md-6 text-center text-md-start">
                         <!-- Page pre-title -->
                         <h2 class="page-title">
                             @lang('Participant :name', ['name' => $participant->full_name])
                         </h2>
                     </div>
 
-                    <div class="col-auto ms-auto">
-                        @if (count($courseEnroll) > 0)
+                    <div class="col-sm-12 col-md-6 text-center text-md-end">
+                        {{-- @if (count($courseEnroll) > 0) --}}
                             <a href="javascript:void(0)" class="btn btn-md btn-outline-warning px-2" id="btn-send-certificates">
                                 <i class="ti ti-mail-forward ti-xs ms-0 me-2"></i>@lang('Send Certificates')
                             </a>
-                        @endif
+                        {{-- @endif --}}
 
                         <a href="javascript:void(0)" class="btn btn-md btn-outline-info px-2" id="btn-edit-participant">
-                            <i class="ti ti-pencil ti-xs ms-0 me-2"></i>@lang('Edit Participant')
+                            <i class="ti ti-pencil me-0 me-2 ti-xs"></i>
+                            @lang('Edit Participant')
                         </a>
                     </div>
                 </div>

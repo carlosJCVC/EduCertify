@@ -80,7 +80,7 @@ const getDatatableButtons = () => {
             buttons: getDatatableExportButtons()
         },
         {
-            text: '<i class="ti ti-plus me-0 me-sm-1 ti-xs"></i><span class="d-none d-sm-inline-block">Create New Course</span>',
+            text: '<i class="ti ti-plus me-0 me-sm-1 ti-xs"></i><span class="d-none d-sm-inline-block">Create New User</span>',
             className: 'btn-new-course btn-primary rounded-lg mb-2 btn-new-record',
             id: 'btn-new-course',
             action: () => {

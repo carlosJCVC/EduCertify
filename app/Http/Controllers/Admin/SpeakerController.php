@@ -32,7 +32,7 @@ class SpeakerController extends Controller
             ->addColumn('email', fn ($record) => $record->email)
             ->addColumn('created_at', fn ($record) => $record->created_at)
             ->addColumn('status', fn ($record) => "<div class='badge {$record->status->badgeColor()} text-white'>{$record->status->value}</div>")
-            ->addColumn('actions', fn ($record) => $this->getActionsButtons($record->id))
+            ->addColumn('actions', fn ($record) => $this->getActionsButtons($record->id, false))
             ->rawColumns(['actions', 'status'])
             ->make(true);
     }

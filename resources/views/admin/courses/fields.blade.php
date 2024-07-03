@@ -9,7 +9,7 @@
 
     <div class="col-12 mb-3">
         <div class="form-floating-custom">
-            <select name="speaker" class="select2 select2-speaker" id="speaker-select2"></select>
+            <select name="speaker" class="form-control select2 select2-speaker" id="speaker-select2"></select>
 
             <label for="floatingInputSpeaker">{{ __('Speaker') }}</label>
         </div>

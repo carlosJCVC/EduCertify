@@ -1,4 +1,4 @@
-<div class="card user-info-card mt-2">
+<div class="card shadow-lg user-info-card mt-2">
     <div class="card-header bg-dark text-white">
         @lang('Enrolled participants')
     </div>
