@@ -39,17 +39,23 @@ class SettingController extends Controller
             $settings = new Setting();
         }
 
+        // dd($request->all());
+
         $settings->title = $request->get('title');
         $settings->speaker_name = $request->get('speaker_name');
         $settings->director_name = $request->get('director_name');
         $settings->background_color = $request->get('background_color');
         $settings->text_color = $request->get('text_color');
 
+        $settings->director_signature_data_url = null;
+        $settings->director_signature_data = [];
         if ($request->has('director_signature_data')) {
             $settings->director_signature_data_url = $request->get('director_signature_data_url');
             $settings->director_signature_data = $request->get('director_signature_data');
         }
 
+        $settings->speaker_signature_data_url = null;
+        $settings->speaker_signature_data = [];
         if ($request->has('speaker_signature_data')) {
             $settings->speaker_signature_data_url = $request->get('speaker_signature_data_url');
             $settings->speaker_signature_data = $request->get('speaker_signature_data');
