@@ -1,2 +1,8 @@
 // Tabler scss
 @import '@tabler/core/dist/css/tabler';
+
+table > tfoot th {
+    color: rgb(102, 115, 130) !important;;
+    text-transform: uppercase;
+    font-size:10px;
+}

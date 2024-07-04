@@ -3,6 +3,7 @@ import select2 from 'select2';
 import 'select2/dist/css/select2.min.css';
 import '/resources/sass/select2-bootstrap.scss';
 import { ElementSelectors } from '../../config/selectors';
+import { getCourseFormValidation } from '../validators/course-validator';
 
 let speakerSelect2;
 
@@ -48,6 +49,11 @@ export const getOrCreateSpeakerSelect2Field = () => {
         }
     };
     speakerSelect2 = $(speakerSelector).select2(options);
+
+    const fv = getCourseFormValidation();
+    speakerSelect2.on('change.select2', function () {
+        fv.revalidateField('speaker');
+    });
 
     return speakerSelect2;
 }

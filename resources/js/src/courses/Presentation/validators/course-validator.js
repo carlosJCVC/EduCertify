@@ -34,27 +34,11 @@ export const getCourseFormValidation = () => {
         });
 
         fv.on('core.field.invalid', function(fieldName) {
-            if (fieldName == 'speaker') {
+            if (fieldName == 'startDate' || fieldName == 'endDate' || fieldName == 'speaker') {
                 const field = document.querySelector(`[name="${fieldName}"]`);
                 if (field.classList.contains(INVALID_CLASS)) {
                     const parent = field.closest(".form-floating-custom");
-                    const inputs = parent.getElementsByTagName('span');
-
-                    for (let index = 0; index < inputs.length; index++) {
-                        const element = inputs[index];
-                        element.classList.remove(VALID_CLASS)
-                        element.classList.add(INVALID_CLASS)
-                    }
-                }
-            }
-        });
-
-        fv.on('core.field.invalid', function(fieldName) {
-            if (fieldName == 'startDate' || fieldName == 'endDate') {
-                const field = document.querySelector(`[name="${fieldName}"]`);
-                if (field.classList.contains(INVALID_CLASS)) {
-                    const parent = field.closest(".form-floating-custom");
-                    const inputs = parent.getElementsByTagName('input');
+                    const inputs = field.classList.contains('select2')? parent.getElementsByTagName('span') : parent.getElementsByTagName('input');
 
                     for (let index = 0; index < inputs.length; index++) {
                         const element = inputs[index];
@@ -66,27 +50,11 @@ export const getCourseFormValidation = () => {
         });
 
         fv.on('core.field.valid', function(fieldName) {
-            if (fieldName == 'startDate' || fieldName == 'endDate') {
+            if (fieldName == 'startDate' || fieldName == 'endDate' || fieldName == 'speaker') {
                 const field = document.querySelector(`[name="${fieldName}"]`);
                 if (field.classList.contains(VALID_CLASS)) {
                     const parent = field.closest(".form-floating-custom");
-                    const inputs = parent.getElementsByTagName('input');
-
-                    for (let index = 0; index < inputs.length; index++) {
-                        const element = inputs[index];
-                        element.classList.remove(INVALID_CLASS)
-                        element.classList.add(VALID_CLASS)
-                    }
-                }
-            }
-        });
-
-        fv.on('core.field.valid', function(fieldName) {
-            if (fieldName == 'speaker') {
-                const field = document.querySelector(`[name="${fieldName}"]`);
-                if (field.classList.contains(VALID_CLASS)) {
-                    const parent = field.closest(".form-floating-custom");
-                    const inputs = parent.getElementsByTagName('span');
+                    const inputs = field.classList.contains('select2')? parent.getElementsByTagName('span') : parent.getElementsByTagName('input');
 
                     for (let index = 0; index < inputs.length; index++) {
                         const element = inputs[index];
@@ -101,6 +69,19 @@ export const getCourseFormValidation = () => {
     }
 
     return fv;
+};
+
+/**
+ * Function to revalidate form when back return 422
+ *
+ * @param {array} errors
+ */
+export const revalidateForm = errors => {
+    fv.resetForm(false);
+
+    $.each(errors, async (field, value) => {
+        await fv.revalidateField(field);
+    });
 };
 
 /**
