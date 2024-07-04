@@ -1,10 +1,12 @@
 import courseStore from "../../../courses/Infrastructure/store/course.store";
 import participantStore from "../../Infrastructure/store/participant.store";
 import { showEnrollParticipantModal } from "../../Presentation/utils/enroll-course-modal.utils";
+import { getOrCreateAvatarDropifyField } from "../../Presentation/utils/include-dropify-to-fields-utils";
 import { resetParticipantFormValues } from "../../Presentation/utils/participant-form.utils";
 import { getParticipantModal, showCreateParticipantModal, showEditParticipantModal } from "../../Presentation/utils/participant-modal.utils";
 import { ElementSelectors } from "../../config/selectors";
 import { deleteParticipant } from "../useCases/delete-participant.usecase";
+import { deletePhotoProfile } from "../useCases/delete-photo-profile.usecase";
 import { enrollCourseParticipant } from "../useCases/enroll-course-participant.usecase";
 import { saveParticipant } from "../useCases/save-participant.usecase";
 import { sendCourseCertificate, sendCoursesCertificates } from "../useCases/send-certificate.usecase";
@@ -16,6 +18,7 @@ import { unenrollCourseParticipant } from "../useCases/unenroll-course-participa
 export const renderListParticipantEvents = () => {
     const createNewParticipantButton = document.querySelector(ElementSelectors.NewParticipantButton);
     const submitParticipantButton = document.querySelector(ElementSelectors.SaveParticipantButton);
+    const avatarField = getOrCreateAvatarDropifyField();
     const modal = getParticipantModal();
 
     createNewParticipantButton?.addEventListener('click', (event) => {
@@ -30,6 +33,10 @@ export const renderListParticipantEvents = () => {
         participantStore.resetParticipantSelected();
 
         resetParticipantFormValues();
+    });
+
+    avatarField.on('dropify.afterClear', function(event, element){
+        deletePhotoProfile();
     });
 }
 

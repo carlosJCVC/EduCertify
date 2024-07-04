@@ -1,4 +1,3 @@
-import $ from 'jquery';
 import { ElementSelectors } from "../../config/selectors";
 import { getParticipantFormValidation } from "../validators/participant-validator";
 import { resetDropifyFields, setFileField } from './include-dropify-to-fields-utils';
@@ -39,6 +38,8 @@ export const resetParticipantFormValues = () => {
     const fv = getParticipantFormValidation();
     fv.resetForm(true);
     form.reset();
+
+    form.querySelector('[name="status"]').value ='Active';
 
     resetDropifyFields()
     resetBirthdateField();

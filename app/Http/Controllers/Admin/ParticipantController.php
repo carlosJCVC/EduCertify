@@ -113,6 +113,19 @@ class ParticipantController extends Controller
     }
 
     /**
+     * Remove the photo_profile resource from storage.
+     */
+    public function removeProfile(string $id)
+    {
+        $participant = Participant::find($id);
+        $participant->deleteProfilePhoto();
+
+        return response()->json([
+            'title' => __('Success!'),
+            'message' => __('Photo profile of participant was deleted successfully!'),
+        ], 200);
+    }
+    /**
      * Update the specified resource in storage.
      */
     public function verify(UniqueEmailRequest $request)

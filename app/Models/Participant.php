@@ -43,7 +43,8 @@ class Participant extends Model
      */
     protected $casts = [
         'status' => ParticipantStatuses::class,
-        'birthdate'=> 'datetime'
+        'birthdate'=> 'datetime',
+        'profile_photo_url'=>'string',
     ];
 
     /**

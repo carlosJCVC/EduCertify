@@ -114,6 +114,24 @@ class ParticipantService {
     };
 
     /**
+     * Delete photo of participant by id.
+     *
+     * @param {Number} id
+     * @return Promise<boolean>
+     */
+    async deletePhotoToParticipantById(id) {
+        try {
+            const endpoint = `${this.path}/${id}/remove-avatar`;
+            await axios.delete(endpoint);
+
+            return true;
+        } catch (error) {
+            console.error(`Error deleteing photo of the participant with ID ${id}:`, error);
+
+            throw error;
+        }
+    };
+    /**
      * Send certificate by course id
      *
      * @param {Number} id

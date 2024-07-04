@@ -39,6 +39,7 @@ Route::prefix('participants')->name('participants.')->group(function () {
     Route::put('{id}/update', [ParticipantController::class, 'update'])->name('update');
     Route::patch('{id}/update', [ParticipantController::class, 'update'])->name('update');
     Route::delete('/{id}/delete', [ParticipantController::class, 'destroy'])->name('destroy');
+    Route::delete('/{id}/remove-avatar', [ParticipantController::class, 'removeProfile'])->name('remove.avatar');
 });
 
 /**
