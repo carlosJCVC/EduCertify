@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Course;
 use App\Models\Participant;
 use App\Models\Speaker;
+use App\Traits\CategoryTrait;
 use App\Traits\DatatableTrait;
 use Illuminate\Http\Request;
 use Illuminate\Http\JsonResponse;
@@ -14,7 +15,7 @@ use Yajra\DataTables\Facades\DataTables;
 
 class CourseController extends Controller
 {
-    use DatatableTrait;
+    use DatatableTrait, CategoryTrait;
 
     /**
      * Display a listing of the resource.
@@ -30,7 +31,8 @@ class CourseController extends Controller
     public function json(Request $request)
     {
 
-        $courses = Course::select('courses.*')
+        $courses = Course::with(['categories'])
+            ->select('courses.*')
             ->join('speakers', 'courses.speaker_id', '=', 'speakers.id')
             ->whereNull('speakers.deleted_at')
             ->get();
@@ -46,6 +48,7 @@ class CourseController extends Controller
             ->addColumn('speaker_name', fn ($record) => $record->speaker->full_name)
             ->addColumn('list_categories', function ($record) {
                 $html = '';
+                // TODO generar un color automatico y ponerlo en el badge
                 $bgColors = [
                     'bg-primary',
                     'bg-dark',
@@ -85,9 +88,11 @@ class CourseController extends Controller
      */
     public function store(Request $request)
     {
-        $input = $request->all();
-
+        $input = $request->except('categories');
         $course = Course::create($input);
+
+        $categories = $request->get('categories');
+        $this->storeCategories($categories);
 
         return response()->json([
             'title' => __('Success!'),

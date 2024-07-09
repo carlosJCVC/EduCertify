@@ -113,6 +113,7 @@ Route::prefix('speakers')->name('speakers.')->group(function () {
 Route::prefix('categories')->name('categories.')->group(function () {
     Route::get('/', [CategoryController::class, 'index'])->name('index');
     Route::get('json', [CategoryController::class, 'json'])->name('json');
+    Route::post('store', [CategoryController::class, 'store'])->name('store');
 });
 
 /**

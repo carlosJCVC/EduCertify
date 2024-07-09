@@ -22,7 +22,6 @@ class Course extends Model
         'name',
         'speaker_id',
         'setting_id',
-        'categories',
         'level',
         'start_date',
         'end_date',
@@ -37,7 +36,6 @@ class Course extends Model
      */
     protected $casts = [
         'level' => CoursesLevel::class,
-        'categories' => 'json',
         'start_date'=> 'datetime',
         'end_date'=> 'datetime'
     ];
@@ -64,5 +62,13 @@ class Course extends Model
     public function preferences(): HasOne
     {
         return $this->hasOne(CourseSetting::class);
+    }
+
+    /**
+     * Relation many to many of category with course tables.
+     */
+    public function categories(): BelongsToMany
+    {
+        return $this->belongsToMany(Category::class);
     }
 }

@@ -19,7 +19,7 @@
         <div class="form-floating-custom">
             <input type="text" class="form-control select-category tagify-category" name="category" id="floatingInputCategory" >
     
-            <label for="floatingInputCategory">{{ __('Category') }}</label>
+            <label for="floatingInputCategory">{{ __('Categories') }}</label>
         </div>
     </div>
 

@@ -12,8 +12,8 @@ let participantsTagify;
  * include select2 in participant fields
  */
 export const includeTagifyToFields = async () => {
-    const courseService = courseStore.getCategoryService();
-    const categories = await courseService.getAll();
+    const categoryService = courseStore.getCategoryService();
+    const categories = await categoryService.getAll();
 
     getOrCreateLevelTagifyField()
     getOrCreateCategoryTagifyField(categories)
@@ -68,7 +68,7 @@ export const getOrCreateCategoryTagifyField = (categories) => {
     categoryTagify = new Tagify(categoryElement, {
         id: 'category-tagify',
         value: '',
-        whitelist: categories,
+        whitelist: [...categories],
         placeholder: 'Please write...',
         dropdown: {
             maxItems: 20,
