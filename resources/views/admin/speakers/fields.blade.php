@@ -71,9 +71,9 @@
 
     <div class="col-12 mb-3">
         <div class="form-floating-custom">
-            <input type="text" class="form-control select-expertise tagify-expertise" name="expertises" id="floatingInputExpertise">
+            <input type="text" class="form-control select-expertise tagify-expertise" name="educationalExperiences" id="floatingInputExpertise">
 
-            <label for="floatingInputExpertise">{{ __('Expertise') }}</label>
+            <label for="floatingInputExpertise">{{ __('Educational Experiences') }}</label>
         </div>
     </div>
 

@@ -30,7 +30,6 @@ class CourseController extends Controller
      */
     public function json(Request $request)
     {
-
         $courses = Course::with(['categories'])
             ->select('courses.*')
             ->join('speakers', 'courses.speaker_id', '=', 'speakers.id')
@@ -44,24 +43,15 @@ class CourseController extends Controller
         }
 
         return DataTables::of($courses)
-            // ->addColumn('name', fn ($record) => $record->name)
             ->addColumn('speaker_name', fn ($record) => $record->speaker->full_name)
             ->addColumn('list_categories', function ($record) {
                 $html = '';
-                // TODO generar un color automatico y ponerlo en el badge
-                $bgColors = [
-                    'bg-primary',
-                    'bg-dark',
-                    'bg-success',
-                    'bg-warning',
-                    'bg-info',
-                    'bg-danger',
-                ];
 
-                foreach ($record->categories as $categoryName) {
-                    $bgColor = $bgColors[rand(0, 5)];
+                foreach ($record->categories as $category) {
+                    $bgColor = $this->getBackgroundGradient();
+                    $bgColor = $this->generateRandomColor();
 
-                    $html .= "<span class='badge text-white {$bgColor} me-1'>{$categoryName}</span>";
+                    $html .= "<span style='background: {$bgColor}' class='badge text-white me-1 mt-1'>{$category->name}</span>";
                 }
 
                 return $html;
@@ -92,7 +82,8 @@ class CourseController extends Controller
         $course = Course::create($input);
 
         $categories = $request->get('categories');
-        $this->storeCategories($categories);
+        $categories = $this->storeCategories($categories);
+        $course->categories()->attach($categories->pluck('id'));
 
         return response()->json([
             'title' => __('Success!'),
@@ -121,7 +112,7 @@ class CourseController extends Controller
      */
     public function showInJson(string $id)
     {
-        $course = Course::with(['speaker', 'preferences'])->find($id);
+        $course = Course::with(['speaker', 'preferences', 'categories'])->find($id);
 
         return response()->json([
             'data' => $course
@@ -136,11 +127,13 @@ class CourseController extends Controller
         $input = $request->all();
         $course = Course::find($id);
 
-        if (!$request->has('categories')) {
-            $input['categories'] = [];
-        }
-
         $course->update($input);
+
+        if ($request->has('categories')) {
+            $categories = $request->get('categories');
+            $categories = $this->storeCategories($categories);
+            $course->categories()->sync($categories->pluck('id'));
+        }
 
         return response()->json([
             'title' => __('Success!'),
@@ -155,6 +148,7 @@ class CourseController extends Controller
     public function destroy(string $id)
     {
         $course = Course::find($id);
+        $course->categories()->detach();
         $course->delete();
 
         return response()->json([

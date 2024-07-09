@@ -6,46 +6,84 @@
 $input-border-color:  #ced4da;
 $text-input-color:  #ced4da;
 
-.tagify__tag__removeBtn {
-  display: none;
+.multi-tags-look {
+  .tagify__dropdown {
+    &__item {
+      display: inline-block;
+      vertical-align: middle;
+      border-radius: 3px;
+      padding: .3em .5em;
+      border: 1px solid #CCC;
+      background: #F3F3F3;
+      margin: .2em;
+      font-size: .85em;
+      color: black;
+      transition: 0s;
+    }
+  }
 }
 
+
+/**
+ * Stylres when theme is mode dark
+ */
 body[data-bs-theme="dark"] {
-  --tagify-dd-color-primary: rgb(53,149,246); // should be same as "$tags-focus-border-color"
+  --tagify-dd-color-primary: rgb(53, 149, 246); // should be same as "$tags-focus-border-color"
   --tagify-dd-text-color: #{$text-input-color};
   --tagify-dd-bg-color: #{$darken-dark};
   --tagify-dd-item-pad: .3em .5em; // should be same as $tag-pad (below)
   --tagify-dd-max-height: 300px;
-}
 
-.multi-tags-look .tagify__dropdown__item{
-  display: inline-block;
-  vertical-align: middle;
-  border-radius: 3px;
-  padding: .3em .5em;
-  border: 1px solid #CCC;
-  background: #F3F3F3;
-  margin: .2em;
-  font-size: .85em;
-  color: black;
-  transition: 0s;
-}
+  .tagify-expertise {
+    --placeholder-color : #{$text-input-color};
 
-.multi-tags-look .tagify__dropdown__item--active{
-  border-color: black;
-}
+    .tagify__tag {
+      vertical-align: middle;
+      background-color: #ccc;
+    }
 
-.multi-tags-look .tagify__dropdown__item:hover{
-  background: lightyellow;
-  border-color: gold;
-}
+    // .tagify__tag>div {
+    //   border-radius: 25px;
+    // }
 
-.multi-tags-look .tagify__dropdown__item--hidden {
-  max-width: 0;
-  max-height: initial;
-  padding: .3em 0;
-  margin: .2em 0;
-  white-space: nowrap;
-  text-indent: -20px;
-  border: 0;
+    .tagify__tag>div::before {
+      background: none;
+    }
+  }
+
+  .multi-tags-look {
+    .tagify__dropdown {
+      &__item {
+        display: inline-block;
+        vertical-align: middle;
+        border-radius: 3px;
+        padding: .3em .5em;
+        border: 1px solid #CCC;
+        background: black;
+        margin: .2em;
+        font-size: .85em;
+        color: white;
+        transition: 0s;
+      }
+
+      // &__item--active {
+      //   border-color: red;
+      // }
+
+      &__item:hover {
+        background: $gray-700;
+        border-color: $input-border-color;
+      }
+
+      &__item--hidden {
+        max-width: 0;
+        max-height: initial;
+        padding: .3em 0;
+        margin: .2em 0;
+        white-space: nowrap;
+        text-indent: -20px;
+        border: 0;
+      }
+    }
+  }
 }

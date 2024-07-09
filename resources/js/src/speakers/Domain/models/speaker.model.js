@@ -23,7 +23,7 @@ export class Speaker {
         phoneNumber = undefined,
         linkedinProfile = undefined,
         website = undefined,
-        expertises = [],
+        educationalExperiences,
         biography = undefined,
         notes = undefined,
     }) {
@@ -41,7 +41,7 @@ export class Speaker {
         this.phoneNumber = phoneNumber;
         this.linkedinProfile = linkedinProfile;
         this.website = website;
-        this.expertises = expertises;
+        this.educationalExperiences = educationalExperiences;
         this.biography = biography;
         this.notes = notes;
     }

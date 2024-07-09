@@ -32,7 +32,7 @@ export const setSpekaerFormValues = (speaker) => {
     form.querySelector('[name="biography"]').value = speaker.biography;
     form.querySelector('[name="notes"]').value = speaker.notes;
 
-    expertiseField.addTags(speaker.expertises);
+    expertiseField.addTags(speaker.educationalExperiences);
     setFileField(speaker.avatar);
 }
 

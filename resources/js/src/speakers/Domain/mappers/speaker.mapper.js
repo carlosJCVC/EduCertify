@@ -17,7 +17,7 @@ const SpeakerMapper = {
             phoneNumber,
             linkedinProfile,
             website,
-            expertises,
+            educationalExperiences,
             biography,
             notes
         } = speaker;
@@ -32,7 +32,7 @@ const SpeakerMapper = {
             phone_number: phoneNumber,
             linkedin_profile: linkedinProfile,
             website,
-            expertise: expertises,
+            educationalExperiences: educationalExperiences,
             biography,
             notes,
         };
@@ -54,7 +54,7 @@ const SpeakerMapper = {
             phone_number,
             linkedin_profile,
             website,
-            expertise,
+            experiences = [],
             biography,
             notes
         } = response;
@@ -69,7 +69,7 @@ const SpeakerMapper = {
             phoneNumber: phone_number,
             linkedinProfile: linkedin_profile,
             website,
-            expertises: expertise,
+            educationalExperiences: experiences.map(item => item.name),
             biography,
             notes,
         });
@@ -84,7 +84,7 @@ const SpeakerMapper = {
         const firstName = formData.get('firstName');
         const lastName = formData.get('lastName');
         const email = formData.get('email');
-        const stringExpertises = formData.get('expertises');
+        const stringExpertises = formData.get('educationalExperiences');
         const stringStatusValue = formData.get('status');
         const avatar = formData.get('avatar');
         const phoneNumber = formData.get('phoneNumber');
@@ -105,7 +105,7 @@ const SpeakerMapper = {
             phoneNumber,
             linkedinProfile,
             website,
-            expertises: valueExpertises.map(item => item.value),
+            educationalExperiences: valueExpertises.map(item => item.value),
             biography,
             notes,
         });

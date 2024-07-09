@@ -36,7 +36,7 @@ const CourseMapper = {
             name,
             speaker_id,
             speaker: speaker? SpeakerMapper.fromJson(speaker) : null,
-            categories,
+            categories:categories.map(item => item.name),
             level,
             startDate: start_date,
             endDate: end_date,

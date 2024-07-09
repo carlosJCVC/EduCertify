@@ -7,6 +7,7 @@ use App\HasProfilePhoto;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
@@ -27,7 +28,6 @@ class Speaker extends Model
         'phone_number',
         'linkedin_profile',
         'website',
-        'expertise',
         'biography',
         'notes',
     ];
@@ -48,7 +48,6 @@ class Speaker extends Model
      */
     protected $casts = [
         'status' => SpeakerStatuses::class,
-        'expertise' => 'json'
     ];
 
     /**
@@ -69,5 +68,13 @@ class Speaker extends Model
     public function courses(): HasMany
     {
         return $this->hasMany(Course::class);
+    }
+
+    /**
+     * Relation many to many of educational Experiences with speaker tables.
+     */
+    public function experiences(): BelongsToMany
+    {
+        return $this->belongsToMany(EducationalExperience::class);
     }
 }

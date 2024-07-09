@@ -6,13 +6,15 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\SpeakerRequest;
 use App\Http\Requests\SpeakerUniqueEmailRequest;
 use App\Models\Speaker;
+use App\Traits\CategoryTrait;
 use App\Traits\DatatableTrait;
+use App\Traits\EducationalExperienceTrait;
 use Illuminate\Http\Request;
 use Yajra\DataTables\Facades\DataTables;
 
 class SpeakerController extends Controller
 {
-    use DatatableTrait;
+    use DatatableTrait, EducationalExperienceTrait, CategoryTrait;
 
     /**
      * Display a listing of the resource.
@@ -25,15 +27,29 @@ class SpeakerController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function json()
+    public function json(Request $request)
     {
-        return DataTables::of(Speaker::query())
+        $speakers = Speaker::with(['experiences'])->get();
+
+        return DataTables::of($speakers)
             ->addColumn('name', fn ($record) => $record->full_name)
+            ->addColumn('list_experiences', function ($record) {
+                $html = '';
+
+                foreach ($record->experiences as $experience) {
+                    $bgColor = $this->getBackgroundGradient();
+                    $bgColor = $this->generateRandomColor();
+
+                    $html .= "<span style='background: {$bgColor}' class='badge text-white me-1 mt-1'>{$experience->name}</span>";
+                }
+
+                return $html;
+            })
             ->addColumn('email', fn ($record) => $record->email)
             ->addColumn('created_at', fn ($record) => $record->created_at)
             ->addColumn('status', fn ($record) => "<div class='badge {$record->status->badgeColor()} text-white'>{$record->status->value}</div>")
             ->addColumn('actions', fn ($record) => $this->getActionsButtons($record->id, false))
-            ->rawColumns(['actions', 'status'])
+            ->rawColumns(['actions', 'status', 'list_experiences'])
             ->make(true);
     }
 
@@ -42,8 +58,12 @@ class SpeakerController extends Controller
      */
     public function store(SpeakerRequest $request)
     {
-        $input = $request->all();
+        $input = $request->except('educationalExperiences');
         $speaker = Speaker::create($input);
+
+        $experiences = $request->get('educationalExperiences');
+        $experiences = $this->storeExperiences($experiences);
+        $speaker->experiences()->attach($experiences->pluck('id'));
 
         if ($request->has('avatar')) {
             $speaker->updateProfilePhoto($request->file('avatar'));
@@ -71,7 +91,7 @@ class SpeakerController extends Controller
      */
     public function showInJson(string $id)
     {
-        $speaker = Speaker::find($id);
+        $speaker = Speaker::with(['experiences'])->find($id);
 
         return response()->json([
             'data' => $speaker
@@ -83,12 +103,20 @@ class SpeakerController extends Controller
      */
     public function update(SpeakerRequest $request, string $id)
     {
+        $input = $request->all();
         $speaker = Speaker::find($id);
-        $speaker->update($request->all());
+
+        $speaker->update($input);
 
         if ($request->has('avatar')) {
             $file = $request->file('avatar');
             $speaker->updateProfilePhoto($file);
+        }
+
+        if ($request->has('educationalExperiences')) {
+            $experiences = $request->get('educationalExperiences');
+            $experiences = $this->storeExperiences($experiences);
+            $speaker->experiences()->sync($experiences->pluck('id'));
         }
 
         return response()->json([
@@ -104,6 +132,7 @@ class SpeakerController extends Controller
     public function destroy(string $id)
     {
         $speaker = Speaker::find($id);
+        $speaker->experiences()->detach();
         $speaker->delete();
 
         return response()->json([

@@ -1,7 +1,7 @@
 import Tagify from '@yaireo/tagify'
+import speakerStore from '../../Infrastructure/store/speaker.store';
 import '../assets/css/custom-single-tagify-styles.scss'
 import '../assets/css/custom-multi-tagify-styles.scss'
-import speakerStore from '../../Infrastructure/store/speaker.store';
 
 let statusTagify;
 let expertisesTagify;
@@ -56,7 +56,6 @@ export const getOrCreateExpertisesTagifyField = (experties) => {
         if (!!experties.length) {
             expertisesTagify.whitelist = null;
             expertisesTagify.whitelist = [...experties];
-
         }
 
         return expertisesTagify;
@@ -64,12 +63,12 @@ export const getOrCreateExpertisesTagifyField = (experties) => {
 
     const expertiesElement = document.querySelector('.tagify-expertise');
     expertisesTagify = new Tagify(expertiesElement, {
-        id: 'expertiseTagify',
-        whitelist: experties,
+        id: 'experience-tagify',
+        whitelist: [...experties],
         placeholder: 'Please write...',
         dropdown: {
             maxItems: 20,
-            classname: 'tags-look',
+            classname: 'multi-tags-look',
             enabled: 0,
             closeOnSelect: true
         }

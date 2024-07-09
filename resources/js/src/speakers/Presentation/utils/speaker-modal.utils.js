@@ -35,9 +35,9 @@ export const showEditSpeakerModal = async (id) => {
 
     modal._element.querySelector('.modal-title').textContent = `Edit Speaker: ${speaker.firstName}`;
 
-    setSpekaerFormValues(speaker);
+    await includeConfigToFields();
     getSpeakerFormValidation();
-    includeConfigToFields();
+    setSpekaerFormValues(speaker);
 
     modal.show();
 }

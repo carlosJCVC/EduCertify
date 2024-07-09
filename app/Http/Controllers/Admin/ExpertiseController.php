@@ -3,35 +3,54 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\Speaker;
+use App\Models\EducationalExperience;
+use App\Traits\EducationalExperienceTrait;
+use Illuminate\Http\Request;
 
 class ExpertiseController extends Controller
 {
+    use EducationalExperienceTrait;
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $experties = Speaker::all($columns = ['expertise']);
-        $experties = $experties->pluck('expertise')->flatten()->unique();
+        $experiences = EducationalExperience::all($columns = ['name']);
+        $experiences = $experiences->pluck('name')->flatten()->unique();
 
         return response()->json([
-            'message' => 'List of experties was loaded successfully!',
-            'data' => $experties
+            'message' => 'List of experiences was loaded successfully!',
+            'data' => $experiences
         ], 200);
     }
-/**
+
+    /**
      * Display a listing of the resource.
      */
     public function json()
     {
-        $experties = Speaker::all($columns = ['expertise']);
-        $experties = $experties->pluck('expertise')->flatten()->unique();
-        $experties = $experties->filter(fn($item) => !is_null($item));
+        $experiences = EducationalExperience::all($columns = ['name']);
+        $experiences = $experiences->pluck('name');
 
         return response()->json([
-            'message' => 'List of experties was loaded successfully!',
-            'data' => [...$experties->toArray()]
+            'message' => 'List of experiences was loaded successfully!',
+            'data' => [...$experiences->toArray()]
         ], 200);
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     */
+    public function store(Request $request)
+    {
+        $input = $request->all();
+        $experiencesArray = [$input];
+
+        $this->storeExperiences($experiencesArray);
+
+        return response()->json([
+            'title' => __('Success!'),
+            'message' => __('Experience was created successfully!'),
+        ], 201);
     }
 }
