@@ -8,6 +8,7 @@ use App\Http\Controllers\Admin\EnrollCourseController;
 use App\Http\Controllers\Admin\EnrollParticipantController;
 use App\Http\Controllers\Admin\ExpertiseController;
 use App\Http\Controllers\Admin\ParticipantController;
+use App\Http\Controllers\Admin\ReportController;
 use App\Http\Controllers\Admin\SearchController;
 use App\Http\Controllers\Admin\SettingController;
 use App\Http\Controllers\Admin\SpeakerController;
@@ -140,4 +141,9 @@ Route::prefix('settings')->name('settings.')->group(function () {
     Route::prefix('certificates')->name('certificates')->group(function () {
         Route::post('preview', [CertificateController::class, 'preview'])->name('preview');
     });
+});
+
+Route::prefix('reports')->name('reports.')->group(function () {
+    Route::get('get-user-status', [ReportController::class, 'getUserStatus'])->name('user.status');
+    Route::get('get-courses-category', [ReportController::class, 'getCoursesCategory'])->name('courses.category');
 });

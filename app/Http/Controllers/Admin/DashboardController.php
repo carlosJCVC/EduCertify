@@ -3,6 +3,9 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Course;
+use App\Models\Participant;
+use App\Models\Speaker;
 use Illuminate\Http\Request;
 
 class DashboardController extends Controller
@@ -24,6 +27,16 @@ class DashboardController extends Controller
      */
     public function index()
     {
-        return view('admin.dashboard');
+
+        $spekaersToday = Speaker::whereDate('created_at', now()->format('Y-m-d'))->get()->count();
+        $spekaers = Speaker::all()->count();
+
+        $coursesToday = Course::whereDate('created_at', now()->format('Y-m-d'))->get()->count();
+        $courses = Course::all()->count();
+
+        $participantsToday = Participant::whereDate('created_at', now()->format('Y-m-d'))->get()->count();
+        $participants = Participant::all()->count();
+
+        return view('admin.dashboard')->with(['dataSpeakers' => [$spekaersToday, $spekaers], 'dataCourses' => [$coursesToday, $courses], 'dataParticipants' => [$participantsToday, $participants]]);
     }
 }
