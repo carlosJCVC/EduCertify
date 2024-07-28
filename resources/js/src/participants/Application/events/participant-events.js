@@ -8,6 +8,7 @@ import { ElementSelectors } from "../../config/selectors";
 import { deleteParticipant } from "../useCases/delete-participant.usecase";
 import { deletePhotoProfile } from "../useCases/delete-photo-profile.usecase";
 import { enrollCourseParticipant } from "../useCases/enroll-course-participant.usecase";
+import { importParticipant } from "../useCases/import-participant.usecase";
 import { saveParticipant } from "../useCases/save-participant.usecase";
 import { sendCourseCertificate, sendCoursesCertificates } from "../useCases/send-certificate.usecase";
 import { unenrollCourseParticipant } from "../useCases/unenroll-course-participant.usecase";
@@ -18,6 +19,7 @@ import { unenrollCourseParticipant } from "../useCases/unenroll-course-participa
 export const renderListParticipantEvents = () => {
     const createNewParticipantButton = document.querySelector(ElementSelectors.NewParticipantButton);
     const submitParticipantButton = document.querySelector(ElementSelectors.SaveParticipantButton);
+    const submitImportParticipantButton = document.querySelector(ElementSelectors.SaveImportParticipantButton);
     const avatarField = getOrCreateAvatarDropifyField();
     const modal = getParticipantModal();
 
@@ -27,6 +29,10 @@ export const renderListParticipantEvents = () => {
 
     submitParticipantButton.addEventListener('click', (event) => {
         saveParticipant();
+    });
+
+    submitImportParticipantButton.addEventListener('click', (event) => {
+         importParticipant();
     });
 
     modal._element.addEventListener('hidden.bs.modal', function (event) {
