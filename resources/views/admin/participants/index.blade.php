@@ -87,7 +87,9 @@
 
         {{-- @include('admin.participants.form') --}}
         <form action="" id="participant-form-document">
-            <input type="file" id="fileInput" required>
+            <div class="col-12 mb-3">
+                <input type="file" name="pdf"  class="form-control dropify" id="fileInput" required>
+            </div>
         </form>
 
         <x-slot:footer>

@@ -71,5 +71,6 @@ export const getImportParticipantModal = () => {
     const modalEl = document.querySelector(ElementSelectors.ImportParticipantModal)
     const modal = bootstrap.Modal.getOrCreateInstance(modalEl)
 
+    includeConfigToFields();
     return modal;
 }
