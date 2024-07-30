@@ -33,6 +33,7 @@
         "pdfmake": "^0.2.10",
         "select2": "^4.1.0-rc.0",
         "signature_pad": "^5.0.2",
-        "sweetalert2": "^11.11.0"
+        "sweetalert2": "^11.11.0",
+        "xlsx": "^0.18.5"
     }
 }

@@ -8,6 +8,9 @@ export const ElementSelectors = {
     SaveParticipantButton: '.btn-save-participant',
     ParticipantModal: '#participant-modal',
     ParticipantForm: '#participant-form',
+    ImportParticipantModal: '#import-participant-modal',
+    ParticipantInput: '#participant-form-document',
+    SaveImportParticipantButton: '.btn-save-import-participant',
 
     /**
      * courses enrolled

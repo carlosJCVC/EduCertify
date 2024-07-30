@@ -1,4 +1,4 @@
-import { getParticipantModal } from "../../Presentation/utils/participant-modal.utils";
+import { getImportParticipantModal, getParticipantModal } from "../../Presentation/utils/participant-modal.utils";
 import { getParticipantFormValues } from "../../Presentation/utils/participant-form.utils";
 import { loadingAlert, notifyAlert } from "../../../utils/alerts";
 import { Validator } from "../../config/validator";
@@ -14,7 +14,23 @@ const participantService = new ParticipantService();
  * @param {FormData} data 
  * @return Participant participant 
 */
-export const createParticipant = async (formData) => {    
+export const createParticipant = async (formDataPromise) => {  
+    const formData = await formDataPromise;
+    if(formData){
+        const modal = getImportParticipantModal();
+        const datatable = participantStore.getParticipantDatatable();
+
+        loadingAlert();
+        for (const participant of formData) {
+             await participantService.create(participant);
+        }
+        modal.hide();
+        
+        notifyAlert('Success!', `Participants has been imported successfully!`, () => {
+            datatable.ajax.reload();
+        });
+    }
+
     try {
         const modal = getParticipantModal();
         const datatable = participantStore.getParticipantDatatable();

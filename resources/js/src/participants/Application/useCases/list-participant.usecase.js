@@ -3,7 +3,7 @@ import participantStore from "../../Infrastructure/store/participant.store";
 import { ElementSelectors } from "../../config/selectors";
 import { renderDatatableEvents } from "../events/participant-events";
 import "/resources/assets/vendor/libs/datatables-buttons-bs5/buttons.bootstrap5.scss";
-import { showCreateParticipantModal } from "../../Presentation/utils/participant-modal.utils";
+import { showCreateParticipantModal, showImportParticipantModal } from "../../Presentation/utils/participant-modal.utils";
 
 /**
  * Load datatable for participants
@@ -79,6 +79,14 @@ const getDatatableButtons = () => {
             className: 'btn btn-info dropdown-toggle rounded-lg mx-3 mb-2',
             text: '<i class="ti ti-screen-share me-2 ti-xs"></i> Export <i class="ti ti-arrow-down ms-1"></i>',
             buttons: getDatatableExportButtons()
+        },
+        {
+            className: 'btn btn-success rounded-lg mx-3 mb-2',
+            text: '<i class="ti ti-screen-share me-2 ti-xs"></i> Import  <i class="ti ti-arrow-up ms-1"></i>',
+            id: 'btn-import-participant',
+            action: () => {
+                showImportParticipantModal()
+            }
         },
         {
             text: '<i class="ti ti-plus me-0 me-sm-1 ti-xs"></i><span class="d-none d-sm-inline-block">Create New Participant</span>',

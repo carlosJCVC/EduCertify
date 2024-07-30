@@ -78,6 +78,24 @@
             <button type="button" class="btn btn-primary btn-save-participant">@lang('Save Changes')</button>
         </x-slot>
     </x-_modals.modal>
+
+    <!-- Modal import-->
+    <x-_modals.modal :title="__('Modal Title')" id="import-participant-modal" class="modal-dialog modal-dialog-centered">
+        <x-slot:header>
+            <h5 class="modal-title">@lang('Import Participants')</h5>
+        </x-slot>
+
+        {{-- @include('admin.participants.form') --}}
+        <form action="" id="participant-form-document">
+            <div class="col-12 mb-3">
+                <input type="file" name="pdf"  class="form-control dropify" id="fileInput" required>
+            </div>
+        </form>
+
+        <x-slot:footer>
+            <button type="button" class="btn btn-primary btn-save-import-participant">@lang('Import')</button>
+        </x-slot>
+    </x-_modals.modal>
 @endsection
 
 @push('scripts')
