@@ -71,4 +71,12 @@ class Course extends Model
     {
         return $this->belongsToMany(Category::class);
     }
+
+    /**
+     * Relation one to many of certificates with course tables.
+     */
+    public function certificates()
+    {
+        return $this->hasMany(Certificate::class);
+    }
 }

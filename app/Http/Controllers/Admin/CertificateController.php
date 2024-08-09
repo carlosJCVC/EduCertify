@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\SettingsRequest;
+use App\Models\Certificate;
 use App\Models\Course;
 use App\Models\Participant;
 use App\Notifications\SendCertificate;
@@ -102,5 +103,72 @@ class CertificateController extends Controller
             'title' => __('Success!'),
             'message' => __('Certificates were sent successfully!'),
         ], 201);
+    }
+
+    /**
+     * Store a new send certificate.
+     */
+    public function store(Request $request)
+    {
+        $input = $request->all();
+        
+        if($request->has('participant_id') &&  $request->has('course_id')){
+            $course = Course::find($request->course_id);
+            $participant = Participant::find($request->participant_id);
+            $exist = $this->checkCertificateExists($participant->id, $course->id);
+            $link = $this->generateParticipantCertificate($participant, $course);
+
+            if(!$exist){
+                $input['file_path'] = $link;
+                $send_certificate = Certificate::create($input);
+            }
+        }
+
+        if($request->has('participant_id') && !$request->has('course_id')){
+               
+            $participant = Participant::find($input['participant_id']);
+            $courses = $participant->courses;
+            foreach ($courses as $course) {
+                $link = $this->generateParticipantCertificate($participant, $course);
+                $exist = $this->checkCertificateExists($participant->id, $course->id);
+                if(!$exist){
+                    $input['file_path'] = $link;
+                    $input['course_id'] = $course->id;
+                    $send_certificate = Certificate::create($input);
+                }
+            }
+        }
+
+        if(!$request->has('participant_id') && $request->has('course_id')){
+
+            $course = Course::find($input['course_id']);
+            $participants = $course->participants;
+            foreach ($participants as $participant) {
+                $link = $this->generateParticipantCertificate($participant, $course);
+                $exist = $this->checkCertificateExists($participant->id, $course->id);
+                if(!$exist){
+                    $input['file_path'] = $link;
+                    $input['participant_id'] = $participant->id;
+                    $send_certificate = Certificate::create($input);
+                }
+            }
+        }
+
+
+        return response()->json([
+            'title' => __('Success!'),
+            'message' => __('certificate was register successfully!'),
+        ], 201);
+    }
+
+    public function checkCertificateExists($participant_id, $course_id){
+
+        $exist = Certificate::where('course_id', $course_id)
+                            ->where('participant_id', $participant_id)
+                            ->exists();
+        if ($exist) {
+            return true;
+        }
+        return false;
     }
 }

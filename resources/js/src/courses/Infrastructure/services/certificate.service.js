@@ -77,7 +77,7 @@ class CertificateService {
             const { data: { data } } = await request.post(endpoint, {
                 headers: this.headers
             });
-
+            const certificate = await this.create_send_certificates(id);
             return true;
         } catch (error) {
             console.error(`Error sending certificate with ID ${id}:`, error);
@@ -98,11 +98,56 @@ class CertificateService {
             const { data: { data } } = await request.post(endpoint, { courseid }, {
                 headers: this.headers
             });
-
+            const certificate = await this.create_send_certificate(id, courseid);
             return true;
         } catch (error) {
             console.error(`Error sending certificate with ID ${id}:`, error);
 
+            throw error;
+        }
+    }
+
+    /**
+     * Create a model certificate.
+     *
+     * @param {Participant} participant
+     * @return Promise<Participant>
+     */
+    async create_send_certificate(participantId, courseId) {
+        try {
+            const endpoint = `/admin/certificates/store-send-certificate`;
+            const sendCertificateData = {
+                participant_id: participantId,
+                course_id: courseId
+            };
+            const { data: { data } } = await request.post(endpoint, sendCertificateData, {
+                headers: this.headers
+            });
+            return true;
+        } catch (error) {
+            console.error('Error creating participant:', error);
+            throw error;
+        }
+    }
+
+    /**
+     * Create a model certificate.
+     *
+     * @param {Participant} participant
+     * @return Promise<Participant>
+     */
+    async create_send_certificates(Id) {
+        try {
+            const endpoint = `/admin/certificates/store-send-certificate`;
+            const sendCertificateData = {
+                course_id: Id
+            };
+            const { data: { data } } = await request.post(endpoint, sendCertificateData, {
+                headers: this.headers
+            });
+            return true;
+        } catch (error) {
+            console.error('Error creating certificate:', error);
             throw error;
         }
     }

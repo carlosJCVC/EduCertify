@@ -67,4 +67,12 @@ class Participant extends Model
         // return $this->belongsToMany(Course::class)->withTimestamps();
         return $this->belongsToMany(Course::class)->using(CourseParticipant::class)->withTimestamps();
     }
+
+    /**
+     * Relation one to many of certificates with participant tables.
+     */
+    public function certificates()
+    {
+        return $this->hasMany(Certificate::class);
+    }
 }
