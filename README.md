@@ -1,66 +1,142 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
-
+<h1 align="center">
+  <br>
+  <img src="screenshots/educertify.webp" alt="Educertify" width="500">
+  <br>
+  Educertify
+  <br>
+</h1>
+<h4 align="center">Revolutionizing Certificate Creation and Management</h4>
 <p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
+  <a href="#key-features">Key Features</a> •
+  <a href="#how-it-works">How It Works</a> •
+  <a href="#getting-started">Getting Started</a> •
+  <a href="#tech-stack">Tech Stack</a> •
+  <a href="#showcase">Showcase</a> •
+  <a href="#roadmap">Roadmap</a> •
+  <a href="#contributing">Contributing</a> •
+  <a href="#support">Support</a>
+</p>
+<p align="center">
+  <img src="screenshots/1.png" alt="Educertify Demo">
+</p>
+<p align="center">
+  <a href="https://github.com/carlosJCVC/EduCertify/stargazers"><img src="https://img.shields.io/github/stars/carlosJCVC/Educertify" alt="GitHub stars"></a>
+  <a href="https://github.com/carlosJCVC/EduCertify/network"><img src="https://img.shields.io/github/forks/carlosJCVC/Educertify" alt="GitHub forks"></a>
+  <a href="https://github.com/carlosJCVC/EduCertify/issues"><img src="https://img.shields.io/github/issues/carlosJCVC/Educertify" alt="GitHub issues"></a>
+  <a href="https://github.com/carlosJCVC/EduCertify/blob/master/LICENSE"><img src="https://img.shields.io/github/license/carlosJCVC/Educertify" alt="License"></a>
+  <a href="https://twitter.com/intent/tweet?text=Check%20out%20Educertify!%20https://github.com/carlosJCVC/EduCertify"><img src="https://img.shields.io/twitter/url?style=social&url=https%3A%2F%2Fgithub.com%2FcarlosJCVC%2FEducertify" alt="Tweet"></a>
 </p>
 
-## About Laravel
+# Educertify
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+**Educertify** is a web application that allows for the creation and customization of certificates in an easy and intuitive way. You can customize fonts, colors, add signatures, and also upload signed certificates or digitally sign them.
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## Features
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+- **Full Customization**: Change the font, color, and text style of the certificates.
+- **Digital Signatures**: Allows adding digital signatures or uploading already signed certificates.
+- **Real-Time Editor**: Preview changes in real-time while customizing your certificate.
+- **PDF Download**: Generate and download certificates in PDF format.
 
-## Learning Laravel
+## Technologies Used
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+- **Backend**: Laravel, PHP
+- **Frontend**: Bootstrap, Tabler, CSS, jQuery, JavaScript, Blade, SweetAlert, Toastr
+- **Database**: MySQL, PostgreSQL
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+## Installation
 
-## Laravel Sponsors
+1. Clone the repository:
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+   ```bash
+   git clone https://github.com/usuario/educertify.git
+   ```
 
-### Premium Partners
+2. Navigate to the project directory:
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
+   ```bash
+   cd educertify
+   ```
 
-## Contributing
+3. Install Composer dependencies:
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+   ```bash
+   composer install
+   ```
 
-## Code of Conduct
+4. Install Node.js dependencies:
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+   ```bash
+   npm install
+   ```
 
-## Security Vulnerabilities
+5. Configure the `.env` file:
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+   ```bash
+   cp .env.example .env
+   ```
+   Set up the environment variables, including the database connection and keys for signing certificates. You can choose between MySQL or PostgreSQL as your database.
+
+6. Generate the application key:
+
+   ```bash
+   php artisan key:generate
+   ```
+
+7. Run the migrations:
+
+   ```bash
+   php artisan migrate
+   ```
+
+8. Compile the frontend assets:
+
+   ```bash
+   npm run dev
+
+9. Start the server:
+
+   ```bash
+   php artisan serve
+   ```
+
+   The application will be available at `http://localhost:8000`.
+
+## Usage
+
+- Navigate to the application URL.
+- Register or log in.
+- Select a certificate template to customize.
+- Add and adjust texts, colors, and signatures as needed.
+- Download the customized certificate in PDF format.
+
+## Screenshots
+
+Here are some screenshots of the application in action:
+
+1. **Dashboard**
+   ![Dashboard Screenshot](screenshots/1.png)
+
+2. **Certificate Customization**
+   ![Certificate Customization Screenshot](screenshots/15.png)
+
+3. **PDF Download**
+   ![PDF Download Screenshot](screenshots/17.png)
+
+4. **Send Certificates to Participants**
+   ![Send Certificate Email](screenshots/24.png)
+
+## Contributions
+
+Contributions are welcome.
+
+Make a pull request when your changes are ready to be reviewed.
 
 ## License
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+This project is licensed under the MIT License. For more details, check the `LICENSE` file.
+
+## Contact
+
+If you have any questions or suggestions, you can contact me at [carlosveizaga.jcvc@gmail.com](mailto:carlosveizaga.jcvc@gmail.com).

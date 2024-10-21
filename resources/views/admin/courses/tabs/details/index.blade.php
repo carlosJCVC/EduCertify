@@ -17,10 +17,9 @@
                         <td>{{ $course->speaker->full_name }}</td>
                     </tr>
 
-                    {{-- TODO --}}
                     <tr>
                         <th>@lang('Categories')</th>
-                        <td>{{ implode(', ', $course->categories) }}</td>
+                        <td>{{ $course->categories->pluck('name')->join(', ', ' and ') }}</td>
                     </tr>
 
                     <tr>
