@@ -13,7 +13,7 @@
   <a href="#support">Support</a>
 </p>
 <p align="center">
-  <img src="screenshots/1.png" alt="Educertify Demo">
+  <img src="screenshots/educertify.webp" alt="Educertify Demo" width="50%">
 </p>
 <p align="center">
   <a href="https://github.com/carlosJCVC/EduCertify/stargazers"><img src="https://img.shields.io/github/stars/carlosJCVC/Educertify" alt="GitHub stars"></a>
@@ -100,17 +100,32 @@ Visit `http://localhost:8000` and start revolutionizing your certificate process
 
 Here are some screenshots of the application in action:
 
-1. **Dashboard**
-   ![Dashboard Screenshot](screenshots/1.png)
+<details>
+  <summary><b>1. Dashboard</b></summary>
+  <br>
+  <img src="screenshots/1.png" alt="Dashboard Screenshot" width="600"/>
+</details>
 
-2. **Certificate Customization**
-   ![Certificate Customization Screenshot](screenshots/15.png)
+<details>
+  <summary><b>2. Certificate Customization</b></summary>
+  <br>
+  <img src="screenshots/15.png" alt="Certificate Customization Screenshot" width="600"/>
+</details>
 
-3. **PDF Download**
-   ![PDF Download Screenshot](screenshots/17.png)
+<details>
+  <summary><b>3. PDF Download</b></summary>
+  <br>
+  <img src="screenshots/17.png" alt="PDF Download Screenshot" width="600"/>
+</details>
 
-4. **Send Certificates to the Participants**
-   ![Send Certificate Email](screenshots/24.png)
+<details>
+  <summary><b>4. Send Certificates to Participants</b></summary>
+  <br>
+  <img src="screenshots/24.png" alt="Send Certificate Email Screenshot" width="600"/>
+</details>
+
+> 💡 **Tip:** Click on each section to expand and view the screenshot. Images are resized for better viewing experience.
+
 
 ## 🤝 Contributions
 
